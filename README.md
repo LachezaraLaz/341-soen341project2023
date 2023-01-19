@@ -10,6 +10,7 @@ Provide a career service platform for students and employers.
 - Megan Coscia
 - Inas Fawzi
 - Suha Abubakr
+- Sakanah Dharmalingam
 
 ## Programming Languages
 TBD

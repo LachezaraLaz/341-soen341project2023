@@ -3,7 +3,7 @@
 ## Objective
 Provide a career service platform for students and employers. 
 
-## Project Descrption
+## Project Description
 
 ## Team Members
 - Lachezara Lazarova

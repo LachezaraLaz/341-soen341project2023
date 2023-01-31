@@ -13,4 +13,4 @@ Provide a career service platform for students and employers.
 - Sakanah Dharmalingam (Frontend Developper and UI/UX designer)
 
 ## Programming Languages
-Python
+HTML-CSS-JavaScript-Python-PHP

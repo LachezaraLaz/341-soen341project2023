@@ -7,27 +7,27 @@ Provide a career service platform for students and employers.
 
 ## Team Members
 - Lachezara Lazarova 
-  - Project Manager and Full Stack Developper
+  - Project Manager and Full Stack Developer
   - Username: LachezaraLaz
   - Strengths: Python, Java, HTML and CSS. Organization.
 
-- Megan Coscia (Full Stack Developper)
-  - Full Stack Developper
+- Megan Coscia (Full Stack Developer)
+  - Full Stack Developer and Technical Lead
   - Username: m-coscia
-  - Strengths:
+  - Strengths:workplace experience with HTML5, CSS and Javascript. Java and Python. Large scope visualization.
 
 - Inas Fawzi 
-  - Business analyst and Full Stack Developper
+  - Business Analyst and Full Stack Developer
   - Username: inas-fawzi
   - Strengths: HTML, CSS, PHP, Python and Java. Efficiency.
 
 - Suha Abubakr 
-  - Backend Developper and QA Lead
+  - Backend Developer and QA Lead
   - Username: suha-ab
   - Strengths:
 
 - Sakanah Dharmalingam 
-  - Frontend Developper and UI/UX designer
+  - Frontend Developer and UI/UX designer
   - Username: sahanaCoding
   - Strengths: Java, C++, Quick Learner.
 

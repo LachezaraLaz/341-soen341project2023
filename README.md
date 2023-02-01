@@ -29,7 +29,7 @@ Provide a career service platform for students and employers.
 - Sakanah Dharmalingam 
   - Frontend Developper and UI/UX designer
   - Username: sahanaCoding
-  - Strengths: 
+  - Strengths: Java, C++, Quick Learner.
 
 ## Programming Languages
 TBD

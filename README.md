@@ -1,7 +1,7 @@
 # SOEN 341, Group 341
 
 ## Objective
-The objective is to create a career service platform that would allow students and other job seekers to post and update their portfolios, while employers would be able to upload job postings. The products purpose would be to facilitate the job search / candidate search process for both job seekers and employers, respectively. 
+The objective is to create a career service platform that would allow students and other job seekers to post and update their portfolios, while employers would be able to upload job postings. The product's purpose would be to facilitate the job search / candidate search process for both job seekers and employers, respectively. 
 
 ## Project Description
 This team project is to create a web-based platform where students and other job seekers can pursue their job search effort while employers can use the tool to find potential employees. Every user is prompted to create an account to access the platform. Depending on the user type, different functions/features would be available:

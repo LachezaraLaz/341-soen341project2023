@@ -8,7 +8,7 @@ This team project is to create a web-based platform where students and other job
 - **Employers**:
   - creating an account, login, view candidate's portfolios, upload job postings, review applications to their job postings, offer interview to candidates to applicants of their job posting(s), and receive email notifications when students apply to their job posting(s)
 - **Students/Job Seekers**:
-  - create an account, login, create/edit their public profile/portfolio, upload their resume, view job postings, apply to job postings on the platform, and receive email notifications when they have been selected to interview
+  - create an account, login, create/edit their public profile/portfolio, upload their resume, view job postings, apply to job postings on the platform, and receive email notifications when they have been selected to interview.
 - **Admin**: login, manage user profiles / job postings
 This platform will be developped using Python, Django, HTML5, CSS, Javascript. At the moment, the data that will be stored and manipulated will be saved onto an XML file. This project is currently in progress; it will be built by a 5-person group and its estimated delivery date is the 10th week of the winter 2023 semester. 
 

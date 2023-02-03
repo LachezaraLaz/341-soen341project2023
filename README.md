@@ -24,7 +24,7 @@ Provide a career service platform for students and employers.
 - Suha Abubakr 
   - Backend Developer and QA Lead
   - Username: suha-ab
-  - Strengths:
+  - Strengths: Problem Solving, Critical Thinking, Teamwork, Programming Languages {Javascript, Java, Python}.
 
 - Sakanah Dharmalingam 
   - Frontend Developer and UI/UX designer

@@ -1,1 +1,51 @@
 
+body{
+    margin-left: 50px;
+    margin-top: 50px;
+    background-color:aliceblue
+}
+
+h1{
+    font-family: Verdana;
+    font-size: 40px;
+}
+
+p1{
+    font-size: 20px;
+    font-family: Verdana;
+    color: gray;
+}
+
+input[type = email]{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid lightgrey;
+    border-radius: 4px;
+}
+
+input[type = password]{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid lightgrey;
+    border-radius: 4px;
+}
+label[for = rememberme]{
+    font-family: Verdana;
+    font-size: 13px;
+    color:#2E2E2E;
+}
+input[type = submit]{
+    width: 150px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid;
+    border-color: lightblue;
+    border-radius: 4px;
+    background-color: paleturquoise;
+    align-items: center;
+}

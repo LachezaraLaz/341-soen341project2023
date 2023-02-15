@@ -5,13 +5,25 @@
      background-image: url(teamwork%20login%20image.jpg);
      background-size: 450px;
      background-repeat: no-repeat;
-     background-position: 100% 60px;
+     background-position: 100% 140px;
  }
 
  h1{
      font-family: Verdana;
      font-size: 40px;
  }
+
+header{
+     font-family: Verdena;
+     color:aliceblue; 
+     width:100%;
+     background-color: dodgerblue;
+     margin-left: -50px;
+     margin-top: -50px;
+     padding: 10px 50px;
+     color: darkblue;
+     font-size: 20px;
+}
 
  p1{
      font-size: 20px;
@@ -69,5 +81,5 @@ footer{
     margin-left: -50px;
     margin-bottom: -50px;
     margin-top: 150px;
-    padding: 20px 30px;
+    padding: 20px 50px;
 }

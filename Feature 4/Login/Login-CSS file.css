@@ -13,16 +13,35 @@
      font-size: 40px;
  }
 
-header{
-     font-family: Verdena;
-     color:aliceblue; 
-     width:100%;
-     background-color: dodgerblue;
-     margin-left: -50px;
-     margin-top: -50px;
-     padding: 5px 50px;
-     color: darkblue;
-     font-size: 20px;
+ul {
+    list-style-type: none;
+    margin-left: -50px;
+    margin-top: -50px;
+    padding: 0;
+    width:100%;
+    background-color: dodgerblue;
+    position: fixed;
+}
+
+li{
+    display: inline;
+}
+
+li a{
+    color:aliceblue;
+    display: block;
+    padding: 20px 15px;
+    font-family: Verdana;
+    float:right;
+}
+
+.name {
+    color:aliceblue;
+    display: block;
+    padding: 17px 50px;
+    font-family: Verdana;
+    font-size: 20px;
+    float:left;
 }
 
  p1{
@@ -83,3 +102,4 @@ footer{
     margin-top: 150px;
     padding: 20px 50px;
 }
+

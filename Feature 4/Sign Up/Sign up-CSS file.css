@@ -2,10 +2,10 @@
  body{
      margin-left: 50px;
      margin-top: 50px;
-     background-image: url(happy%20jumping%20group.jpg);
+     background-image:url(happy%20people%20jumping.jpg);
      background-size: 450px;
      background-repeat: no-repeat;
-     background-position: 100% 140px;
+     background-position: 100% 170px;
  }
 
  h1{
@@ -67,6 +67,14 @@ li a{
      border: 2px solid lightgrey;
      border-radius: 4px;
  }
+
+.field-icon {
+  float: right;
+  margin-left: -25px;
+  margin-top: -25px;
+  position: relative;
+  z-index: 2;
+}
 
  label[for = rememberme]{
      font-family: Verdana;

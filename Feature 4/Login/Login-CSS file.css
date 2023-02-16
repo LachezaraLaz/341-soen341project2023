@@ -50,7 +50,7 @@ li a{
      color: gray;
  }
 
- input[type = email]{
+ input[type = email], input[type = password]{
      width: 50%;
      padding: 12px 20px;
      margin: 8px 0;
@@ -59,16 +59,8 @@ li a{
      border-radius: 4px;
  }
 
- input[type = password]{
-     width: 50%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     box-sizing: border-box;
-     border: 2px solid lightgrey;
-     border-radius: 4px;
- }
 
- label[for = rememberme]{
+ label[for = RememberMe]{
      font-family: Verdana;
      font-size: 13px;
      color:#2E2E2E;
@@ -102,4 +94,5 @@ footer{
     margin-top: 150px;
     padding: 20px 50px;
 }
+
 

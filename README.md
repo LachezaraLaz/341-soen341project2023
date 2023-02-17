@@ -47,4 +47,4 @@ There are four key features that make up the career service platform.
   - Strengths: Java, C++, Quick Learner.
 
 ## Programming Languages
-TBD
+HTML, CSS, JavaScript, Python, SQLite

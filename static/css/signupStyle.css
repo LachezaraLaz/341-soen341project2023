@@ -93,6 +93,10 @@ input[type="submit"] {
   align-items: center;
 }
 
+input:hover[type="submit"] {
+  cursor: pointer;
+}
+
 a:link {
   background-color: transparent;
   text-decoration: none;

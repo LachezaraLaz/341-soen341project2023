@@ -46,5 +46,5 @@ There are four key features that make up the career service platform.
   - Username: sahanaCoding
   - Strengths: Java, C++, Quick Learner.
 
-## Programming Languages
-HTML, CSS, JavaScript, Python, SQLite
+## Programming Languages & Frameworks
+HTML, CSS, JavaScript, Python, Flask, SQLite

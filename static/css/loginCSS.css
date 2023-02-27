@@ -2,11 +2,20 @@
  body{
      margin-left: 50px;
      margin-top: 50px;
-     background-image:url(happy%20people%20jumping.jpg);
+     background-image: url(teamwork%20login%20image.jpg);
      background-size: 450px;
      background-repeat: no-repeat;
-     background-position: 100% 170px;
+     background-position: 100% 140px;
  }
+
+#all{
+    position: relative;
+    min-height: 100vh;
+}
+
+#main{
+    padding-bottom:2.5rem;
+}
 
  h1{
      font-family: Verdana;
@@ -50,33 +59,17 @@ li a{
      color: gray;
  }
 
- input[type = email]{
-     width: 50%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     box-sizing: border-box;
-     border: 2px solid lightgrey;
-     border-radius: 4px;
+input[type = password], input[type = email], input[type = text]{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid lightgrey;
+    border-radius: 4px;
  }
 
- input[type = password]{
-     width: 50%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     box-sizing: border-box;
-     border: 2px solid lightgrey;
-     border-radius: 4px;
- }
 
-.field-icon {
-  float: right;
-  margin-left: -25px;
-  margin-top: -25px;
-  position: relative;
-  z-index: 2;
-}
-
- label[for = rememberme]{
+ label[for = RememberMe]{
      font-family: Verdana;
      font-size: 13px;
      color:#2E2E2E;
@@ -101,13 +94,22 @@ a:link {
 }
 
 footer{
+    position: absolute;
     font-family: Verdana;
     color:aliceblue; 
     width:100%;
     background-color: darkblue;
     margin-left: -50px;
-    margin-bottom: -50px;
-    margin-top: 150px;
+    margin-bottom: -70px;
+    bottom:0;
     padding: 20px 50px;
 }
 
+@media screen and (max-width:600px){
+    .navbar a{
+        float: none;
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+    }
+}

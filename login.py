@@ -1,7 +1,7 @@
 #importing Flask and other modules
 from flask import Flask, request, render_template
 
-#Flask constructor
+#Flask constructor which creates the Flask application object
 app = Flask(__name__)
 
 # A decorator used to tell the application which URL is associated function

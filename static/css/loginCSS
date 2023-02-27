@@ -8,6 +8,15 @@
      background-position: 100% 140px;
  }
 
+#all{
+    position: relative;
+    min-height: 100vh;
+}
+
+#main{
+    padding-bottom:2.5rem;
+}
+
  h1{
      font-family: Verdana;
      font-size: 40px;
@@ -50,13 +59,13 @@ li a{
      color: gray;
  }
 
- input[type = email], input[type = password]{
-     width: 50%;
-     padding: 12px 20px;
-     margin: 8px 0;
-     box-sizing: border-box;
-     border: 2px solid lightgrey;
-     border-radius: 4px;
+input[type = password], input[type = email], input[type = text]{
+    width: 50%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid lightgrey;
+    border-radius: 4px;
  }
 
 
@@ -85,14 +94,22 @@ a:link {
 }
 
 footer{
+    position: absolute;
     font-family: Verdana;
     color:aliceblue; 
     width:100%;
     background-color: darkblue;
     margin-left: -50px;
-    margin-bottom: -50px;
-    margin-top: 150px;
+    margin-bottom: -70px;
+    bottom:0;
     padding: 20px 50px;
 }
 
-
+@media screen and (max-width:600px){
+    .navbar a{
+        float: none;
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+    }
+}

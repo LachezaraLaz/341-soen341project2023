@@ -1,104 +1,139 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="Sign%20up-CSS%20file.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://kit.fontawesome.com/e4ad6adbad.js" crossorigin="anonymous"></script>
-        <script>
-            function seePswd() {
-                 var x = document.getElementById("pswd1")
-                   , y = document.getElementById("pswd2");
-                if (x.type === "password") {
-                    x.type = "text";
-                } else {
-                    x.type = "password";
-                }
-                if (y.type === "password") {
-                    y.type = "text";
-                } else {
-                    y.type = "password";
-                }
-            }
-            
-            function confirmingPswd(){
-                var x = document.getElementById("pswd1")
-                  , y = document.getElementById("pswd2");
-            
-                if(x.value != y.value) {
-                    window.alert("Passwords must match");
-                } else {
-                    y.setCustomValidity('');
-                }
-            }
-        </script>
-    </head>
-<body> 
- 
-    <div id="all">
-        <div id="main">
-            <ul class="navbar">
-                <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-                <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
-                <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
-                <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
-            </ul>
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/signUpCSS.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/e4ad6adbad.js"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function seePswd() {
+        var x = document.getElementById("pswd1"),
+          y = document.getElementById("pswd2");
+        if (x.type === "password") {
+          x.type = "text";
+        } else {
+          x.type = "password";
+        }
+        if (y.type === "password") {
+          y.type = "text";
+        } else {
+          y.type = "password";
+        }
+      }
 
-            <br><br>
+      function confirmingPswd() {
+        var x = document.getElementById("pswd1"),
+          y = document.getElementById("pswd2");
+
+        if (x.value != y.value) {
+          window.alert("Passwords must match");
+        } else {
+          y.setCustomValidity("");
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="all">
+      <div id="main">
+        <ul class="navbar">
+          <li>
+            <a class="name" href="../Login/Login-html%20file.html"
+              ><b><i>I</i>mplico</b></a
+            >
+          </li>
+          <li>
+            <a href="../Profile/profile.html"
+              ><i class="fa fa-fw fa-user"></i> Me</a
+            >
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a>
+          </li>
+          <li>
+            <a class="active" href="../Login/Login-html%20file.html" href="#"
+              ><i class="fa fa-fw fa-home"></i> Home</a
+            >
+          </li>
+        </ul>
+
+        <br /><br />
 
         <h1>Let's get you started!</h1>
 
-        <br>
-
-        <label for="type">I am a(n):</label><br>
-        <select class="type">
+        <br />
+        <form action="{{ url_for('signup') }}" method="post">
+          <label for="type">I am a(n):</label><br />
+          <select name="userType" class="type">
             <option>Student</option>
             <option>Employer</option>
-        </select>
+          </select>
 
-        <br><br>
+          <br /><br />
 
-        <p1> Email: 
-            <br>
-            <input type="email" placeholder="Your Email">
-        </p1>
+          <p1>
+            Email:
+            <br />
+            <input name="email" type="email" placeholder="Your Email" />
+          </p1>
 
-        <br><br>
+          <br /><br />
 
-        <p1> Password: 
-            <br>
-            <input type="password" placeholder="Your Password" id="pswd1" required>
-            <br>
-        </p1>
+          <p1>
+            Password:
+            <br />
+            <input
+              name="password"
+              type="password"
+              placeholder="Your Password"
+              id="pswd1"
+              required
+            />
+            <br />
+          </p1>
 
-            
-        <br> 
+          <br />
 
-        <p1> Confirm Password: 
-            <br>
-            <input type="password" placeholder="Confirm Your Password" id="pswd2" required>
-            <p style="font-size: 13px; margin-top:5px;"><input type="checkbox" onclick="seePswd()">Show Passwords</p>
-        </p1>
+          <p1>
+            Confirm Password:
+            <br />
+            <input
+              type="password"
+              placeholder="Confirm Your Password"
+              id="pswd2"
+              required
+            />
+            <p style="font-size: 13px; margin-top: 5px">
+              <input type="checkbox" onclick="seePswd()" />Show Passwords
+            </p>
+          </p1>
 
-        <br>
+          <br />
 
-        <input type="checkbox" id="rememberMe">
-        <label for="rememberMe">Remember Me</label>
+          <input type="checkbox" id="rememberMe" />
+          <label for="rememberMe">Remember Me</label>
 
-        <br><br>
+          <br /><br />
 
-        <button onclick="confirmingPswd()">Submit</button> 
-            
-<pre style="font-family: Verdana; font-size: 13px">
+          <button onclick="confirmingPswd()">Submit</button>
+        </form>
+        <pre style="font-family: Verdana; font-size: 13px">
 <a href="../Login/Login-html%20file.html">Already with Implico?</a>
 </pre>
-            <br><br>
-            </div>
-        <footer>
-            <a href="" style="color:aliceblue">Contact Us</a> /  
-            <a href="" style="color:aliceblue">About Us</a>
-        </footer>
+        <br /><br />
+      </div>
+      <footer>
+        <a href="" style="color: aliceblue">Contact Us</a> /
+        <a href="" style="color: aliceblue">About Us</a>
+      </footer>
     </div>
-    
-</body>
+  </body>
 </html>
-

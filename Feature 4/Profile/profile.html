@@ -11,22 +11,22 @@
     
     
 <body> 
- 
-   <ul>
-        <li><a href="../Profile/profile.html" href="#"><i class="fa fa-fw fa-user"></i>Me</a></li>
-        <li><a href="#"><i class="fa fa-fw fa-envelope"></i>Jobs</a></li>
-        <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i>Home</a></li>
-        <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a>
+  <ul>
+    <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i>Me</a></li>
+    <li><a href="#"><i class="fa fa-fw fa-envelope"></i>Jobs</a></li>
+    <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i>Home</a></li>
+    <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
+</ul>
 
-    </li>
-    </ul>
+<br><br>
 
  <table class= "ImageBackground" >
         <tr> 
 
           <td>  <img src="https://cdn.dribbble.com/users/1044993/screenshots/6164205/golden-retriever-rose_dribbble.png" style="height:150px;border-radius: 50%; border: 10px solid; padding: auto#a54d12;" alt="This is a small profile image of Sahana' New website, a  smiling pup.">
    </td>
-<td> <h1> Add an Image</h1></td>
+<td> <h1> <h1 class="BProfile"> <span id="firstName">,</span>
+<span id="lastName"></span></p> </h1></td>
 
         </tr>
      
@@ -34,70 +34,110 @@
 
   
     <br><br>
-    <h1 class="BProfile">Profile
-    <pre style="font-family: Verdana; font-size: 13px; text-align: right;" >
-      <a href="../Edit%20Profile/editProfile.html">Edit</a> 
+     
+    <pre style="font-family: Verdana; font-size: 20px; text-align: right;" >
+    <a href="../Edit%20Profile/editProfile.html">Edit</a> 
   </pre> </h1> 
     <br>
     
     
       
   <div class="PersonalInfo"> 
-    
+    <h2> Profile</h2>
 <form>
-    <div class="Name">
-   <h> <p2> First Name,</p2> <p2> Last Name: </p2>
-<br><br> </h>
-  </div>
+  <pre style="border-bottom:5px solid rgb(58, 207, 231);"></pre>
 
-    <p1> Program: 
-        <input type="text" placeholder="program">
-    </p1>
+    <p1> Program:  <span id="program"></span></p1>
 
     <br><br>
 
-    <p1> Bio: 
-      <input type="text" placeholder="Write here">
-  </p1>
+    <p1> Bio: <span id="bio"></span></p1>
   <br><br>
 
-<p1> Contact Info: <br>
-    <input type="text" placeholder="Write here">
-</p1>
+  <p1> Education: <span id="education"></span></p1>
+  <br><br>
+  <p1> Contact Info:  <span id="contactInfo"></span></p1>
+   
 
+<br>
 <br><br>
  
 </form>
- </div>
+  <h2> Experiences</h2>
+</div>
 
+
+ <span class="b">
  
-
-  <h2> Experience</h2>
- <span class="b">Experiences</span> <span class="b">
-    
-    <a href="../Edit%20Profile/editProfile.html">Edit</a>  </span> 
-
+  <pre style="font-family: Verdana; font-size: 20px;text-align: right;" >
+    <a href="../Edit%20Profile/editProfile.html">Edit</a> <a href="../Edit%20Profile/editProfile.html"> Add</a> </span>
+   
 
  <div class="Experiences">
+  <div class="grid-container">
+    <div class="item1">Job Image</div>
+    <div class="item2">Job title</div>
+    <div class="item3">Description</div>  
 
+  </div>
 
+  <br>
+  <div class="grid-container">
+    <div class="item1">Job Image</div>
+    <div class="item2">Job title</div>
+    <div class="item3">Description</div>  
+
+  </div>
+
+  <br>
+  <div class="grid-container">
+    <div class="item1">Job Image</div>
+    <div class="item2">Job title</div>
+    <div class="item3">Description</div>  
+
+  </div>
+  
 
 
   </div>
   
- idkkk yet 
-<!--
-  <div style="background-image: url('ImageLocation');
-  background-size: cover; height:540px;">
-<img src="ImageFilePath" style="height:150px;">
-</div>
--->
  
 
-    <footer>
+    <script>
+      // Get the query string from the URL
+      const queryString = window.location.search;
+
+      // Create an object with key-value pairs of the query string
+      const urlParams = new URLSearchParams(queryString);
+
+      // Get the values from the query string and display them
+       document.getElementById("firstName").textContent = urlParams.get("FirstName");
+      document.getElementById("lastName").textContent = urlParams.get("LastName");
+      document.getElementById("program").textContent = urlParams.get("Program");
+      document.getElementById("bio").textContent = urlParams.get("Bio");
+      document.getElementById("education").textContent = urlParams.get("Education");
+      document.getElementById("location").textContent = urlParams.get("Location");
+      document.getElementById("contactInfo").textContent = urlParams.get("ContactInfo");
+    </script>
+
+
+
+
+
+
+
+  <footer>
         <a href="" style="color:aliceblue">About Us</a> /  
         <a href="" style="color:aliceblue">Contact Us</a>
     </footer>
+
+
+
+
+
+
+
+
 
 
 </body>

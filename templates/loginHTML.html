@@ -2,7 +2,8 @@
 <html>
     <html>
     <head>
-        <link rel="stylesheet" href="Login-CSS%20file.css">
+        <link rel="stylesheet" href="static\css\loginCSS.css">
+        /* <link rel="stylesheet" href="Login-CSS%20file.css"> */
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/e4ad6adbad.js" crossorigin="anonymous"></script>
         <script>
@@ -33,15 +34,15 @@
             
             <br>
     
-            <form>
+            <form method="POST">
                 <p1> Email: <br>
-                    <input type="email" placeholder="Your Email">
+                    <input type="email" placeholder="Your Email" name="email">
                 </p1>
 
                 <br><br>
     
                 <p1> Password: <br>
-                    <input type="password" placeholder="Your Password" id="pswd">
+                    <input type="password" placeholder="Your Password" name="password">
                     <p style="font-size: 13px; margin-top:5px;"><input type="checkbox" onclick="seePswd()">Show Passwords</p>
                 </p1>
 

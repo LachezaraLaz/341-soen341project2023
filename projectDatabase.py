@@ -4,9 +4,6 @@ import sqlite3
 # connection to the database module
 conn = sqlite3.connect("data.db")
 
-# checking that the database has been created
-# print(conn.total_changes)
-
 # allow for SQL commands to be run
 c = conn.cursor()
 
@@ -36,5 +33,6 @@ except sqlite3.OperationalError:
 finally:
     row = c.execute("SELECT userKey, email, password, userType from LoginInfo").fetchall()
     print(row)
+    #saves changes to the table
     conn.commit()
     c.close()

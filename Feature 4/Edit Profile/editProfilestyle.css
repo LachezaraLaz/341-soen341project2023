@@ -62,6 +62,9 @@ a:link {
    text-decoration: none;
 }
 
+
+
+
 footer{
    font-family: Verdana;
    color:aliceblue; 
@@ -73,3 +76,72 @@ footer{
    padding: 20px 50px;
 }
 
+.Experiences {
+
+  text-align: center;
+  border-radius: 10px;
+  display: Experiences;
+  width: 75%;
+  height: 40%;
+  padding: 60px;
+  border: 5px solid rgb(21, 21, 85);    
+  border-radius: 50px;
+  margin:center;
+  
+  
+  
+  
+  }
+  
+  .item1 {
+    grid-area: myArea;
+  }
+  
+  .item2 {
+      grid-area: secondArea;
+  }
+  
+  .item3 {
+      grid-area: thirdArea;
+  }
+  
+  .grid-container {
+    width:90%;
+    height:0%;
+    display: grid;
+    grid-template-areas: 'myArea secondArea '
+                            'myArea thirdArea';
+    gap: 10px;
+    background-color: #2196F3;
+    padding: 10px;
+  }
+  
+  .grid-container > div {
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 20px 0;
+    font-size: 12px;
+  }
+  
+  
+  
+  span.b {
+    font-size: 15px;
+    display: Experiences;
+    width: 50%;
+    height: 25px;
+    padding: 0px; 
+    text-align: right;
+  
+   
+  }
+  
+  #profile-picture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  
+  

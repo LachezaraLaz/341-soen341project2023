@@ -1,68 +1,98 @@
 body{
-    margin-left: 50px;
-    margin-top: 50px;
-    background-image: url(teamwork%20login%20image.jpg);
-    background-size: 450px;
-    background-repeat: no-repeat;
-    background-position: 100% 140px;
+  margin-left: 50px;
+  margin-top: 50px;
+  background-image: url(teamwork%20login%20image.jpg);
+  background-size: 300px;
+  background-repeat: no-repeat;
+  height: auto;
+  background-position: 85% 140px;
+
 }
 
 h1{
-    font-family: Verdana;
-    font-size: 40px;
+  font-family: Verdana;
+  font-size: 40px;
+}
+h2{
+  font-family: Verdana;
+  font-size: 30px;
 
 }
+
 .BProfile{
-  border-bottom: 5px solid red;
-    
+
+font-size: 35px; 
+  
 }
 
+ul {
+  list-style-type: none;
+  margin-left: -50px;
+  margin-top: -50px;
+  padding: 0;
+  width:100%;
+  background-color: dodgerblue;
+  position: fixed;
+}
 
+li{
+  display: inline;
+}
+
+li a{
+  color:aliceblue;
+  display: block;
+  padding: 20px 15px;
+  font-family: Verdana;
+  float:right;
+}
+
+.name {
+  color:aliceblue;
+  display: block;
+  padding: 17px 50px;
+  font-family: Verdana;
+  font-size: 20px;
+  float:left;
+}
 
 header{
-    font-family: Verdena;
-    color:aliceblue; 
-    width:100%;
-    background-color: dodgerblue;
-    margin-left: -50px;
-    margin-top: -50px;
-    padding: 5px 50px;
-    color: darkblue;
-    font-size: 20px;
+  font-family: Verdena;
+  color:aliceblue; 
+  width:100%;
+  background-color: dodgerblue;
+  margin-left: -50px;
+  margin-top: -50px;
+  padding: 5px 50px;
+  color: darkblue;
+  font-size: 20px;
 }
 
 p1{
-    font-size: 14px;
-    font-family: Verdana;
-    color: rgb(10, 10, 10);
+  font-size: 20px;
+  block-size: auto;
+  font-family: Verdana;
+  color: rgb(10, 10, 10);
 }
 
 .Name{
-    font-size: 25px;
-    font-family: Verdana;
-    color: rgb(10, 10, 10);
-    text-align: center;
+  font-size: 25px;
+  font-family: Verdana;
+  color: rgb(10, 10, 10);
+  text-align: center;
 }
 
-input[type = text]{
-    width: 17.5%;
-    padding: 3px 5px;
-    margin: 2px 2;
-    box-sizing: border-box;
-    border: 2px solid lightgrey;
-    border-radius: 4px;
-}
 
 .PersonalInfo{
-  order: 5px outset red;
-  background-color:none;    
-  text-align: left;
+order: 5px outset red;
+background-color:none;    
+text-align: left;
 }
 
 a:link {
 
-   background-color: transparent;
-   text-decoration: none;
+ background-color: transparent;
+ text-decoration: none;
 }
 
 footer{
@@ -77,39 +107,70 @@ footer{
 }
 
 .Experiences {
-  
-  text-align: right;
-  border-radius: 10px;
-  display: Experiences;
-  width: 50%;
-  height: 25px;
-  padding: 100px;
-  border: 1px solid blue;    
-  border-radius: 0px;
 
- 
+text-align: center;
+border-radius: 10px;
+display: Experiences;
+width: 75%;
+height: 40%;
+padding: 60px;
+border: 5px solid rgb(21, 21, 85);    
+border-radius: 50px;
+margin:center;
+
+
+
 
 }
 
+.item1 {
+  grid-area: myArea;
+}
 
-  
-  span.b {
-    display: Experiences;
-    width: 50%;
-    height: 25px;
-    padding: 0px;
-    border: 1px solid blue;    
-    border-radius: 0px;
+.item2 {
+    grid-area: secondArea;
+}
 
-   
+.item3 {
+    grid-area: thirdArea;
+}
+
+.grid-container {
+  width:90%;
+  height:0%;
+  display: grid;
+  grid-template-areas: 'myArea secondArea '
+                          'myArea thirdArea';
+  gap: 10px;
+  background-color: #2196F3;
+  padding: 10px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 12px;
+}
+
+
+
+span.b {
+  font-size: 15px;
+  display: Experiences;
+  width: 50%;
+  height: 25px;
+  padding: 0px; 
+  text-align: right;
+
  
-    margin: 6px 20;
-   
-    
-    
+}
+
+#profile-picture {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
 
-
-
-  }
-  

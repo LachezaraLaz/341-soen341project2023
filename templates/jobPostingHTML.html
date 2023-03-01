@@ -1,70 +1,129 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link rel="stylesheet" href="../static/css/jobPostingCSS.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <script src="https://kit.fontawesome.com/e4ad6adbad.js" crossorigin="anonymous"></script>
-    </head>
-<body> 
- 
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/jobPostingCSS.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/e4ad6adbad.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
     <div id="all">
-        <div id="main">
-            <ul class="navbar">
-                <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-                <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
-                <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
-                <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i> Home</a></li>
-            </ul>
-            
-            <br><br>
-            
-            <h1>Job Posting</h1>
-            
-            <form method="get" action="jobDashboardHTML.html">
-                <label for="company">Company:</label>
-                <br>
-                <input type="text" id="company" placeholder="Ex: Netflix">
-                <br>
-                <label for="position">Job Position:</label>
-                <br>
-                <input type="text" id="position" placeholder="Ex: Accountant">
-                <br>
-                <label for="location">Job Location:</label>
-                <br>
-                <input type="text" id="location" placeholder="Ex: California, USA">
-                <br><br>
-                <input type="radio" id="typePerson">
-                <label for="typePerson">In Person</label>
-                <input type="radio" id="typeHybrid">
-                <label for="typeHybrid">Hybrid</label>
-                <input type="radio" id="typeRemote">
-                <label for="typeRemote">Remote</label>
-                <br><br>
-                <label for="salary">Salary:</label>
-                <br>
-                <input type="text" id="salary" placeholder="Ex: 30$/hour">
-                <br>
-                <label for="person">Person to contact:</label>
-                <br>
-                <input type="text" id="person" placeholder="First Name">
-                <input type="text" id="person" placeholder="Last Name">
-                <input type="email" id="person" placeholder="Email">
-                <br>
-                <label for="description">Job Description:</label>
-                <br>
-                <input type="text" id="description" placeholder="Ex: Description....">
-                <br>
-                
-                <input type="submit">
-            </form>
+      <div id="main">
+        <ul class="navbar">
+          <li>
+            <a class="name" href="../Login/Login-html%20file.html"
+              ><b><i>I</i>mplico</b></a
+            >
+          </li>
+          <li>
+            <a href="../Profile/profile.html"
+              ><i class="fa fa-fw fa-user"></i> Me</a
+            >
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a>
+          </li>
+          <li>
+            <a class="active" href="../Login/Login-html%20file.html" href="#"
+              ><i class="fa fa-fw fa-home"></i> Home</a
+            >
+          </li>
+        </ul>
 
-            </div>
-        <footer>
-            <a href="" style="color:aliceblue">Contact Us</a> /  
-            <a href="" style="color:aliceblue">About Us</a>
-        </footer>
+        <br /><br />
+
+        <h1>Job Posting</h1>
+
+        <form method="post" action="jobDashboardHTML.html">
+          <label for="company">Company:</label>
+          <br />
+          <input
+            name="companyName"
+            type="text"
+            id="company"
+            placeholder="Ex: Netflix"
+          />
+          <br />
+          <label for="position">Job Position:</label>
+          <br />
+          <input
+            name="positionName"
+            type="text"
+            id="position"
+            placeholder="Ex: Accountant"
+          />
+          <br />
+          <label for="location">Job Location:</label>
+          <br />
+          <input
+            name="location"
+            type="text"
+            id="location"
+            placeholder="Ex: California, USA"
+          />
+          <br /><br />
+          <input name="workMode" type="radio" id="typePerson" />
+          <label for="typePerson">In Person</label>
+          <input name="workMode" type="radio" id="typeHybrid" />
+          <label for="typeHybrid">Hybrid</label>
+          <input name="workMode" type="radio" id="typeRemote" />
+          <label for="typeRemote">Remote</label>
+          <br /><br />
+          <label for="salary">Salary:</label>
+          <br />
+          <input
+            name="salary"
+            type="text"
+            id="salary"
+            placeholder="Ex: 30$/hour"
+          />
+          <br />
+          <label for="person">Person to contact:</label>
+          <br />
+          <input
+            name="contactFName"
+            type="text"
+            id="person"
+            placeholder="First Name"
+          />
+          <input
+            name="contactLName"
+            type="text"
+            id="person"
+            placeholder="Last Name"
+          />
+          <input
+            name="contactEmail"
+            type="email"
+            id="person"
+            placeholder="Email"
+          />
+          <br />
+          <label for="description">Job Description:</label>
+          <br />
+          <input
+            name="description"
+            type="text"
+            id="description"
+            placeholder="Ex: Description...."
+          />
+          <br />
+
+          <input type="submit" />
+        </form>
+      </div>
+      <footer>
+        <a href="" style="color: aliceblue">Contact Us</a> /
+        <a href="" style="color: aliceblue">About Us</a>
+      </footer>
     </div>
-    
-</body>
+  </body>
 </html>
-

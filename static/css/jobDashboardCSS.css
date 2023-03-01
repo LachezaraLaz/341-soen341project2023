@@ -1,1 +1,101 @@
 
+ body{
+/*    margin-left: 50px;*/
+    margin-top: 50px;
+/*    background-size: 450px;*/
+/*    background-repeat: no-repeat;*/
+/*    background-position: 100% 170px;*/
+ }
+
+#all{
+    position: relative;
+    min-height: 100vh;
+}
+
+#main{
+    padding-bottom:2.5rem;
+}
+
+
+ul {
+    overflow: hidden;
+    list-style-type: none;
+    margin-left: -8px;
+    margin-top: -50px;
+    padding: 0;
+    width:100%;
+    background-color: dodgerblue;
+    position: fixed;
+}
+
+li{
+    display: inline;
+}
+
+li a{
+    color:aliceblue;
+    display: block;
+    padding: 20px 15px;
+    font-family: Verdana;
+    float:right;
+}
+
+.name {
+    color:aliceblue;
+    display: block;
+    padding: 17px 50px;
+    font-family: Verdana;
+    font-size: 20px;
+    float:left;
+}
+
+a:link {
+    background-color: transparent;
+    text-decoration: none;
+}
+
+footer{
+    position: absolute;
+    font-family: Verdana;
+    color:aliceblue; 
+    width:100%;
+    background-color: darkblue;
+    margin-left: -50px;
+    margin-bottom: -70px;
+    bottom:0;
+    padding: 20px 50px;
+}
+
+table{
+    width: 95%;
+    margin-left:auto;
+    margin-right:auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+    font-family: Verdana;
+    font-size: 15px;
+}
+
+th{
+    border: 1px solid black;
+    border-collapse: collapse;
+    background-color: powderblue;
+    padding: 5px 0px;
+    width:10%;
+}
+
+td{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
+@media screen and (max-width:600px){
+    .navbar a{
+        float: none;
+        width: 100%;
+        padding: 0px;
+        text-align: center;
+    }
+}
+

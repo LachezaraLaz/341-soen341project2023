@@ -1,16 +1,13 @@
 #importing the sqlite3 module to handle database
 import sqlite3
 #importing Flask and other modules
-from flask import Flask, request, render_template, redirect, url_for, session
+from flask import Flask, request, render_template, redirect, session, Blueprint
 
-#Flask constructor
-loginFunctionality = Flask(__name__)
-
-loginFunctionality.secret_key = "some_secret_key"
+login = Blueprint('login', __name__)
 
 # A decorator used to tell the application which URL is associated function
-@loginFunctionality.route('/loginHTML.html', methods =['GET', 'POST'])
-def login():
+@login.route('/loginHTML.html', methods =['GET', 'POST'])
+def loginFunc():
     if request.method == 'POST':
        # getting input with name = fname in HTML form
        email = request.form.get("email")
@@ -67,6 +64,3 @@ def login():
 
     #if no POST request is made just stay on the login page
     return render_template('loginHTML.html', boolean=True)
-
-if(__name__ == '__main__'):
-    loginFunctionality.run(debug=True)

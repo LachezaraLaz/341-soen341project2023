@@ -2,14 +2,13 @@
 # flask to use Flask framework and
 # request to handle HTML form requests
 import sqlite3
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, Blueprint
 
-# create Flask object
-app = Flask(__name__)
+signup = Blueprint('signup', __name__)
 
 #map route to signup  URL (tells Flask what URL triggers our following functions)
-@app.route('/signup.html',methods = ['POST','GET'])
-def signup():
+@signup.route('/signup.html',methods = ['POST','GET'])
+def signupFunc():
     if request.method == "GET":
         return render_template('signUpHTML.html')
     elif request.method == "POST":
@@ -50,7 +49,7 @@ def signup():
         c.close()
         return render_template('loginHTML.html')
 
-@app.route('/jobPostings',methods = ['POST','GET'])
+@signup.route('/jobPostings.html',methods = ['POST','GET'])
 def jobPostings():
     if request.method == 'GET':
         return render_template('jobPostingHTML.html')
@@ -67,7 +66,7 @@ def jobPostings():
     
     # Need to fetch posting ID to continue <--------------
 
-@app.route('/jobDashboard')
+@signup.route('/jobDashboard.html')
 def jobDashboard():
      # connection to the database module
     conn = sqlite3.connect("data.db")
@@ -75,6 +74,3 @@ def jobDashboard():
     jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
     print(jobPostings)
     return render_template("jobDashboardHTML.html", jobPostings = jobPostings)
-
-if(__name__ == '__main__'):
-    app.run(debug=True)

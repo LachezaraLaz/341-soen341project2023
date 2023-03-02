@@ -19,10 +19,11 @@ def profile():
     #SHOULDN'T HAPPEN
     if request.method == 'POST':
         print("your mom caca lala")
+        c.close()
         return
     
     #WHEN THE PAGE GETS LOADED
-    else:
+    elif request.method == 'GET':
         #STORING THE SESSION VAR OF THE USER'S ID IN A VAR
         userID = 1 #session["userID"]
 
@@ -36,7 +37,6 @@ def profile():
         fetchWork = "SELECT * FROM WorkExperience WHERE profileID="+str(profileKey) 
         workExps = c.execute(fetchWork).fetchall()
 
-
         #FORMATING DATA TO BE INSERTED ONTO HTML PAGE
         #separating fields of the record
         name = str(userProfile[2])+" "+str(userProfile[3])
@@ -46,26 +46,28 @@ def profile():
         con = str(userProfile[8])
         port = "\""+str(userProfile[9])+"\""
         #creating string holding rows for work experience table
-        workExpTable = expTableCreator(workExps)
+        #workExpTable = expTableCreator(workExps)
+
+        c.close()
 
         #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
-        return render_template('loginHTML.html', fullName=name, userBio=bio, education=educ, location=loc, contact=con, portfolio=port, workExperience=workExpTable)
+        return render_template('profileTempHTML.html', fullName=name, userBio=bio, education=educ, location=loc, contact=con, portfolio=port, workExperience=workExps)
     
 #-----------
 # function to create the work experience html table in profile function
 def expTableCreator(records):
-    rows = None # will contain all table rows at the end
+    rows = "" # will contain all table rows at the end
     for record in records:
         # separating the content from each field of the record
-        pos = str(record[2]) #
-        emp = str(record[3]) #
+        pos = str(record[2]) 
+        emp = str(record[3]) 
         sDate = formatDate(record[4], record[5])
         eDate = formatDate(record[6], record[7])
         desc = str(record[8])
         ski = str(record[9])
         print(pos+" "+emp+" "+sDate+" "+eDate)
         # creating string containing table columns
-        cols = "<td class=\"col-2\">"+pos+"</td>\n<td class=\"col-1\">"+emp+"</td>\n<td class=\"col-1\">"+sDate+"</td>\n<td class=\"col-1\">"+eDate+"</td>\n<td class=\"col-5\">"+desc+"</td>\n<td class=\"col-2\">"+ski+"</td>"
+        cols = "<td class='col-2'>"+pos+"</td>\n<td class=\"col-1\">"+emp+"</td>\n<td class=\"col-1\">"+sDate+"</td>\n<td class=\"col-1\">"+eDate+"</td>\n<td class=\"col-5\">"+desc+"</td>\n<td class=\"col-2\">"+ski+"</td>"
 
         # creating string containing table row with columns
         row = "<tr>"+cols+"</tr>"
@@ -90,10 +92,11 @@ def formatDate(numM, numY):
 #CODE FOR EDIT PROFILE PAGE
 @userProfile.route("/signUpHTML.html", methods=['GET', 'POST'])
 def editProfile():
+    #WHEN THE USER SUBMITS THE 
     if request.method == 'POST':
         #after edits have been stored in database, redirect to user's profile page
         return redirect(url_for("/loginHTML.html"))
-    else:
+    elif request.method == 'GET':
         return
 
 #steps for profile page:

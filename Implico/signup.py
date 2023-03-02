@@ -2,12 +2,12 @@
 # flask to use Flask framework and
 # request to handle HTML form requests
 import sqlite3
-from flask import Flask, request, render_template, Blueprint
+from flask import Flask, request, render_template, Blueprint, redirect
 #initializing Blueprint
 signup = Blueprint('signup', __name__)
 
 #map route to signup  URL (tells Flask what URL triggers our following functions)
-@signup.route('/signup.html',methods = ['POST','GET'])
+@signup.route('/signUpHTML.html',methods = ['POST','GET'])
 def signupFunc():
     if request.method == "GET":
         return render_template('signUpHTML.html')
@@ -15,7 +15,7 @@ def signupFunc():
         # fetch email and password from form
         email = request.form['email']
         password = request.form['password']
-        userType = request.form['userType']
+        userType = request.form.get('userType')
         print("email is ",email)
         print("password is ", password)
         print(str(email[0:email.index("@")]),"hi")
@@ -40,14 +40,14 @@ def signupFunc():
         newUser = "INSERT INTO LoginInfo VALUES (" + str(lastKey+1) + ",\'" + str(email) + "\',\'" + str(password) + "\',\'" + str(userType) + "\')"
 
         # Create new user profile
-        if(userType == "Student"):
+        if(userType == "student"):
             lastProfileKey = c.execute("SELECT profileKey FROM UserProfiles ORDER BY profileKey DESC LIMIT 1").fetchone()[0]
             newProfile = "INSERT INTO UserProfiles (profileKey, userID) VALUES (" + str(lastProfileKey+1) +"," + str(lastKey+1) + ")"
             c.execute(newProfile)
         c.execute(newUser)
         conn.commit()
         c.close()
-        return render_template('loginHTML.html')
+        return redirect('../loginHTML.html')
 
 @signup.route('/jobPostings.html',methods = ['POST','GET'])
 def jobPostings():
@@ -66,7 +66,7 @@ def jobPostings():
     
     # Need to fetch posting ID to continue <--------------
 
-@signup.route('/jobDashboard.html')
+@signup.route('/jobDashboardHTML.html')
 def jobDashboard():
      # connection to the database module
     conn = sqlite3.connect("data.db")

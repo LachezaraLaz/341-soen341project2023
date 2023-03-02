@@ -30,7 +30,7 @@ def profile():
         #RETRIEVING DATA FROM THE TABLES IN THE DATABASE
         #find profile record using userID in the userProfile table
         fetchProfile = "SELECT * FROM UserProfiles WHERE userID="+str(userID)
-        userProfile = c.execute(fetchProfile).fetchone()
+        userProfile = c.execute(fetchProfile).fetchall()[0]
         #storing profileKey in a variable
         profileKey = userProfile[0]
         #find work experience records user profileKey in the WorkExperience table

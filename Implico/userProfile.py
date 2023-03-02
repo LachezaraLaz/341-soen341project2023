@@ -25,7 +25,7 @@ def profile():
     #WHEN THE PAGE GETS LOADED
     elif request.method == 'GET':
         #STORING THE SESSION VAR OF THE USER'S ID IN A VAR
-        userID = 1 #session["userID"]
+        userID = session["userID"]
 
         #RETRIEVING DATA FROM THE TABLES IN THE DATABASE
         #find profile record using userID in the userProfile table
@@ -48,12 +48,14 @@ def profile():
         #creating string holding rows for work experience table
         #workExpTable = expTableCreator(workExps)
 
+        session["profileID"] = profileKey
+
         c.close()
 
         #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
         return render_template('profileTempHTML.html', fullName=name, userBio=bio, education=educ, location=loc, contact=con, portfolio=port, workExperience=workExps)
     
-#-----------
+#-----------code not necessary------------------------
 # function to create the work experience html table in profile function
 def expTableCreator(records):
     rows = "" # will contain all table rows at the end
@@ -90,14 +92,45 @@ def formatDate(numM, numY):
 
 
 #CODE FOR EDIT PROFILE PAGE
-@userProfile.route("/signUpHTML.html", methods=['GET', 'POST'])
+@userProfile.route("/editProfile.html", methods=['GET', 'POST'])
 def editProfile():
+    #CONNECTION TO DATABASE
+    # connection to the database module
+    conn = sqlite3.connect("data.db")
+    # allow for SQL commands to be run
+    c = conn.cursor()
+
+
     #WHEN THE USER SUBMITS THE 
     if request.method == 'POST':
         #after edits have been stored in database, redirect to user's profile page
         return redirect(url_for("/loginHTML.html"))
+    
+
+    #WHEN THE USER LOADS THE PAGE
     elif request.method == 'GET':
-        return
+        #storing profile key
+        profileID = 1 #session["profileID"]
+
+        #FETCHING DATA
+        fetchProfile = "SELECT * FROM UserProfiles WHERE profileKey="+str(profileID)
+        userProfile = c.execute(fetchProfile).fetchone()
+        #find work experience records user profileKey in the WorkExperience table
+        fetchWork = "SELECT * FROM WorkExperience WHERE profileID="+str(profileID)+"ORDER BY startYEAR ASC" 
+        workExps = c.execute(fetchWork).fetchall()
+
+        #FORMATTING THE DATA WE JUST FECTHED
+        #separating fields of the record
+        fname = str(userProfile[2])
+        lname = str(userProfile[3])
+        bio = str(userProfile[4])
+        educ = str(userProfile[5])+" - "+str(userProfile[6])
+        loc = str(userProfile[7])
+        con = str(userProfile[8])
+        port = "\""+str(userProfile[9])+"\""
+
+       #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
+        return render_template('profileTempHTML.html', firstName=fname, lastName=lname, userBio=bio, location=loc, contact=con, portfolio=port, workExperience=workExps)
 
 #steps for profile page:
 #1 - read session variables

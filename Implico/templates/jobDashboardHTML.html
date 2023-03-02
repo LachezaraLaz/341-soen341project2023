@@ -51,15 +51,15 @@
             <th>Creation Date</th>
           </tr>
           {% for jobPosting in jobPostings %}
-          <tr>
-            <td>{{jobPosting.company}}</td>
-            <td>{{jobPosting.title}}</td>
-            <td>{{jobPosting.description}}</td>
-            <td>{{jobPosting.workLocation}}</td>
-            <td>{{jobPosting.salary}}</td>
-            <td>Example</td>
-            <td>{{jobPosting.creationDate}}</td>
-          </tr>
+            <tr>
+              <td>{{jobPosting[3]}}</td>
+              <td>{{jobPosting[2]}}</td>
+              <td>{{jobPosting[4]}}</td>
+              <td>{{jobPosting[6]}}</td>
+              <td>{{jobPosting[7]}}</td>
+              <td>Your mom</td>
+              <td>{{jobPosting[8]}}</td>
+            </tr>
           {% endfor %}
         </table>
       </div>

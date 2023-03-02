@@ -2,7 +2,7 @@
 import sqlite3
 #importing Flask and other modules
 from flask import Flask, request, render_template, redirect, session, Blueprint
-
+#initializing blueprint
 login = Blueprint('login', __name__)
 
 # A decorator used to tell the application which URL is associated function

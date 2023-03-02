@@ -3,7 +3,7 @@
 # request to handle HTML form requests
 import sqlite3
 from flask import Flask, request, render_template, Blueprint
-
+#initializing Blueprint
 signup = Blueprint('signup', __name__)
 
 #map route to signup  URL (tells Flask what URL triggers our following functions)

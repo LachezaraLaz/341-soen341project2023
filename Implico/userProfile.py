@@ -116,7 +116,7 @@ def editProfile():
         fetchProfile = "SELECT * FROM UserProfiles WHERE profileKey="+str(profileID)
         userProfile = c.execute(fetchProfile).fetchone()
         #find work experience records user profileKey in the WorkExperience table
-        fetchWork = "SELECT * FROM WorkExperience WHERE profileID="+str(profileID)+"ORDER BY startYEAR ASC" 
+        fetchWork = "SELECT * FROM WorkExperience WHERE profileID="+str(profileID) 
         workExps = c.execute(fetchWork).fetchall()
 
         #FORMATTING THE DATA WE JUST FECTHED
@@ -124,13 +124,15 @@ def editProfile():
         fname = str(userProfile[2])
         lname = str(userProfile[3])
         bio = str(userProfile[4])
-        educ = str(userProfile[5])+" - "+str(userProfile[6])
+        sc = str(userProfile[5])
+        pro = str(userProfile[6])
         loc = str(userProfile[7])
         con = str(userProfile[8])
-        port = "\""+str(userProfile[9])+"\""
+        port = str(userProfile[9])
+        print(fname+", "+lname+", "+bio+", "+sc+", "+pro+", "+loc+", "+con+", "+port)
 
        #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
-        return render_template('profileTempHTML.html', firstName=fname, lastName=lname, userBio=bio, location=loc, contact=con, portfolio=port, workExperience=workExps)
+        return render_template('editProfile.html', firstName=fname, lastName=lname, userBio=bio, location=loc, contact=con, portfolio=port, school=sc, program=pro, workExperience=workExps)
 
 #steps for profile page:
 #1 - read session variables

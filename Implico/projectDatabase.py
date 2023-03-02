@@ -1,3 +1,4 @@
+#running this python file creates the database
 # import the built-in database
 import sqlite3
 

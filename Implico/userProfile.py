@@ -1,40 +1,59 @@
 #import flask into the file
-from flask import Flask, Blueprint, render_template, request, session, redirect, url_for
+from flask import Flask, flash, Blueprint, render_template, request, session, redirect, url_for
+#from flask_sqlalchemy import SQLAlchemy
 #import python database sqlite3 (based in sql)
 import sqlite3
 
+#stuff for file uploading
+import os
+
+UPLOAD_FOLDER = '../uploads'
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'docx', 'jpg', 'jpeg', 'html'}
+
 userProfile = Blueprint('userprofile', __name__)
 
+
+#userProfile.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
+#userProfile.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+#db = SQLAlchemy(userProfile)
 
 #CODE FOR THE USER PROFILE PAGE
 @userProfile.route('/profileTempHTML.html', methods=['GET', 'POST'])
 #user profile page
 def profile():
-    #CONNECTION TO DATABASE
-    # connection to the database module
-    conn = sqlite3.connect("data.db")
-    # allow for SQL commands to be run
-    c = conn.cursor()
 
     #SHOULDN'T HAPPEN
     if request.method == 'POST':
+        #CONNECTION TO DATABASE
+        # connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
         print("your mom caca lala")
         c.close()
         return
     
     #WHEN THE PAGE GETS LOADED
     elif request.method == 'GET':
+        #CONNECTION TO DATABASE
+        # connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+
         #STORING THE SESSION VAR OF THE USER'S ID IN A VAR
         userID = session["userID"]
+        print(userID)
+
 
         #RETRIEVING DATA FROM THE TABLES IN THE DATABASE
         #find profile record using userID in the userProfile table
         fetchProfile = "SELECT * FROM UserProfiles WHERE userID="+str(userID)
-        userProfile = c.execute(fetchProfile).fetchall()[0]
+        userProfile = c.execute(fetchProfile).fetchall()
         #storing profileKey in a variable
-        profileKey = userProfile[0]
+        profileKey = str(userProfile[0])
         #find work experience records user profileKey in the WorkExperience table
-        fetchWork = "SELECT * FROM WorkExperience WHERE profileID="+str(profileKey) 
+        fetchWork = f"SELECT * FROM WorkExperience WHERE profileID={profileKey}"
         workExps = c.execute(fetchWork).fetchall()
 
         #FORMATING DATA TO BE INSERTED ONTO HTML PAGE
@@ -90,7 +109,6 @@ def formatDate(numM, numY):
         
 
 
-
 #CODE FOR EDIT PROFILE PAGE
 @userProfile.route("/editProfile.html", methods=['GET', 'POST'])
 def editProfile():
@@ -100,17 +118,47 @@ def editProfile():
     # allow for SQL commands to be run
     c = conn.cursor()
 
+    #storing the profile key in a variable
+    profileKey = session["profileKey"]
+
 
     #WHEN THE USER SUBMITS THE 
     if request.method == 'POST':
+        #fetch general profile info from form
+        firstName = request.form['FirstName']
+        lastName = request.form['LastName']
+        bio = request.form['Bio']
+        location = request.form['Location']
+        contact = request.form['ContactInfo']
+        portfolio = request.form['PortfolioLink']
+        school = request.form['Schoolname']
+        program = request.form['Program']
+
+        #update the database entry with the new user input
+        updateEntry = "UPDATE UserProfiles SET firstName='"+firstName+"', lastName='"+lastName+"', bio='"+bio+"', educInstitution='"+school+"', educDegree='"+program+"', location='"+location+"', contactInfo='"+contact+"', portfolioLink='"+portfolio+"' WHERE profileKey="+str(profileKey)
+        c.execute(updateEntry)
+        
+
+
+        #check if a file was uploaded
+        if 'file' not in request.files:
+            flash('No file part')
+            return redirect('../editProfile.html')
+        #request the file
+        file = request.files['resume']
+
+        #save database manipulation into the database
+        conn.commit()
+        c.close()
+
         #after edits have been stored in database, redirect to user's profile page
-        return redirect(url_for("/loginHTML.html"))
+        return redirect(url_for("../profileTempHTML.html"))
     
 
     #WHEN THE USER LOADS THE PAGE
     elif request.method == 'GET':
         #storing profile key
-        profileID = 1 #session["profileID"]
+        profileID = session["profileID"]
 
         #FETCHING DATA
         fetchProfile = "SELECT * FROM UserProfiles WHERE profileKey="+str(profileID)
@@ -131,9 +179,15 @@ def editProfile():
         port = str(userProfile[9])
         print(fname+", "+lname+", "+bio+", "+sc+", "+pro+", "+loc+", "+con+", "+port)
 
+        c.close()
+
        #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
         return render_template('editProfile.html', firstName=fname, lastName=lname, userBio=bio, location=loc, contact=con, portfolio=port, school=sc, program=pro, workExperience=workExps)
 
+#fchecks if 
+def allowed_file(filename):
+    return '.' in filename and \
+            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 #steps for profile page:
 #1 - read session variables
 #2 - use session variable values to search the database for the use profile and the job experience

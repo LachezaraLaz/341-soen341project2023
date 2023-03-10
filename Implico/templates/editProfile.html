@@ -24,6 +24,7 @@
 <body>
 
   <div class="container-fluid">
+    <!--navbar-->
     <div class="row">
       <ul class="nav-bar">
         <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
@@ -34,8 +35,7 @@
       </ul>
     </div>
     <br><br><br>
-
-
+    <!--actual page-->
     <div class="row">
       <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="col-8 ps-5 pt-4 pb-4 pe-4 bg-light rounded">
@@ -44,135 +44,140 @@
           </div>
           <div class="row px-4 py-2">
 
-            <form method="GET" action="profile.html">
-
-
-
+            <form method="POST" action="../userProfile.py" enctype="multipart/form-data">
 
               <div class="form-group">
                 <label for="firstName">First Name:</label>
-                <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="First Name" value="{{firstName}}">
+                <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="First Name"
+                  value="{{firstName}}">
               </div>
 
               <div class="form-group">
                 <label for="lastName">Last Name:</label>
-                <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name" value="{{lastName}}">
+                <input type="text" class="form-control" id="lastName" name="LastName" placeholder="Last Name"
+                  value="{{lastName}}">
               </div>
 
               <div class="form-group">
                 <label for="bio">Bio:</label>
-                <textarea class="form-control" id="bio" name="Bio" rows="3" placeholder="Write here">{{userBio}}</textarea>
+                <textarea class="form-control" id="bio" name="Bio" rows="3"
+                  placeholder="Write here">{{userBio}}</textarea>
               </div>
 
               <div class="form-group">
                 <label for="location">Location:</label>
-                <input type="text" class="form-control" id="location" name="Location" placeholder="Write here" value="{{location}}">
+                <input type="text" class="form-control" id="location" name="Location" placeholder="Write here"
+                  value="{{location}}">
               </div>
 
               <div class="form-group">
                 <label for="contactInfo">Contact Info:</label>
-                <input type="text" class="form-control" id="contactInfo" name="ContactInfo" placeholder="Write here" value="{{contact}}">
+                <input type="text" class="form-control" id="contactInfo" name="ContactInfo" placeholder="Write here"
+                  value="{{contact}}">
               </div>
 
               <div class="form-group">
                 <label for="contactInfo">Portfolio Link:</label>
-                <input type="text" class="form-control" id="portfolio" name="PortfolioLink" placeholder="Write here" value="{{portfolio}}">
+                <input type="text" class="form-control" id="portfolio" name="PortfolioLink" placeholder="Write here"
+                  value="{{portfolio}}">
               </div>
 
               <br>
 
-              <!--WORK EXPERIENCE-->
-                <div class="row px-4 py-4 text-center">
-                  <h2>Experiences</h2>
-                  <div class="b"><button id="addExperience" type="button" class="btn text-white bg-dark">Add</button></div>
-                  
-                    {% for exp in workExperience %}
-                    <div class="container p-3 my-3 bg-white text-black border">
+              <div class="row px-4 py-4 text-center" >
+                <h2>Education</h2>
+              </div>
 
-                      <div class="form-group">
-                        <label for="jobTitle">Job Title:</label>
-                        <input type="text" class="form-control" id="jobTitle" name="JobTitle" placeholder="Cashier" value="{{exp[2]|string}}">
-                      </div>
-                      <div class="form-group">
-                        <label for="jobTitle">Employer:</label>
-                        <input type="text" class="form-control" id="employer" name="Employer" placeholder="Cashier" value="{{exp[3]|string}}">
-                      </div>
+              <div class="container p-3 my-3 bg-white text-black border">
 
-                      {% if exp[4] < 10 %}
-                        <div class="form-group">
-                          <label for="startDate">Start Date:</label>
-                          <input type="text" class="form-control" id="startDate" name="StartDate" placeholder="MM/YYYY" value="{{"0"+exp[4]|string+"/"+exp[5]|string}}">
-                        </div>
-                      {% else %}
-                        <div class="form-group">
-                          <label for="startDate">Start Date:</label>
-                          <input type="text" class="form-control" id="startDate" name="StartDate" placeholder="MM/YYYY" value="{{exp[4]|string+"/"+exp[5]|string}}">
-                        </div>
-                      {% endif %}
+                <div class="form-group">
+                  <label for="schoolname">School Name:</label>
+                  <input type="text" class="form-control" id="schoolname" name="Schoolname"
+                    placeholder="Concordia University" value="{{school}}">
+                </div>
 
-                      {% if exp[6] < 10 %}
-                        <div class="form-group">
-                          <label for="endDate">Start Date:</label>
-                          <input type="text" class="form-control" id="endDate" name="endDate" placeholder="MM/YYYY" value="{{"0"+exp[6]|string+"/"+exp[7]|string}}">
-                        </div>
-                      {% else %}
-                        <div class="form-group">
-                          <label for="endDate">Start Date:</label>
-                          <input type="text" class="form-control" id="endDate" name="endDate" placeholder="MM/YYYY" value="{{exp[6]|string+"/"+exp[7]|string}}">
-                        </div>
-                      {% endif %}
-                    
-                      <div class="form-group">
-                        <label for="description">Description:</label>
-                        <input type="text" class="form-control" id="description" name="Description" placeholder="Write here" value="{{exp[8]|string}}">
-                      </div>
+                <div class="form-group">
+                  <label for="program">Program:</label>
+                  <input type="text" class="form-control" id="program" name="Program" placeholder="Computer Engineering"
+                    value="{{program}}">
+                </div>
+              </div>
 
-                      <div class="form-group">
-                        <label for="skills">Skills:</label>
-                        <input type="text" class="form-control" id="skills" name="Skills" placeholder="Confident, Organized, Punctual" value="{{exp[9]|string}}">
-                      </div>
+              <div class="row px-4 py-4 text-center" id="expBlock">
+                <h2>Experiences</h2>
+                <div class="b"><button id="addExperience" type="button" class="btn text-white bg-dark" onclick="addExperience()">Add</button></div>
+
+                {% for exp in workExperience %}
+                  <div class="container p-3 my-3 bg-white text-black border">
+                    <input type="hidden" name="expID" value="{{exp[0]}}">
+                    <div class="form-group">
+                      <label for="jobTitle">Job Title:</label>
+                      <input type="text" class="form-control" name="JobTitle" placeholder="Cashier"
+                        value="{{exp[2]|string}}">
                     </div>
 
-                  {% endfor %}
+                    <div class="form-group">
+                      <label for="employer">Employer:</label>
+                      <input type="text" class="form-control" name="Employer" placeholder="Insert employer"
+                        value="{{exp[3]|string}}">
+                    </div>
 
+                    {% if exp[4] < 10 %} 
+                      <div class="form-group">
+                        <label for="startDate">Start Date:</label>
+                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{" 0"+exp[4]|string+"/"+exp[5]|string}}">
+                      </div>
+                    {% else %}
+                      <div class="form-group">
+                        <label for="startDate">Start Date:</label>
+                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{exp[4]|string+" /"+exp[5]|string}}">
+                      </div>
+                    {% endif %}
 
+                    {% if exp[6] < 10 %} 
+                      <div class="form-group">
+                        <label for="endDate">End Date:</label>
+                        <input type="text" class="form-control" name="endDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{"0"+exp[6]|string+"/"+exp[7]|string}}">
+                      </div>
+                    {% else %}
+                      <div class="form-group">
+                        <label for="endDate">End Date:</label>
+                        <input type="text" class="form-control" name="endDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{exp[6]|string+" /"+exp[7]|string}}">
+                      </div>
+                    {% endif %}
 
-                <div class="row px-4 py-4 text-center">
-                  <h2>Education</h2>
+                    <div class="form-group">
+                      <label for="description">Description:</label>
+                      <input type="text" class="form-control" name="Description" placeholder="Write here"
+                        value="{{exp[8]|string}}">
+                    </div>
 
-                </div>
-
-                <div class="container p-3 my-3 bg-white text-black border">
-
-                  <div class="form-group">
-                    <label for="schoolname">School Name:</label>
-                    <input type="text" class="form-control" id="schoolname" name="Schoolname" placeholder="Concordia University" value="{{school}}">
+                    <div class="form-group">
+                      <label for="skills">Skills:</label>
+                      <input type="text" class="form-control" name="Skills" placeholder="Autonomy, C#, JavaScript, ..." value="{{exp[9]|string}}">
+                    </div>
                   </div>
+                {% endfor %}
+              </div>
 
-                  <div class="form-group">
-                    <label for="program">Program:</label>
-                    <input type="text" class="form-control" id="program" name="Program" placeholder="Computer Engineering" value="{{program}}">
-                  </div>
-                </div>
+              <div class="form-group text-center">
+                <label for="resume">Upload Resume:</label>
+                <input type="file" id="resume" name="resume" class="form-control-file">
+              </div>
+
+              <div class="text-center ">
+                <button type="submit" class="btn btn-primary custom ">Save</button>
+
+              </div>
 
             </form>
 
 
           </div>
 
-          <form action="upload.php" method="post" enctype="multipart/form-data" class="form-inline" text-center>
-            <div class="form-group text-center">
-              <label for="resume">Upload Resume:</label>
-              <input type="file" id="resume" name="Resume" class="form-control-file">
-            </div>
-
-          </form>
           <br><br>
 
-          <div class="text-center ">
-            <button type="submit" class="btn btn-primary custom ">Save</button>
 
-          </div>
 
         </div>
 
@@ -181,7 +186,7 @@
 
       </div>
       <br><br><br>
-
+    </div>D
 
 </body>
 

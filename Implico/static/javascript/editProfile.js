@@ -129,4 +129,6 @@ function addExperience() {
     formGroupSkills.appendChild(labelSkills);
     formGroupSkills.appendChild(inputSkills);
     divContainer.appendChild(formGroupSkills);
+
+    divRoot.appendChild(divContainer);
 }

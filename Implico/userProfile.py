@@ -120,7 +120,7 @@ def editProfile():
     c = conn.cursor()
 
     #storing the profile key in a variable
-    profileKey = session["profileKey"]
+    profileKey = session["profileID"]
 
 
     #WHEN THE USER SUBMITS THE 

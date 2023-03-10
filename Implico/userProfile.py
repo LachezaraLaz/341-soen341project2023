@@ -125,6 +125,7 @@ def editProfile():
 
     #WHEN THE USER SUBMITS THE 
     if request.method == 'POST':
+        #STEP 1 - COLLECT AND UPDATE GENERAL PROFILE INFO
         #fetch general profile info from form
         firstName = request.form['FirstName']
         lastName = request.form['LastName']
@@ -138,6 +139,28 @@ def editProfile():
         #update the database entry with the new user input
         updateEntry = "UPDATE UserProfiles SET firstName='"+firstName+"', lastName='"+lastName+"', bio='"+bio+"', educInstitution='"+school+"', educDegree='"+program+"', location='"+location+"', contactInfo='"+contact+"', portfolioLink='"+portfolio+"' WHERE profileKey="+str(profileKey)
         c.execute(updateEntry)
+
+        #------------------
+
+        #STEP 2 - COLLECT, VERIFY AND UPDATE USER'S WORK EXPERIENCES
+        #fetch inputs for work experiences from form - each is returning a list
+        expIDs = request.form.getlist['expID']
+        jobTitles = request.form.getlist['JobTitle']
+        employers = request.form.getlist['Employer']
+        startDates = request.form.getlist['StartDate']
+        endDates = request.form.getlist['endDate']
+        descriptions = request.form.getlist['Description']
+        skills = request.form.getlist['Skills']
+
+        #fetch all work experience IDs tied to the user's profile
+        fetchExpIDs = "SELECT expKey FROM WorkExperience WHERE profileID="+str(profileKey)
+
+        #loop through to veri
+
+
+
+
+
         
 
 

@@ -1,3 +1,4 @@
+var counter=0
 function addExperience() {
     //getting the root element we will be appending the new work experience block to
     var divRoot = document.getElementById("expBlock");
@@ -5,6 +6,8 @@ function addExperience() {
     //creating the div to hold our work experience block
     var divContainer = document.createElement("div");
     divContainer.className = "container p-3 my-3 bg-white text-black border";
+    divContainer.id = "None"+counter;
+    counter++;
 
     //creating the input for work experience ID
     var expIdInput = document.createElement("input");
@@ -66,7 +69,6 @@ function addExperience() {
     inputStartDate.setAttribute('name', 'StartDate');
     inputStartDate.setAttribute('placeholder', 'MM/YYYY');
     inputStartDate.setAttribute('pattern', '^((0[1-9])|(1[0-2]))\/(\d{4})$');
-
     //appending elements
     formGroupStartDate.appendChild(labelStartDate);
     formGroupStartDate.appendChild(inputStartDate);
@@ -130,5 +132,20 @@ function addExperience() {
     formGroupSkills.appendChild(inputSkills);
     divContainer.appendChild(formGroupSkills);
 
+    //adding delete button to the entry
+    var delButton = document.createElement("button");
+    delButton.setAttribute('type', 'button');
+    var func = 'delExperience(\''+divContainer.id+'\')';
+    delButton.setAttribute('onclick', func);
+    delButton.className = "btn btn-danger mt-2";
+    delButton.id = "del_None"
+    delButton.innerHTML = "Delete";
+    //append the button to the container
+    divContainer.appendChild(delButton);
+
     divRoot.appendChild(divContainer);
+}
+
+function delExperience(divID){
+    document.getElementById(divID).remove();
 }

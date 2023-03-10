@@ -77,21 +77,17 @@
             <table class="table table-responsive table-borderless table-striped table-hover">
                 <thead>
                     <tr>
-                        <th class="col-1">Position</th>
+                        <th class="col-2">Position</th>
                         <th class="col-1">Employer</th>
                         <th class="col-1">Start Date</th>
                         <th class="col-1">Start Date</th>
                         <th class="col-4">Description</th>
                         <th class="col-3">Skills</th>
-                        <th class="col-1"></th>
-
-                        <th class="col-1"><button type="button" class="float-end btn btn-success"><b>+</b></button></th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for exp in workExperience %}
                         <tr>
-                            <td class="d-none" id="experience_{{exp[0]}"}>{{exp[0]}}</td>
                             <td class="col-1">{{exp[2]}}</td>
                             <td class="col-1">{{exp[3]}}</td>
                             {% if exp[4] < 10 %}

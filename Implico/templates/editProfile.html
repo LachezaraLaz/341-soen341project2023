@@ -43,14 +43,14 @@
       <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="col-8 ps-5 pt-4 pb-4 pe-4 bg-light rounded">
           <div class="row px-4 py-4 text-center rounded">
-            <h2>Edit Profile</h2>
+            <h1>Edit Profile</h1>
           </div>
           <div class="row px-4 py-2">
           
-            <form method="POST" action="../userProfile.py" enctype="multipart/form-data">
-          
-              <div class="container p-3 my-3 bg-white text-black border">
-          
+            <form method="POST" enctype="multipart/form-data">
+              <h2 class="text-center">About You</h2>
+
+              <div class="container p-3 my-3 bg-white text-black border rounded text-center">
                 <div class="form-group">
                   <label for="firstName">First Name:</label>
                   <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="First Name"
@@ -84,6 +84,11 @@
                   <label for="contactInfo">Portfolio Link:</label>
                   <input type="text" class="form-control" id="portfolio" name="PortfolioLink" placeholder="Write here"
                     value="{{portfolio}}">
+                </div>
+
+                <div class="form-group mt-2">
+                  <label for="resume">Upload Resume:</label>
+                  <input type="file" id="resume" name="resume" class="form-control-file">
                 </div>
               </div>
           
@@ -130,7 +135,7 @@
                     {% if exp[4] < 10 %} 
                       <div class="form-group">
                         <label for="startDate">Start Date:</label>
-                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{" 0"+exp[4]|string+"/"+exp[5]|string}}">
+                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{"0"+exp[4]|string+"/"+exp[5]|string}}">
                       </div>
                     {% else %}
                       <div class="form-group">
@@ -168,15 +173,8 @@
                 {% endfor %}
               </div>
 
-              <div class="container p-3 my-3 bg-white text-black border">
 
-              <div class="form-group text-center">
-                <label for="resume">Upload Resume:</label>
-                <input type="file" id="resume" name="resume" class="form-control-file">
-              </div>
-              </div>
-
-              <div class="text-center ">
+              <div class="text-center">
                 <button type="submit" class="btn btn-primary custom ">Save</button>
 
               </div>

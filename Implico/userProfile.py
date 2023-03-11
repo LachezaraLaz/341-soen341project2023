@@ -1,21 +1,15 @@
 #import flask into the file
 from flask import Flask, flash, Blueprint, render_template, request, session, redirect, url_for
-#from flask_sqlalchemy import SQLAlchemy
-#import python database sqlite3 (based in sql)
-import sqlite3
-
 #stuff for file uploading
 import os
+from werkzeug.utils import secure_filename
+#import python database sqlite3 (based in sql)
+import sqlite3
 
 UPLOAD_FOLDER = '../uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'docx', 'jpg', 'jpeg', 'html'}
 
 userProfile = Blueprint('userprofile', __name__)
-
-
-#userProfile.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-#userProfile.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-#db = SQLAlchemy(userProfile)
 
 #CODE FOR THE USER PROFILE PAGE
 @userProfile.route('/profileTempHTML.html', methods=['GET', 'POST'])
@@ -74,40 +68,7 @@ def profile():
 
         #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
         return render_template('profileTempHTML.html', fullName=name, userBio=bio, education=educ, location=loc, contact=con, portfolio=port, workExperience=workExps)
-    
-#-----------code not necessary------------------------
-# function to create the work experience html table in profile function
-def expTableCreator(records):
-    rows = "" # will contain all table rows at the end
-    for record in records:
-        # separating the content from each field of the record
-        pos = str(record[2]) 
-        emp = str(record[3]) 
-        sDate = formatDate(record[4], record[5])
-        eDate = formatDate(record[6], record[7])
-        desc = str(record[8])
-        ski = str(record[9])
-        print(pos+" "+emp+" "+sDate+" "+eDate)
-        # creating string containing table columns
-        cols = "<td class='col-2'>"+pos+"</td>\n<td class=\"col-1\">"+emp+"</td>\n<td class=\"col-1\">"+sDate+"</td>\n<td class=\"col-1\">"+eDate+"</td>\n<td class=\"col-5\">"+desc+"</td>\n<td class=\"col-2\">"+ski+"</td>"
-
-        # creating string containing table row with columns
-        row = "<tr>"+cols+"</tr>"
-
-        # concatinate row to rows
-        rows = rows + row
-    #return string containing all table rows
-    return rows
-
-#-----------
-#function to format the date used in the expTable Creator
-def formatDate(numM, numY):
-    if int(numM) < 10:
-        return "0"+str(numM)+"/"+str(numY)
-    else:
-        return str(numM)+"/"+str(numY)
-     
-        
+ 
 
 
 #CODE FOR EDIT PROFILE PAGE
@@ -137,43 +98,139 @@ def editProfile():
         program = request.form['Program']
 
         #update the database entry with the new user input
-        updateEntry = "UPDATE UserProfiles SET firstName='"+firstName+"', lastName='"+lastName+"', bio='"+bio+"', educInstitution='"+school+"', educDegree='"+program+"', location='"+location+"', contactInfo='"+contact+"', portfolioLink='"+portfolio+"' WHERE profileKey="+str(profileKey)
+        updateEntry = "UPDATE UserProfiles SET firstName='"+str(firstName)+"', lastName='"+str(lastName)+"', bio='"+str(bio)+"', educInstitution='"+str(school)+"', educDegree='"+str(program)+"', location='"+str(location)+"', contactInfo='"+str(contact)+"', portfolioLink='"+str(portfolio)+"' WHERE profileKey="+str(profileKey)
         c.execute(updateEntry)
 
         #------------------
 
         #STEP 2 - COLLECT, VERIFY AND UPDATE USER'S WORK EXPERIENCES
         #fetch inputs for work experiences from form - each is returning a list
-        expIDs = request.form.getlist['expID']
-        jobTitles = request.form.getlist['JobTitle']
-        employers = request.form.getlist['Employer']
-        startDates = request.form.getlist['StartDate']
-        endDates = request.form.getlist['endDate']
-        descriptions = request.form.getlist['Description']
-        skills = request.form.getlist['Skills']
+        expIDs = request.form.getlist('expID')
+        jobTitles = request.form.getlist('JobTitle')
+        employers = request.form.getlist('Employer')
+        startDates = request.form.getlist('StartDate')
+        endDates = request.form.getlist('endDate')
+        descriptions = request.form.getlist('Description')
+        skills = request.form.getlist('Skills')
 
         #fetch all work experience IDs tied to the user's profile
-        fetchExpIDs = "SELECT expKey FROM WorkExperience WHERE profileID="+str(profileKey)
+        fetchExpIDs = "SELECT expKey FROM WorkExperience WHERE profileID="+str(profileKey)+" ORDER BY expKey ASC"
+        databaseExpIDs = c.execute(fetchExpIDs).fetchall()
 
-        #loop through to veri
+        #loop through to verify if a position was deleted by the user
+        for databaseExpID in databaseExpIDs:
+            #if the experience was deleted by user
+            if databaseExpID[0] not in expIDs:
+                deleteID = "DELETE FROM WorkExperience WHERE expKey="+str(databaseExpID[0])
+                print(databaseExpID[0])
+                c.execute(deleteID)
+                databaseExpIDs.remove(databaseExpID)
 
+        #fetch the last work experience key in database
+        lastExpKey = c.execute("SELECT expKey FROM WorkExperience ORDER BY expKey DESC").fetchall()[0]
 
+        #loop through to verify if a position has been added or edited
+        for work in expIDs:
+            #if a work experince has been added
+            if "new" in work:
+                #incremeent the key to get a new experience key
+                lastExpKey+=1
+                newKey = lastExpKey
+                
+                #getting all the values from the form for this entry
+                position = jobTitles[0]
+                employer = employers[0]
+                startDate = startDates[0].split("/")
+                startMonth = startDate[0]
+                startYear = startDate[1]
+                endDate = endDates[0].split("/")
+                endMonth = endDate[0]
+                endYear = endDate[1]
+                desc = descriptions[0]
+                skill = skills[0]
 
+                #remove these values from the form lists
+                jobTitles.pop(0)
+                employers.pop(0)
+                startDates.pop(0)
+                endDates.pop(0)
+                descriptions.pop(0)
+                skills.pop(0)
 
+                #inserting this data into the database
+                insertWork = "INSERT INTO WorkExperience (expKey, profileID, position, employer, startMonth, startYEAR, endMonth, endYear, expDescription, skills) "
+                insertValues = "("+int(newKey)+", "+int(profileKey)+", '"+str(position)+"', '"+str(employer)+"', "+int(startMonth)+", "+int(startYear)+", "+int(endMonth)+", "+int(endYear)+", '"+str(desc)+"', '"+str(skill)+"')"
+                insertIntoDatabase = insertWork+insertValues
+                c.execute(insertIntoDatabase)
+            
+            #when user was updating a work experience
+            else:
+                #getting all the values from the form for this entry
+                position = jobTitles[0]
+                employer = employers[0]
+                startDate = startDates[0].split("/")
+                startMonth = startDate[0]
+                startYear = startDate[1]
+                endDate = endDates[0].split("/")
+                endMonth = endDate[0]
+                endYear = endDate[1]
+                desc = descriptions[0]
+                skill = skills[0]
 
+                #remove these values from the form lists
+                jobTitles.pop(0)
+                employers.pop(0)
+                startDates.pop(0)
+                endDates.pop(0)
+                descriptions.pop(0)
+                skills.pop(0)
+
+                #updating the entry into the database
+                updateWork = "UPDATE WorkExperience SET position='"+str(position)+"', employer='"+str(employer)+"', startMonth="+str(startMonth)+", startYEAR="+str(startYear)+", endMonth="+str(endMonth)+", endYear="+str(endYear)+", expDescription='"+str(desc)+"', skills='"+str(skill)+"' WHERE profileID="+str(profileKey)+" AND expKey="+str(work)
+                c.execute(updateWork)
         
-
-
-        #check if a file was uploaded
-        if 'file' not in request.files:
-            flash('No file part')
-            return redirect('../editProfile.html')
-        #request the file
-        file = request.files['resume']
-
-        #save database manipulation into the database
+        #commit changes before proceeding with process a file
         conn.commit()
         c.close()
+
+
+        #------------------
+
+
+        #STEP 3 - PROCESS FILE UPLOAD
+
+        #CONNECTION TO DATABASE
+        # connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+
+        #check if the post request received a file
+        if 'file' not in request.files:
+            flash("no file part")
+            return redirect(request.url)
+        
+        #store the uploaded file
+        resume = request.files['resume']
+
+        #if the user did not select a file
+        if resume.filename == '':
+            flash("no file selected")
+            return redirect(request.url)
+        
+        #check 
+        
+        #if user uploads an acceptable file
+        if resume and allowed_file(resume.filename):
+            filename = secure_filename(resume.filename)
+            #save file into upload file
+            resume.save("../uploads", filename)
+            #save the filename to the database
+            fileToDatabase = "UPDATE UserProfiles SET resumeFilename='../uploads/"+str(resume.filename)+"' WHERE profileKey="+str(profileKey)
+            c.execute(fileToDatabase)
+            conn.commit()
+            c.close()
+
 
         #after edits have been stored in database, redirect to user's profile page
         return redirect(url_for("../profileTempHTML.html"))

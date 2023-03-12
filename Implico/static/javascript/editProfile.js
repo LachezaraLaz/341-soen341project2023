@@ -68,7 +68,7 @@ function addExperience() {
     inputStartDate.setAttribute('type', 'text');
     inputStartDate.setAttribute('name', 'StartDate');
     inputStartDate.setAttribute('placeholder', 'MM/YYYY');
-    inputStartDate.setAttribute('pattern', '^((0[1-9])|(1[0-2]))\/(\d{4})$');
+    inputStartDate.setAttribute('pattern', '(?:0[1-9]|1[0-2])/[0-9]{4}');
     //appending elements
     formGroupStartDate.appendChild(labelStartDate);
     formGroupStartDate.appendChild(inputStartDate);
@@ -88,7 +88,7 @@ function addExperience() {
     inputEndDate.setAttribute('type', 'text');
     inputEndDate.setAttribute('name', 'endDate');
     inputEndDate.setAttribute('placeholder', 'MM/YYYY');
-    inputEndDate.setAttribute('pattern', '^((0[1-9])|(1[0-2]))\/(\d{4})$');
+    inputEndDate.setAttribute('pattern', '(?:0[1-9]|1[0-2])/[0-9]{4}');
     //appending elements
     formGroupEndDate.appendChild(labelEndDate);
     formGroupEndDate.appendChild(inputEndDate);

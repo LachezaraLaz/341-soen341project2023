@@ -31,13 +31,13 @@
     <div class="row">
       <ul class="nav-bar">
         <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-        <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
+        <li><a href="../profileTempHTML.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
         <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
         <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
         </li>
       </ul>
     </div>
-    <br><br><br>
+    <br/><br/><br/>
     <!--actual page-->
     <div class="row">
       <div class="h-100 d-flex align-items-center justify-content-center">
@@ -135,24 +135,24 @@
                     {% if exp[4] < 10 %} 
                       <div class="form-group">
                         <label for="startDate">Start Date:</label>
-                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{"0"+exp[4]|string+"/"+exp[5]|string}}">
+                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="(?:0[1-9]|1[0-2])/[0-9]{4}" value="{{"0"+exp[4]|string+"/"+exp[5]|string}}">
                       </div>
                     {% else %}
                       <div class="form-group">
                         <label for="startDate">Start Date:</label>
-                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{exp[4]|string+" /"+exp[5]|string}}">
+                        <input type="text" class="form-control" name="StartDate" placeholder="MM/YYYY" pattern="(?:0[1-9]|1[0-2])/[0-9]{4}" value="{{exp[4]|string+" /"+exp[5]|string}}">
                       </div>
                     {% endif %}
 
                     {% if exp[6] < 10 %} 
                       <div class="form-group">
                         <label for="endDate">End Date:</label>
-                        <input type="text" class="form-control" name="endDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{"0"+exp[6]|string+"/"+exp[7]|string}}">
+                        <input type="text" class="form-control" name="endDate" placeholder="MM/YYYY" pattern="^((0[0-9])|(1[0-2]))\/(\d{4})$" value="{{"0"+exp[6]|string+"/"+exp[7]|string}}">
                       </div>
                     {% else %}
                       <div class="form-group">
                         <label for="endDate">End Date:</label>
-                        <input type="text" class="form-control" name="endDate" placeholder="MM/YYYY" pattern="^((0[1-9])|(1[0-2]))\/(\d{4})$" value="{{exp[6]|string+" /"+exp[7]|string}}">
+                        <input type="text" class="form-control" name="endDate" placeholder="MM/YYYY" pattern="^((0[0-9])|(1[0-2]))\/(\d{4})$" value="{{exp[6]|string+" /"+exp[7]|string}}">
                       </div>
                     {% endif %}
 
@@ -176,7 +176,6 @@
 
               <div class="text-center">
                 <button type="submit" class="btn btn-primary custom ">Save</button>
-
               </div>
 
             </form>

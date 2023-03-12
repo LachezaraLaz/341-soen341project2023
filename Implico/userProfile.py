@@ -4,6 +4,8 @@ from flask import Flask, flash, Blueprint, render_template, request, session, re
 import os
 from werkzeug.utils import secure_filename
 #import python database sqlite3 (based in sql)
+import numpy as np
+
 import sqlite3
 
 UPLOAD_FOLDER = '../uploads'
@@ -74,18 +76,17 @@ def profile():
 #CODE FOR EDIT PROFILE PAGE
 @userProfile.route("/editProfile.html", methods=['GET', 'POST'])
 def editProfile():
-    #CONNECTION TO DATABASE
-    # connection to the database module
-    conn = sqlite3.connect("data.db")
-    # allow for SQL commands to be run
-    c = conn.cursor()
-
     #storing the profile key in a variable
     profileKey = session["profileID"]
 
-
     #WHEN THE USER SUBMITS THE 
     if request.method == 'POST':
+        #CONNECTION TO DATABASE
+        # connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+
         #STEP 1 - COLLECT AND UPDATE GENERAL PROFILE INFO
         #fetch general profile info from form
         firstName = request.form['FirstName']
@@ -105,7 +106,8 @@ def editProfile():
 
         #STEP 2 - COLLECT, VERIFY AND UPDATE USER'S WORK EXPERIENCES
         #fetch inputs for work experiences from form - each is returning a list
-        expIDs = request.form.getlist('expID')
+        experienceIDs = request.form.getlist('expID')
+        print(experienceIDs)
         jobTitles = request.form.getlist('JobTitle')
         employers = request.form.getlist('Employer')
         startDates = request.form.getlist('StartDate')
@@ -115,22 +117,29 @@ def editProfile():
 
         #fetch all work experience IDs tied to the user's profile
         fetchExpIDs = "SELECT expKey FROM WorkExperience WHERE profileID="+str(profileKey)+" ORDER BY expKey ASC"
-        databaseExpIDs = c.execute(fetchExpIDs).fetchall()
+        databaseIDs = c.execute(fetchExpIDs).fetchall()
+        databaseExpIDs = []
+        count = 0
+        for i in databaseIDs:
+            databaseExpIDs.append(databaseIDs[count][0])
+            count+=1
+        print(databaseExpIDs)
 
         #loop through to verify if a position was deleted by the user
-        for databaseExpID in databaseExpIDs:
+        for databaseID in databaseExpIDs:
             #if the experience was deleted by user
-            if databaseExpID[0] not in expIDs:
-                deleteID = "DELETE FROM WorkExperience WHERE expKey="+str(databaseExpID[0])
-                print(databaseExpID[0])
+            if str(databaseID) not in experienceIDs:
+                print(databaseID in experienceIDs)
+                deleteID = "DELETE FROM WorkExperience WHERE expKey="+str(databaseID)
+                print(databaseID)
                 c.execute(deleteID)
-                databaseExpIDs.remove(databaseExpID)
 
         #fetch the last work experience key in database
-        lastExpKey = c.execute("SELECT expKey FROM WorkExperience ORDER BY expKey DESC").fetchall()[0]
+        lastExpKey = int(c.execute("SELECT expKey FROM WorkExperience ORDER BY expKey DESC").fetchall()[0][0])
+        print(lastExpKey)
 
         #loop through to verify if a position has been added or edited
-        for work in expIDs:
+        for work in experienceIDs:
             #if a work experince has been added
             if "new" in work:
                 #incremeent the key to get a new experience key
@@ -139,6 +148,7 @@ def editProfile():
                 
                 #getting all the values from the form for this entry
                 position = jobTitles[0]
+                print(position)
                 employer = employers[0]
                 startDate = startDates[0].split("/")
                 startMonth = startDate[0]
@@ -158,10 +168,8 @@ def editProfile():
                 skills.pop(0)
 
                 #inserting this data into the database
-                insertWork = "INSERT INTO WorkExperience (expKey, profileID, position, employer, startMonth, startYEAR, endMonth, endYear, expDescription, skills) "
-                insertValues = "("+int(newKey)+", "+int(profileKey)+", '"+str(position)+"', '"+str(employer)+"', "+int(startMonth)+", "+int(startYear)+", "+int(endMonth)+", "+int(endYear)+", '"+str(desc)+"', '"+str(skill)+"')"
-                insertIntoDatabase = insertWork+insertValues
-                c.execute(insertIntoDatabase)
+                insertWork = "INSERT INTO WorkExperience (expKey, profileID, position, employer, startMonth, startYEAR, endMonth, endYear, expDescription, skills) VALUES ("+str(newKey)+", "+str(profileKey)+", '"+str(position)+"', '"+str(employer)+"', "+str(startMonth)+", "+str(startYear)+", "+str(endMonth)+", "+str(endYear)+", '"+str(desc)+"', '"+str(skill)+"')"
+                c.execute(insertWork)
             
             #when user was updating a work experience
             else:
@@ -196,48 +204,48 @@ def editProfile():
 
         #------------------
 
-
         #STEP 3 - PROCESS FILE UPLOAD
+        
+        #store the uploaded file
+        resume = request.files['resume']
+        print(resume.filename)
+        
+        #if user uploads an acceptable file
+        if resume and allowed_file(resume.filename):
+            #CONNECTION TO DATABASE
+            # connection to the database module
+            conn = sqlite3.connect("data.db")
+            # allow for SQL commands to be run
+            c = conn.cursor()
+            filename = secure_filename(resume.filename)
+            print("after secure_filename")
 
+            #save file into upload file
+            resume.save(os.path.join("Implico/uploads", filename))
+            #save the filename to the database
+            fileToDatabase = "UPDATE UserProfiles SET resumeFilename='../uploads/"+str(resume.filename)+"' WHERE profileKey="+str(profileKey)
+            c.execute(fileToDatabase)
+            conn.commit()
+            c.close() 
+            #after edits have been stored in database, redirect to user's profile page
+            return redirect("../profileTempHTML.html")
+        #if the user did not select a file
+        elif resume.filename == '':
+            print("no file selected")
+            flash("no file selected")
+            return redirect("../profileTempHTML.html")
+        elif 'file' not in request.files:
+            print("no file")
+            return redirect("../profileTempHTML.html")
+    
+
+    #WHEN THE USER LOADS THE PAGE
+    elif request.method == 'GET':
         #CONNECTION TO DATABASE
         # connection to the database module
         conn = sqlite3.connect("data.db")
         # allow for SQL commands to be run
         c = conn.cursor()
-
-        #check if the post request received a file
-        if 'file' not in request.files:
-            flash("no file part")
-            return redirect(request.url)
-        
-        #store the uploaded file
-        resume = request.files['resume']
-
-        #if the user did not select a file
-        if resume.filename == '':
-            flash("no file selected")
-            return redirect(request.url)
-        
-        #check 
-        
-        #if user uploads an acceptable file
-        if resume and allowed_file(resume.filename):
-            filename = secure_filename(resume.filename)
-            #save file into upload file
-            resume.save("../uploads", filename)
-            #save the filename to the database
-            fileToDatabase = "UPDATE UserProfiles SET resumeFilename='../uploads/"+str(resume.filename)+"' WHERE profileKey="+str(profileKey)
-            c.execute(fileToDatabase)
-            conn.commit()
-            c.close()
-
-
-        #after edits have been stored in database, redirect to user's profile page
-        return redirect(url_for("../profileTempHTML.html"))
-    
-
-    #WHEN THE USER LOADS THE PAGE
-    elif request.method == 'GET':
         #storing profile key
         profileID = session["profileID"]
 
@@ -258,12 +266,13 @@ def editProfile():
         loc = str(userProfile[7])
         con = str(userProfile[8])
         port = str(userProfile[9])
+        res = str(userProfile[10])
         print(fname+", "+lname+", "+bio+", "+sc+", "+pro+", "+loc+", "+con+", "+port)
 
         c.close()
 
        #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
-        return render_template('editProfile.html', firstName=fname, lastName=lname, userBio=bio, location=loc, contact=con, portfolio=port, school=sc, program=pro, workExperience=workExps)
+        return render_template('editProfile.html', firstName=fname, lastName=lname, userBio=bio, location=loc, contact=con, portfolio=port, school=sc, program=pro, resume=res, workExperience=workExps)
 
 #fchecks if 
 def allowed_file(filename):

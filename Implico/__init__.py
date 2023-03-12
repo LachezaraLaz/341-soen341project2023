@@ -3,6 +3,9 @@ from flask import Flask
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = "yo mama"
+    UPLOAD_FOLDER = '../uploads'
+
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
     from .login import login
     from .signup import signup

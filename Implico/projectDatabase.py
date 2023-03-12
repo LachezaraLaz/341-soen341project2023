@@ -22,7 +22,7 @@ except sqlite3.OperationalError:
     # first table: login user table
     c.execute("CREATE TABLE LoginInfo (userKey NUMBER, email TEXT, password TEXT, userType TEXT, PRIMARY KEY (userKey))")
     # second table: candidate user profile info table
-    c.execute("CREATE TABLE UserProfiles (profileKey NUMBER, userID NUMBER, firstName TEXT, lastName TEXT, bio TEXT, educInstitution TEXT, educDegree TEXT, location TEXT, contactInfo TEXT, portfolioLink TEXT, PRIMARY KEY (profileKey), FOREIGN KEY (userID) REFERENCES LoginInfo(userKey))")
+    c.execute("CREATE TABLE UserProfiles (profileKey NUMBER, userID NUMBER, firstName TEXT, lastName TEXT, bio TEXT, educInstitution TEXT, educDegree TEXT, location TEXT, contactInfo TEXT, portfolioLink TEXT, resumeFilename TEXT, PRIMARY KEY (profileKey), FOREIGN KEY (userID) REFERENCES LoginInfo(userKey))")
     #third table: work experience table
     c.execute("CREATE TABLE WorkExperience (expKey NUMBER, profileID NUMBER, position TEXT, employer TEXT, startMonth NUMBER, startYEAR NUMBER, endMonth NUMBER, endYear NUMBER, expDescription TEXT, skills TEXT, PRIMARY KEY(expKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey))")
     #fourth table: job postings table
@@ -35,14 +35,14 @@ except sqlite3.OperationalError:
     c.execute("INSERT INTO LoginInfo VALUES (5, 'admin@email.com', '1234567pass', 'admin')")
 
     #inserting test data in UserProfiles
-    c.execute("INSERT INTO UserProfiles VALUES (1, 1, 'Jane', 'Doe', 'I am a second year Software Engineering student looking to further my career options', 'Concordia University', 'Software Engineering', 'Montreal', 'test1@email.com', 'github.com')")
-    c.execute("INSERT INTO UserProfiles VALUES (2, 3, 'John', 'Doe', 'I am a third year Computer Science student and my code is out of this world', 'UQAM', 'Computer Science', 'Montreal', '111-222-3333', 'github.com/git_name')")
+    c.execute("INSERT INTO UserProfiles VALUES (1, 1, 'Jane', 'Doe', 'I am a second year Software Engineering student looking to further my career options', 'Concordia University', 'Software Engineering', 'Montreal', 'test1@email.com', 'github.com', '../file.pdf')")
+    c.execute("INSERT INTO UserProfiles VALUES (2, 3, 'John', 'Doe', 'I am a third year Computer Science student and my code is out of this world', 'UQAM', 'Computer Science', 'Montreal', '111-222-3333', 'github.com/git_name', 'file2.pdf')")
 
     #inserting test data in WorkExperience
     c.execute("INSERT INTO WorkExperience VALUES (1, 1, 'Developer Intern', 'BOM.B', 1, 2022, 5, 2022, 'develop website', 'HTML, CSS, JS, C#')")
-    c.execute("INSERT INTO WorkExperience VALUES (2, 1, 'Cashier', 'Food Store', 4, 2019, 5, 2022, 'working in customer service at a grocery store', 'POST, Communication, Attentive')")
-    c.execute("INSERT INTO WorkExperience VALUES (3, 3, 'Developer Intern', 'BOM.B', 1, 2022, 5, 2022, 'develop website', 'HTML, CSS, JS, C#')")
-    c.execute("INSERT INTO WorkExperience VALUES (4, 3, 'Cashier', 'Food Store', 4, 2019, 5, 2022, 'working in customer service at a grocery store', 'POST, Communication, Attentive')")
+    c.execute("INSERT INTO WorkExperience VALUES (2, 1, 'yOUR MOM', 'Food Store', 4, 2019, 5, 2022, 'working in customer service at a grocery store', 'POST, Communication, Attentive')")
+    c.execute("INSERT INTO WorkExperience VALUES (3, 2, 'Developer Intern', 'BOM.B', 1, 2022, 5, 2022, 'develop website', 'HTML, CSS, JS, C#')")
+    c.execute("INSERT INTO WorkExperience VALUES (4, 2, 'Cashier', 'Food Store', 4, 2019, 5, 2022, 'working in customer service at a grocery store', 'POST, Communication, Attentive')")
 
 
 #testing - reading data from first table

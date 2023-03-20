@@ -10,9 +10,12 @@ def create_app():
     from .login import login
     from .signup import signup
     from .userProfile import userProfile
+    from .notifcation import notification
 
     app.register_blueprint(login, url_prefix="/")
     app.register_blueprint(signup, url_prefix="/")
     app.register_blueprint(userProfile, url_prefix="/")
+    app.register_blueprint(notification, url_prefix="/")
+
 
     return app

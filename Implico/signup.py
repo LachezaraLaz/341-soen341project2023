@@ -2,7 +2,8 @@
 # flask to use Flask framework and
 # request to handle HTML form requests
 import sqlite3
-from flask import Flask, request, render_template, Blueprint, redirect
+from flask import Flask, request, render_template, Blueprint, redirect, session
+from datetime import date
 #initializing Blueprint
 signup = Blueprint('signup', __name__)
 
@@ -51,9 +52,25 @@ def signupFunc():
 
 @signup.route('/jobPostings.html',methods = ['POST','GET'])
 def jobPostings():
+    # connection to the database module
+    conn = sqlite3.connect("data.db")
+    c = conn.cursor()
     if request.method == 'GET':
-        return render_template('jobPostingHTML.html')
+        # check if this is an edit request
+        if(session.get("editJobID") != None):
+            # retrieve info from jobPostings table to load
+            retrieveInfo = "SELECT * FROM JobPostings WHERE jobKey=" + str(session["editJobID"])
+            jobPostingInfo = c.execute(retrieveInfo)
+            return render_template('jobPostingHTML.html', jobPostingInfo = jobPostingInfo)
+        else:
+            # add request
+            return render_template('jobPostingHTML.html')
     elif request.method == 'POST':
+        # connect to database
+        conn = sqlite3.connect("data.db")
+        c = conn.cursor()
+        
+        # retrieve info from form
         companyName = request.form['companyName']
         positionName = request.form['positionName']
         location = request.form['location']
@@ -63,14 +80,34 @@ def jobPostings():
         contactLName = request.form['contactLName']
         contactEmail = request.form['contactEmail']
         description = request.form['description']
-    
-    # Need to fetch posting ID to continue <--------------
+        userID = session["userID"]
+        lastKey = c.execute("SELECT userKey FROM JobPostings ORDER BY userKey DESC").fetchone()[0]
 
-@signup.route('/jobDashboardHTML.html')
+        # insert into database
+        addPostingQuery = "INSERT INTO JobPostings VALUES (" + str(lastKey) + "," + str(userID) + "," + str(positionName) + "," + str(companyName) + "," + str(description) + ", 'NULL'," + str(location) + "," + str(salary) + "," + date.today() + ")"
+        c.execute(addPostingQuery)
+
+        # commit query and close cursor
+        conn.commit()
+        c.close()
+
+@signup.route('/jobDashboardHTML.html',methods = ['POST','GET'])
 def jobDashboard():
-     # connection to the database module
-    conn = sqlite3.connect("data.db")
-    c = conn.cursor()
-    jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
-    print(jobPostings)
-    return render_template("jobDashboardHTML.html", jobPostings = jobPostings)
+    if request.method == 'GET':
+        # connection to the database module
+        conn = sqlite3.connect("data.db")
+        c = conn.cursor()
+        jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
+        print(jobPostings)
+        return render_template("jobDashboardHTML.html", jobPostings = jobPostings)
+    elif request.method == 'POST':
+        if "addPosting" in request.form:
+            # add button pressed, redirect to blank jobPosting page
+            return redirect("./jobPostingHTML.html")
+        elif "editPosting" in request.form:
+            # edit button pressed, redirect to jobPosting page
+            # brainstorm moment: maybe passing redirect codes can differentiate
+            # add from edit?
+            # PROBLEM: need to retrieve jobID somehow, maybe have it hidden in the html?
+            session["editJobID"] = request.form["jobID"]
+            return redirect("./jobPostingHTML.html")

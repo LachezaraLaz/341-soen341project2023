@@ -49,11 +49,18 @@ def signupFunc():
         c.close()
         return redirect('../loginHTML.html')
 
-@signup.route('/jobPostings.html',methods = ['POST','GET'])
+@signup.route('/jobPostings.html',methods = ['GET', 'POST'])
 def jobPostings():
-    if request.method == 'GET':
-        return render_template('jobPostingHTML.html')
-    elif request.method == 'POST':
+    # if request.method == 'GET':
+    #     return render_template('jobPostingHTML.html')
+    if request.method == 'POST':
+
+        #connect to database
+        conn = sqlite3.connect("data.db")
+        #allow for SQL commands to run
+        c = conn.cursor()
+
+        #STEP 1 - Collect and update general job info
         companyName = request.form['companyName']
         positionName = request.form['positionName']
         location = request.form['location']
@@ -63,7 +70,9 @@ def jobPostings():
         contactLName = request.form['contactLName']
         contactEmail = request.form['contactEmail']
         description = request.form['description']
-    
+
+        updateEntries = "UPDATE JobPostings SET title='"+str(positionName)+"', company'"+str(companyName)+"', jobDescription'"+str(description)+"', requirements'"+str()+"', workLocation'"+str(location)+"', salary'"+str(salary)
+        c.execute(updateEntries)
     # Need to fetch posting ID to continue <--------------
 
 @signup.route('/jobDashboardHTML.html')

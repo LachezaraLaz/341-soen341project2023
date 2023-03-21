@@ -114,8 +114,12 @@
               </div>
           
               <div class="row px-4 py-4 text-left" id="expBlock">
-                <h2>Experiences</h2>
-                <div class="b" id="b"><button id="addButton" type="button" class="btn text-white bg-dark text-center" onclick="addExperience()">Add</button></div>
+                
+                <div class="row px-4 py-4 text-center">
+                  <h2>  Experiences </h2>
+                </div>
+              
+  
 
                 {% for exp in workExperience %}
                   <div class="container p-3 my-3 bg-white text-black border" id="exp_{{exp[0]}}">
@@ -167,13 +171,17 @@
                       <input type="text" class="form-control" name="Skills" placeholder="Autonomy, C#, JavaScript, ..." value="{{exp[9]|string}}">
                     </div>
 
-                      <button type="button" class="btn btn-danger mt-2" id="del_{{exp[0]}}" onclick="delExperience('exp_{{exp[0]}}')">Delete</button>
+                     
                   </div>
+                 
 
                 {% endfor %}
+                
               </div>
-
-
+              
+              <div class="b align-right" id="b"><button id="addButton" type="button" class="btn text-white bg-dark text-center " onclick="addExperience()">Add</button><button type="button" class="btn btn-danger ms-1" id="del_{{exp[0]}}" onclick="delExperience('exp_{{exp[0]}}')">Delete</button>
+              </div>
+              
               <div class="text-center">
                 <button type="submit" class="btn btn-primary custom ">Save</button>
               </div>

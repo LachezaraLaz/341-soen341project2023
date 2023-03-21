@@ -50,7 +50,7 @@
             <form method="POST" enctype="multipart/form-data">
               <h2 class="text-center">About You</h2>
 
-              <div class="container p-3 my-3 bg-white text-black border rounded text-center">
+              <div class="container p-3 my-3 bg-white text-black border rounded text-left">
                 <div class="form-group">
                   <label for="firstName">First Name:</label>
                   <input type="text" class="form-control" id="firstName" name="FirstName" placeholder="First Name"
@@ -113,9 +113,9 @@
                 </div>
               </div>
           
-              <div class="row px-4 py-4 text-center" id="expBlock">
+              <div class="row px-4 py-4 text-left" id="expBlock">
                 <h2>Experiences</h2>
-                <div class="b" id="b"><button id="addButton" type="button" class="btn text-white bg-dark" onclick="addExperience()">Add</button></div>
+                <div class="b" id="b"><button id="addButton" type="button" class="btn text-white bg-dark text-center" onclick="addExperience()">Add</button></div>
 
                 {% for exp in workExperience %}
                   <div class="container p-3 my-3 bg-white text-black border" id="exp_{{exp[0]}}">

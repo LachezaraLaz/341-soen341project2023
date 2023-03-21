@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, Blueprint, redirect
 notification = Blueprint('notification', __name__)
 
 
-@notification.route("/notifcation.html",methods = ['GET'])
+@notification.route("/notification.html",methods = ['GET'])
 def notif():
     if request.method == 'GET':
         return "hello" 

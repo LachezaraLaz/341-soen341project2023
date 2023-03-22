@@ -3,10 +3,10 @@ import sqlite3
 #importing Flask and other modules
 from flask import Flask, request, render_template, redirect, session, Blueprint
 #initializing blueprint
-adminJobPosting = Blueprint('adminJobPosting', __name__)
+adminPages = Blueprint('adminPages', __name__)
 
 # A decorator used to tell the application which URL is associated function
-@adminJobPosting.route('/adminJobDashboard.html', methods =['GET', 'POST'])
+@adminPages.route('/adminJobDashboard.html', methods =['GET', 'POST'])
 def adminJobPostingFUNC():
     if session["userID"] != 5:
         #send the user back to login page if they are not the admin user
@@ -79,3 +79,16 @@ def adminJobPostingFUNC():
         c.close()
 
         return redirect("../adminJobDashboard.html")
+    
+
+# A decorator used to tell the application which URL is associated function
+@adminPages.route('/adminUsers.html', methods =['GET', 'POST'])
+def adminUsersFUNC():
+    if session["userID"] != 5:
+        #send the user back to login page if they are not the admin user
+        return redirect("../loginHTML.html")
+    elif request.method == 'GET':
+
+        return render_template('adminUsers.html')
+    elif request.method == 'POST':
+        return

@@ -12,30 +12,36 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   </head>
   <body>
-    <div id="all">
-      <div id="main">
-        <ul class="navbar">
-          <li>
-            <a class="name" href="../Login/Login-html%20file.html"
-              ><b><i>I</i>mplico</b></a
-            >
-          </li>
-          <li>
-            <a href="../Profile/profile.html"
-              ><i class="fa fa-fw fa-user"></i> Me</a
-            >
-          </li>
-          <li>
-            <a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a>
-          </li>
-          <li>
-            <a class="active" href="../Login/Login-html%20file.html" href="#"
-              ><i class="fa fa-fw fa-home"></i> Home</a
-            >
-          </li>
-        </ul>
-
-
+                    <!--admin nav bar-->
+            <!--modified nav bar-->
+            <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+                <div class="container-fluid">
+                    <a class="navbar-brand text-light" href="#"><b>Admin Dashboard</b></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link active text-light" href="../adminUsers.html">Users</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="../adminJobDashboard.html">Jobs</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-light" href="#">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid">
+        
+                <!---->
+    <div class = "pt-4" id="all">
+        <div id="main">
         <div class="row bg-light rounded h-95">
           <div class="">
           <table class="vw-95 table table-responsive table-borderless table-striped table-hover rounded">

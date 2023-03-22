@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Latest compiled and minified CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+        <!--admin nav bar-->
+            <!--modified nav bar-->
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="#"><b>Admin Dashboard</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link active text-light" href="#">Users</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Jobs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="#">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+
+        <!---->
+        <div class="m-3 row">
+            <div class="h-100 d-flex align-items-center justify-content-center">
+                <div class="col-8 ps-4 pt-4 pb-4 pe-4 bg-light rounded">
+                    <table class="table table-hover table-borderless table-striped table-responsive">
+                        <thead>
+                            <tr class="bg-black text-light">
+                                <th class="col-1 text-center p-2">ID</th>
+                                <th class="col-2 p-2">Type</th>
+                                <th class="col-3 p-2">Email</th>
+                                <th class="col-4 p-2">Password</th>
+                                <th class="col-1 p-2"></th>
+                                <th class="col-1 p-2"><a class="btn btn-success" href="../addEditLoginInfo.html">+</a></th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td class="col-1 text-center p-2">1</td>
+                                <td class="col-2 p-2">Student</td>
+                                <td class="col-3 p-2">email@email.com</td>
+                                <td class="col-4 p-2">Password</td>
+                                <td class="col-1 p-2"><a class="btn btn-info">...</a></td>
+                                <td class="col-1 p-2"><a class="btn btn-danger">x</a></td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+
+</body>
+
+</html>

@@ -45,9 +45,9 @@ def adminJobPostingFUNC():
                 elif innerCounter == 3:
                     jpCompany.append(column)
                 elif innerCounter == 4:
-                    jpDescription.append(column)
+                    jpDescription.append(shortenString(column))
                 elif innerCounter == 5:
-                    jpRequirements.append(column)
+                    jpRequirements.append(shortenString(column))
                 elif innerCounter == 6:
                     jpLocation.append(column)
                 elif innerCounter == 7:
@@ -80,6 +80,12 @@ def adminJobPostingFUNC():
 
         return redirect("../adminJobDashboard.html")
     
+#helper function
+def shortenString(strInput):
+    if len(strInput) > 150:
+        return strInput[0:151]+"..."
+    else:
+        return strInput
 
 # A decorator used to tell the application which URL is associated function
 @adminPages.route('/adminUsers.html', methods =['GET', 'POST'])
@@ -137,3 +143,5 @@ def adminUsersFUNC():
         conn.commit()
         c.close()
         return redirect('../adminUsers.html')
+    
+

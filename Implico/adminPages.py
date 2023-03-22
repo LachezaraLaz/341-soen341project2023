@@ -88,7 +88,52 @@ def adminUsersFUNC():
         #send the user back to login page if they are not the admin user
         return redirect("../loginHTML.html")
     elif request.method == 'GET':
+        #connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+        
+        sqlComm1 = "SELECT * FROM LoginInfo"
+        row = c.execute(sqlComm1).fetchall()
+        print(row)
 
-        return render_template('adminUsers.html')
+        userID = []
+        userEmail = []
+        userPassword = []
+        userType = []
+
+        loopCounter = 0
+        for profiles in row:
+            print(profiles)
+            innerCounter = 0
+            for attributes in profiles:
+                print(attributes)
+                if innerCounter == 0:
+                    userID.append(attributes)
+                elif innerCounter == 1:
+                    userEmail.append(attributes)
+                elif innerCounter == 2:
+                    userPassword.append(attributes)
+                elif innerCounter == 3:
+                    userType.append(attributes)
+                innerCounter += 1
+            loopCounter += 1
+
+        conn.commit()
+        c.close()
+        return render_template('adminUsers.html', counter = loopCounter, userID = userID, userEmail = userEmail, userPassword = userPassword, userType = userType)
     elif request.method == 'POST':
-        return
+        deleteUser = request.form.get("deleteUserID")
+        print(deleteUser)
+
+        #connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+        
+        sqlComm1 = "DELETE FROM LoginInfo WHERE userKey = "+deleteUser
+        row = c.execute(sqlComm1).fetchall()
+
+        conn.commit()
+        c.close()
+        return redirect('../adminUsers.html')

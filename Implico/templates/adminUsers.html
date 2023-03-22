@@ -56,15 +56,24 @@
                         </thead>
 
                         <tbody>
+                            {% for x in range(counter) %}
                             <tr>
-                                <td class="col-1 text-center p-2">1</td>
-                                <td class="col-2 p-2">Student</td>
-                                <td class="col-3 p-2">email@email.com</td>
-                                <td class="col-4 p-2">Password</td>
+                                <td class="col-1 text-center p-2">{{userID[x]}}</td>
+                                <td class="col-2 p-2">{{userType[x]}}</td>
+                                <td class="col-3 p-2">{{userEmail[x]}}</td>
+                                <td class="col-4 p-2">{{userPassword[x]}}</td>
                                 <td class="col-1 p-2"><a class="btn btn-info">...</a></td>
-                                <td class="col-1 p-2"><a class="btn btn-danger">x</a></td>
+                                <td>
+                                    <form method = "POST">
+                                        {% set y = userID[x] %}
+                                        <input type = "hidden" name = "deleteUserID" value = "{{y}}">
+                                        <button class="btn btn-danger" type="submit">x</button>
+                                    </form>
+                                    </td> 
+                                <!--<td class="col-1 p-2"><a class="btn btn-danger">x</a></td>-->
 
                             </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

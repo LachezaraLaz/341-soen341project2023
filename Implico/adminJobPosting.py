@@ -19,7 +19,6 @@ def adminJobPostingFUNC():
         
         sqlComm1 = "SELECT * FROM JobPostings"
         row = c.execute(sqlComm1).fetchall()
-        print(row)
 
         #retrieving all the data in the jobPosting table and putting it into arrays
         jpJobIDs = []
@@ -65,4 +64,18 @@ def adminJobPostingFUNC():
         c.close()
         return render_template('adminJobDashboard.html', counter = loopCounter, jobIDs = jpJobIDs, userIDs = jpUserIDS, jobCompany = jpCompany, jobTitle = jpTitle, jobDescription = jpDescription, jobRequirements = jpRequirements, jobLocation = jpLocation, jobSalary = jpSalary, jobCreationDate = jpCreationDate, jobSelectedCandidate = jpSelectedCandidate)
     elif request.method == 'POST':
+        deleteJob = request.form.get("deleteJobID")
+        print(deleteJob)
+
+        #connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+        
+        sqlComm1 = "DELETE FROM JobPostings WHERE jobKey = "+deleteJob
+        row = c.execute(sqlComm1).fetchall()
+
+        conn.commit()
+        c.close()
+
         return redirect("../adminJobDashboard.html")

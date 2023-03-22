@@ -59,7 +59,7 @@ def loginFunc():
                 session["userType"] = userType
                 if (userType == "student"):
                    return redirect("../profileTempHTML.html")
-                if(userType == "admin"):
+                elif(userType == "admin"):
                    return redirect("../adminUsers.html")
                 else:
                    return redirect("../jobDashboardHTML.html")
@@ -67,6 +67,7 @@ def loginFunc():
     #if no POST request is made just stay on the login page
     return render_template('loginHTML.html', boolean=True)
 
+'''
 @login.route('/create',methods = ['GET'])
 def create():
    conn = sqlite3.connect("data.db")
@@ -78,3 +79,4 @@ def create():
    conn.commit()
    c.close()
    return render_template("jobDashboardHTML.html")
+'''

@@ -72,7 +72,15 @@
                         <td>{{jobSalary[x]}}</td>
                         <td>{{jobCreationDate[x]}}</td>
                         <td>{{jobSelectedCandidate[x]}}</td>
-                        <td><a class="btn btn-info" href="../editJobEmployer.html">...</a></td>
+                        <!-- <td><a class="btn btn-info" href="../editJobAdmin.html">...</a></td> -->
+                        <td>
+                            <form method ="POST">
+                                {% set z = jobIDs[x]%}
+                                <input type = "hidden" name = "editJobID" value="{{z}}">
+                                <button class="btn btn-info" type = "submit">...</button>
+                            </form>
+                        </td>
+                       
                         <td>
                             <form method="POST">
                                 {% set y = jobIDs[x] %}

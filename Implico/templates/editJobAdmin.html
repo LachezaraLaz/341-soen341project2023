@@ -52,35 +52,35 @@
                                 <div class="form-group m-2">
                                     <label for="jobTitle">Job Title:</label>
                                     <input type="text" class="form-control" id="jobTitle" name="jobTitle"
-                                        placeholder="Type in a job title" value="">
+                                        placeholder="Type in a job title" value="{{jobTitle}}">
                                 </div>
                                 <!--company-->
                                 <div class="form-group m-2">
                                     <label for="company">Company:</label>
                                     <input type="text" class="form-control" id="company" name="company"
-                                        placeholder="Type in a company" value="">
+                                        placeholder="Type in a company" value="{{jobCompany}}">
                                 </div>
                                 <!--job description-->
                                 <div class="form-group m-2">
                                     <label for="jobDescription">Job Description:</label>
-                                    <textarea class="form-control" id="jobDescription" name="jobDescription" rows="3" placeholder="Write here"></textarea>
+                                    <textarea class="form-control" id="jobDescription" name="jobDescription" rows="3" placeholder="Write here">{{jobDescription}}</textarea>
                                 </div>
                                 <!--job requirements-->
                                 <div class="form-group m-2">
                                     <label for="jobRequirements">Job Requirements:</label>
-                                    <textarea class="form-control" id="jobRequirements" name="jobRequirements" rows="3" placeholder="Write here"></textarea>
+                                    <textarea class="form-control" id="jobRequirements" name="jobRequirements" rows="3" placeholder="Write here">{{jobRequirements}}</textarea>
                                 </div>
                                 <!--job location-->
                                 <div class="form-group m-2">
                                     <label for="jobLocation">Location:</label>
                                     <input type="text" class="form-control" id="jobLocation" name="jobLocation"
-                                        placeholder="Type in the location of the job" value="">
+                                        placeholder="Type in the location of the job" value="{{jobLocation}}">
                                 </div>
                                 <!--job salary-->
                                 <div class="form-group m-2">
                                     <label for="jobSalary">Salary:</label>
-                                    <input type="number" step=".01" class="form-control" id="jobLocation" name="jobLocation"
-                                        placeholder="Type in the job's salary" value="">
+                                    <input type="number" step=".01" class="form-control" id="jobSalary" name="jobSalary"
+                                        placeholder="Type in the job's salary" value="{{jobSalary}}">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>

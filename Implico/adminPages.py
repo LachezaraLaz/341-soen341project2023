@@ -64,22 +64,86 @@ def adminJobPostingFUNC():
         c.close()
         return render_template('adminJobDashboard.html', counter = loopCounter, jobIDs = jpJobIDs, userIDs = jpUserIDS, jobCompany = jpCompany, jobTitle = jpTitle, jobDescription = jpDescription, jobRequirements = jpRequirements, jobLocation = jpLocation, jobSalary = jpSalary, jobCreationDate = jpCreationDate, jobSelectedCandidate = jpSelectedCandidate)
     elif request.method == 'POST':
-        deleteJob = request.form.get("deleteJobID")
-        print(deleteJob)
+         deleteJobID = request.form.get("deleteJobID")
+         print(deleteJobID)
+         editJobID = request.form.get("editJobID")
+         print(editJobID)
+         if (deleteJobID != None):
+            deleteJob = request.form.get("deleteJobID")
+            print(deleteJob)
 
+            #connection to the database module
+            conn = sqlite3.connect("data.db")
+            # allow for SQL commands to be run
+            c = conn.cursor()
+                
+            sqlComm1 = "DELETE FROM JobPostings WHERE jobKey = "+deleteJob
+            row = c.execute(sqlComm1).fetchall()
+
+            conn.commit()
+            c.close()
+
+            return redirect("../adminJobDashboard.html")
+         elif (editJobID != None):
+            editJobID = request.form.get("editJobID")
+            print(editJobID)
+            
+            session['editJobID'] = editJobID
+
+            return redirect('../editJobAdmin.html')
+        
+# A decorator used to tell the application which URL is associated function
+@adminPages.route('/editJobAdmin.html', methods =['GET', 'POST'])
+def adminJobAdminFUNC():
+    if request.method == 'GET':
+        editJobID = session['editJobID']
+        print(editJobID)
         #connection to the database module
         conn = sqlite3.connect("data.db")
         # allow for SQL commands to be run
         c = conn.cursor()
-        
-        sqlComm1 = "DELETE FROM JobPostings WHERE jobKey = "+deleteJob
+            
+        sqlComm1 = "SELECT * FROM JobPostings WHERE jobKey = "+str(editJobID)
         row = c.execute(sqlComm1).fetchall()
+        print(row)
+
+        conn.commit()
+        c.close()
+
+        editJob = []
+        for x in row[0]:
+            print("looping")
+            editJob.append(x)
+        print(editJob)
+        jobTitle = editJob[2]
+        jobCompany = editJob[3]
+        jobDescription = editJob[4]
+        jobRequirements = editJob[5]
+        jobLocation = editJob[6]
+        jobSalary = editJob[7]
+        return render_template('editJobAdmin.html', jobTitle = jobTitle, jobCompany = jobCompany, jobDescription = jobDescription, jobRequirements = jobRequirements, jobLocation = jobLocation, jobSalary = jobSalary)
+    if request.method == 'POST':
+        jobID = session['editJobID']
+        jobTitle = request.form.get("jobTitle")
+        jobCompany = request.form.get("jobCompany")
+        jobDescription = request.form.get("jobDescription")
+        jobRequirements = request.form.get("jobRequirements")
+        jobCompany = request.form.get("jobCompany")
+        jobLocation = request.form.get("jobLocation")
+        jobSalary = request.form.get("jobSalary")
+
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+            
+        sqlComm1 = "UPDATE JobPostings SET title = '"+str(jobTitle)+"', company = '"+str(jobCompany)+"', jobDescription = '"+str(jobDescription)+"', requirements = '"+str(jobRequirements)+"', workLocation = '"+str(jobLocation)+"', salary = '"+str(jobSalary)+"'  WHERE jobKey = "+str(jobID)
+        c.execute(sqlComm1)
 
         conn.commit()
         c.close()
 
         return redirect("../adminJobDashboard.html")
-    
+
 #helper function
 def shortenString(strInput):
     if len(strInput) > 150:
@@ -129,19 +193,18 @@ def adminUsersFUNC():
         c.close()
         return render_template('adminUsers.html', counter = loopCounter, userID = userID, userEmail = userEmail, userPassword = userPassword, userType = userType)
     elif request.method == 'POST':
-        deleteUser = request.form.get("deleteUserID")
-        print(deleteUser)
+        if (request.form.get("deleteUserID") != None):
+            deleteUser = request.form.get("deleteUserID")
+            print(deleteUser)
 
-        #connection to the database module
-        conn = sqlite3.connect("data.db")
-        # allow for SQL commands to be run
-        c = conn.cursor()
-        
-        sqlComm1 = "DELETE FROM LoginInfo WHERE userKey = "+deleteUser
-        row = c.execute(sqlComm1).fetchall()
+            #connection to the database module
+            conn = sqlite3.connect("data.db")
+            # allow for SQL commands to be run
+            c = conn.cursor()
+            
+            sqlComm1 = "DELETE FROM LoginInfo WHERE userKey = "+deleteUser
+            row = c.execute(sqlComm1).fetchall()
 
-        conn.commit()
-        c.close()
-        return redirect('../adminUsers.html')
-    
-
+            conn.commit()
+            c.close()
+            return redirect('../adminUsers.html')

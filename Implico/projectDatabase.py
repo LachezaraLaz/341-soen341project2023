@@ -31,7 +31,7 @@ except sqlite3.OperationalError:
     # fifth table: notification table
     c.execute("CREATE TABLE Notifications (notifKey NUMBER, userID NUMBER, message TEXT, dateSent TEXT, PRIMARY KEY(notifKey), FOREIGN KEY(userID) REFERENCES LoginInfo(userKey))")
     # sixth table: job applicant table
-    c.execute("CREATE TABLE JobApplicants (appKey NUMBER, profileID TEXT, appStatus TEXT, PRIMARY KEY(appKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey))")
+    c.execute("CREATE TABLE JobApplicants (appKey NUMBER, profileID NUMBER, postingID NUMBER, appStatus TEXT, PRIMARY KEY(appKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey), FOREIGN KEY(postingID) REFERENCES JobPostings(jobKey))")
 
     # inserting test data in LoginInfo
     c.execute("INSERT INTO LoginInfo VALUES (1, 'test1@email.com', '123pass', 'student')")
@@ -128,4 +128,3 @@ finally:
     # saves changes to the table
     conn.commit()
     c.close()
-

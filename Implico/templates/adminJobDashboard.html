@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/jobDashboardCSS.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script
+      src="https://kit.fontawesome.com/e4ad6adbad.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <div id="all">
+      <div id="main">
+        <ul class="navbar">
+          <li>
+            <a class="name" href="../Login/Login-html%20file.html"
+              ><b><i>I</i>mplico</b></a
+            >
+          </li>
+          <li>
+            <a href="../Profile/profile.html"
+              ><i class="fa fa-fw fa-user"></i> Me</a
+            >
+          </li>
+          <li>
+            <a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a>
+          </li>
+          <li>
+            <a class="active" href="../Login/Login-html%20file.html" href="#"
+              ><i class="fa fa-fw fa-home"></i> Home</a
+            >
+          </li>
+        </ul>
+
+        <br /><br />
+
+        <table id="jobTable">
+          <tr>
+            <th>JobID</th>
+            <th>UserID</th>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Job Description</th>
+            <th>Requirements</th>
+            <th>Work Location</th>
+            <th>Salary</th>
+            <th>Creation Date</th>
+            <th>Selected Candidate</th>
+          <tbody>
+          {% for x in range(counter) %}
+            <tr>
+                <td>{{jobIDs[x]}}</td>
+                <td>{{userIDs[x]}}</td>
+                <td>{{jobTitle[x]}}</td>
+                <td>{{jobCompany[x]}}</td>
+                <td>{{jobDescription[x]}}</td>
+                <td>{{jobRequirements[x]}}</td>
+                <td>{{jobLocation[x]}}</td>
+                <td>{{jobSalary[x]}}</td>
+                <td>{{jobCreationDate[x]}}</td>
+                <td>{{jobSelectedCandidate[x]}}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        </table>
+      </div>
+      <footer>
+        <a href="" style="color: aliceblue">Contact Us</a> /
+        <a href="" style="color: aliceblue">About Us</a>
+      </footer>
+    </div>
+  </body>
+</html>

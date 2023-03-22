@@ -59,6 +59,8 @@ def loginFunc():
                 session["userType"] = userType
                 if (userType == "student"):
                    return redirect("../profileTempHTML.html")
+                if(userType == "admin"):
+                   return redirect("../adminUsers.html")
                 else:
                    return redirect("../jobDashboardHTML.html")
 

@@ -44,7 +44,7 @@
                     <div class="col-8 ps-4 pt-4 pb-4 pe-4 bg-light rounded">
                         <!--header of the page-->
                         <div class="row px-4 py-4 text-center rounded">
-                            <h1>Edit User Info</h1>
+                            <h1>Add User Info</h1>
                         </div>
                         <div class="row px-4 py-2">
                             <form method="POST" enctype="multipart/form-data">
@@ -52,22 +52,27 @@
                                     <div class="form-group p-2">
                                         <label for="email">Email:</label>
                                         <input type="text" class="form-control" id="email" name="email" placeholder="Type in your email"
-                                          value="{{editUser[1]}}">
+                                          value="">
                                     </div>
 
                                     <div class="form-group p-2">
                                         <label for="password">Password:</label>
                                         <input type="password" class="form-control" id="password" name="password" placeholder="Type in your password"
-                                          value="{{editUser[2]}}">   
+                                          value="">   
                                         <input type="checkbox" class="m-1" onclick="showPassword()"> Show Password
                                      
                                     </div> 
-                                    
+                                    <div class="form-group p-2">
+                                        <label for="user type">User Type:</label>
+                                          <select name="userType" id="userType">
+                                            <option value="student">student</option>
+                                            <option value="employer">employer</option>
+                                          </select>
+                                    </div>
                                     <div class="p-2 text-center">
                                         <button type="submit" class="btn btn-primary">Save</button>
                                      
                                     </div>     
-                                    
                                 </div>
                             </form>
                         </div>

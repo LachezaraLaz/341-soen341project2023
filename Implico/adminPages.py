@@ -94,7 +94,7 @@ def adminJobPostingFUNC():
         
 # A decorator used to tell the application which URL is associated function
 @adminPages.route('/editJobAdmin.html', methods =['GET', 'POST'])
-def adminJobAdminFUNC():
+def adminEditJobFUNC():
     if request.method == 'GET':
         editJobID = session['editJobID']
         print(editJobID)
@@ -208,3 +208,77 @@ def adminUsersFUNC():
             conn.commit()
             c.close()
             return redirect('../adminUsers.html')
+        elif (request.form.get("editUserID")!= None):
+            session['editUserID'] = request.form.get("editUserID")
+            return redirect("../editUserAdmin.html")
+        elif (request.form.get("addUser") != None):
+            return redirect("../addUserAdmin.html")
+
+@adminPages.route('/editUserAdmin.html', methods =['GET', 'POST'])
+def adminEditUserFUNC():
+    if request.method == 'GET':
+            editUserID = session["editUserID"]
+            #connection to the database module
+            conn = sqlite3.connect("data.db")
+            # allow for SQL commands to be run
+            c = conn.cursor()
+                
+            sqlComm1 = "SELECT * FROM LoginInfo WHERE userKey = "+editUserID
+            row = c.execute(sqlComm1).fetchall()
+
+            editUser = []
+            for x in row[0]:
+                print("looping")
+                editUser.append(x)
+            print(editUser)
+
+            conn.commit()
+            c.close()
+            return render_template('editUserAdmin.html', editUser = editUser)
+    elif request.method == 'POST': 
+            editUser = session['editUserID']
+            print(editUser)
+            email = request.form.get("email")
+            print(email)
+            
+            password = request.form.get("password")
+            print(password)
+
+            #connection to the database module
+            conn = sqlite3.connect("data.db")
+            # allow for SQL commands to be run
+            c = conn.cursor()
+                
+            sqlComm1 = "UPDATE LoginInfo SET email = '"+str(email)+"', password = '"+str(password)+"' WHERE userKey = "+editUser
+            c.execute(sqlComm1)
+
+            conn.commit()
+            c.close()
+            return redirect("../adminUsers.html")
+        
+@adminPages.route('/addUserAdmin.html', methods =['GET', 'POST'])
+def adminAddUserFUNC():
+    if request.method == 'GET':
+        return render_template('addUserAdmin.html')
+    elif request.method == 'POST':
+        #connection to the database module
+        conn = sqlite3.connect("data.db")
+        # allow for SQL commands to be run
+        c = conn.cursor()
+                
+        #sqlComm1 = "SELECT LAST (userKey) FROM LoginInfo"
+        sqlComm1 = "SELECT userKey FROM LoginInfo ORDER BY userKey DESC LIMIT 1"
+        lastID = c.execute(sqlComm1).fetchone()
+        print("THIS IS THE LAST ID IN THE TABLE "+str(lastID[0]))
+
+        userKey = int(lastID[0]) + 1
+        email = request.form.get("email")
+        password = request.form.get("password")
+        userType = request.form.get("userType")
+        
+        sqlComm2 = "INSERT INTO LoginInfo (userKey, email, password, userType) VALUES('"+str(userKey)+"', '"+str(email)+"', '"+str(password)+"', '"+str(userType)+"')"
+        
+        c.execute(sqlComm2)
+        conn.commit()
+        c.close()
+        return redirect("../adminUsers.html")

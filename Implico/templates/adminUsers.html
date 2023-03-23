@@ -51,7 +51,12 @@
                                 <th class="col-3 p-2">Email</th>
                                 <th class="col-4 p-2">Password</th>
                                 <th class="col-1 p-2"></th>
-                                <th class="col-1 p-2"><a class="btn btn-success" href="../addEditLoginInfo.html">+</a></th>
+                                <th class="col-1 p-2">
+                                    <form method="POST">
+                                        <input type="hidden" name="addUser" value="adding a new user">
+                                        <button type="submit" class="btn btn-success">+</a>
+                                    </form>
+                                </th>
                             </tr>
                         </thead>
 
@@ -62,7 +67,13 @@
                                 <td class="col-2 p-2">{{userType[x]}}</td>
                                 <td class="col-3 p-2">{{userEmail[x]}}</td>
                                 <td class="col-4 p-2">{{userPassword[x]}}</td>
-                                <td class="col-1 p-2"><a class="btn btn-info">...</a></td>
+                                <td class="col-1 p-2">
+                                    <form method = "POST">
+                                        {% set z = userID[x] %}
+                                        <input type = "hidden" name = "editUserID" value = "{{z}}">
+                                        <button class="btn btn-info" type = "submit">...</button>
+                                    </form>
+                                </td>
                                 <td>
                                     <form method = "POST">
                                         {% set y = userID[x] %}

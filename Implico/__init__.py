@@ -12,11 +12,13 @@ def create_app():
     from .userProfile import userProfile
     from .notification import notification
     from .adminPages import adminPages
+    from .employerDashboard import employerDashboard
 
     app.register_blueprint(login, url_prefix="/")
     app.register_blueprint(signup, url_prefix="/")
     app.register_blueprint(userProfile, url_prefix="/")
     app.register_blueprint(notification, url_prefix="/")
     app.register_blueprint(adminPages, url_prefix=("/"))
+    app.register_blueprint(employerDashboard, url_prefix=("/"))
 
     return app

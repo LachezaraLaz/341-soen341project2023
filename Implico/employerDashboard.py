@@ -6,17 +6,17 @@ from flask import Flask, request, render_template, redirect, session, Blueprint
 employerDashboard = Blueprint('employerDashboard', __name__)
 
 @employerDashboard.route('viewMoreJobEmployer.html', methods =['GET', 'POST'])
-def fubctu():
+def func1():
     return
 
 @employerDashboard.route('jobDashboardHTML.html', methods =['GET', 'POST'])
-def fubctu():
+def func2():
     return
 
 @employerDashboard.route('editJobEmployer.html', methods =['GET', 'POST'])
-def fubctu():
+def func3():
     return   
 
 @employerDashboard.route('jobApplicantsEmployer.html', methods =['GET', 'POST'])
-def fubctu():
+def func4():
     return   

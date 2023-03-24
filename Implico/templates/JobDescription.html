@@ -44,11 +44,13 @@
           <div class="col-8 ps-5 pt-4 pb-4 pe-4 bg-light rounded">
             <div class="row px-3 py-3 text-left">
               
+              {% for jobPosting in jobPostings %}
               <div class="position-relative">
                 <img src="../static/HelpingPeople.jpg" alt="HappyMan" class="img-fluid float-end" style="width: 40%; border: 2px solid lightblue;">
                 <div class="centered" style="align-items:center;width: 60%;">
 
-                    <h4>Web Application Developer</h4> <h6>Job Key</h6>
+                    <h4>Web Application Developer</h4> 
+                    <!-- <h6>Job Key</h6> -->
                     <h5>Matrox</h5> <br>
                   
                     <h7>Work Location</h7><br>
@@ -62,7 +64,7 @@
             
     <!-- <div class="row"> -->
       <!-- <div class="h-100 d-flex align-items-left justify-content-left"> -->
-        <!-- <div class="col-8 ps-2 pt-2 pb-2 pe-3 w-100 bg-light rounded "> -->
+        <div class="col-8 ps-2 pt-2 pb-2 pe-3 w-100 bg-light rounded ">
           <div class="row px-2 py-2 text-left ">
           </div>
 
@@ -102,6 +104,7 @@
                 <button class="btn btn-info text-light" type="Apply" name="applyButton">Apply</button>
               </form>
           </div>
+          {% endfor%}
 
       <br><br><br>
 

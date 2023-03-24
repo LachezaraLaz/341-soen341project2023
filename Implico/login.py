@@ -61,7 +61,7 @@ def loginFunc():
                 if (userType == "student"):
                    return redirect("../profileTempHTML.html")
                 elif(userType == "admin"):
-                   return redirect("../adminUsers.html")
+                   return redirect("../adminUsers.html") 
                 else:
                    return redirect("/dashboard")
 

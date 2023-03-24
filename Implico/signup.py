@@ -127,7 +127,7 @@ def editPosting():
 def jobApp():
     return render_template("/jobApplicantsEmployer.html")
 
-@signup.route("/VUJP",methods = ['GET','POST'])
+@signup.route("/VUJP",methods = ['GET','POST']) 
 def viewPosting():
     if request.method == 'GET' and (session.get("userID") == None):
         return redirect("/loginHTML.html")

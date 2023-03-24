@@ -6,7 +6,7 @@ notification = Blueprint('notification', __name__)
 
 @notification.route("/notification.html", methods = ['GET', 'POST'])
 def notif():
-    #if no user has logged in yet, then they are redirected to login page to login
+    #if no user has logged in yet, then they are redirected to login page to login.
     if (session.get('userID') == None):
         return redirect('../loginHTML.html')
     else:

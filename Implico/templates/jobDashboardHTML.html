@@ -56,15 +56,23 @@
               <tbody>
                 {% for jobPosting in jobPostings %}
                 <tr>
-                  <td>{{jobPosting[0]}}</td>
+                  <td>{{jobPosting[3]}}</td>
                   <td><a href="#">{{jobPosting[2]}}</a></td>
                   <td>{{jobPosting[4]}}<br/>{{jobPosting[5]}}</td>
                   <td>{{jobPosting[6]}}</td>
                   <td>{{jobPosting[7]}}</td>
                   <td>{{jobPosting[8]}}</td>
                   <td><a class="btn btn-success" href="../jobApplicantsEmployer.html">Select Candidate</a></td>
-                  <td><button type="submit" class="btn btn-info" href="../editJobEmployer.html">...</a></td>
-                  <td><button class="btn btn-danger" type="button">x</button></td>
+                  <td><form method="POST">
+                    {% set x  = jobPosting[0] %}
+                    <input type = "hidden" name = "editPostingID" value = "{{x}}">
+                    <button type="submit" class="btn btn-info" href="../editJobEmployer.html">...</a>
+                    </form></td>
+                  <td><form method="POST">
+                    {% set y = jobPosting[0] %}
+                    <input type = "hidden" name = "deletePostingID" value = "{{y}}">
+                    <button type="submit" class="btn btn-danger" type="button">x</button>
+                  </form></td>
 
                 </tr>
                 {% endfor %}

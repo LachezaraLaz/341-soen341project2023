@@ -1,3 +1,4 @@
+#python file for all admin functionalities
 #importing the sqlite3 module to handle database
 import sqlite3
 #importing Flask and other modules

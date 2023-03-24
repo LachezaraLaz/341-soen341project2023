@@ -84,7 +84,7 @@ def jobDashboard():
             c.execute(deleteQuery)
             conn.commit()
             c.close()
-            return redirect('/jobDashboardHTML.html')
+            return redirect('/dashboard')
         elif (request.form.get("addPostingID") != None):
             return "abc"
         # edit button functionality
@@ -121,8 +121,20 @@ def editPosting():
         conn.commit()
         c.close()
         session.pop("editPostingID",None)
-        return redirect("/jobDashboardHTML.html")
+        return redirect("/dashboard")
     
 @signup.route("/app")
 def jobApp():
     return render_template("/jobApplicantsEmployer.html")
+
+@signup.route("/VUJP",methods = ['GET','POST'])
+def viewPosting():
+    if request.method == 'GET' and (session.get("userID") == None):
+        return redirect("/loginHTML.html")
+    if request.method == 'GET':
+        # connection to the database module
+        conn = sqlite3.connect("data.db")
+        c = conn.cursor()
+        jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
+        return render_template("/viewJobPosting.html",  jobPostings = jobPostings)
+  

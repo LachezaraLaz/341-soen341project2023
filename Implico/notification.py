@@ -15,9 +15,14 @@ def notif():
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])
 def JobDescription():
     if request.method == 'GET':
-        return render_template('JobDescription.html')
+        # connection to the database module
+        conn = sqlite3.connect("data.db")
+        c = conn.cursor()
+        jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
+        return render_template('/JobDescription.html',  jobPostings = jobPostings)
+    
     #from the form for the apply button in the JobDescription file 
-    elif (request.method == 'POST' ):
+    if (request.method == 'POST' ):
         applyButton = request.form['applyButton']
         print(applyButton)
         #this only happens when the user is a student, will have another when we do employer
@@ -34,7 +39,7 @@ def JobDescription():
                 c.execute("INSERT INTO Notifications VALUES ("+str(1)+","+str(session.get('userID'))+", 'A candidate has applied to one of your jobs!' ,'" + str(intoSTR) + "')")
                 conn.commit()
                 c.close()
-                return redirect('notification.html')
+                return redirect('/notification.html')
             #if it is not the first notification in the database
             else:
                 notifKey = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC LIMIT 1").fetchone()
@@ -44,5 +49,5 @@ def JobDescription():
                 newNotif = c.execute("SELECT * FROM Notifications WHERE userID ="+str(session.get('userID'))).fetchall()
                 conn.commit()
                 c.close()
-                return render_template('notification.html', message = str(newNotif[1]))
+                return render_template('/notification.html', message = str(newNotif[1]))
     

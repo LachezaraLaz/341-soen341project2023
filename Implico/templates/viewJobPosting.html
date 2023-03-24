@@ -90,42 +90,21 @@
                   <h5>Recommended For You</h5>
 
                 </div>
-
+                {% for jobPosting in jobPostings %}
                 <div class="container p-3 my-3 bg-white text-black border border-4">
 
                   <div class="form-group">
-                    <label for="jobPosition">{{Job 1 Position}}</label> <br>
-                    <label for="companyName" style= font-size:80%>{{Job 1 company name}}</label> <br>
-                    <label for="Location"style= font-size:80%>{{Location (Remote or Hybrid)}} </label> <br>
-
+                    <label for="jobPosition" name="viewJob"><a href="../JobDescription.html">{{jobPosting[2]}}</a></label> <br>
+                    <label for="companyName" style= font-size:80%>{{jobPosting[3]}}</label> <br>
+                    <label for="Location"style= font-size:80%>{{jobPosting[6]}}</label> <br>
+                    <label for="Location"style= font-size:80%>{{jobPosting[7]}}$/hr</label> <br>
                   </div>
 
-                  
-          </div>
-
-          <div class="container p-3 my-3 bg-white text-black border border-4">
-
-            <div class="form-group">
-              <label for="jobPosition">{{Job 2  Position}}</label> <br>
-              <label for="companyName" style= font-size:80%>{{Job 2 company name}}</label> <br>
-              <label for="Location"style= font-size:80%>{{Location (Remote or Hybrid)}} </label> <br>
-
-            </div>
-          
-
-        </div>
-
-        <div class="container p-3 my-3 bg-white text-black border border-4">
-
-          <div class="form-group">
-            <label for="jobPosition">{{Job 3  Position}}</label> <br>
-            <label for="companyName" style= font-size:80%>{{Job 3 company name}}</label> <br>
-            <label for="Location"style= font-size:80%>{{Location(Remote or Hybrid)}} </label> <br>
-
-          </div>
+                </div>
+                {% endfor %}
 
 
-      </div>
+        
       <br><br><br>
 
       

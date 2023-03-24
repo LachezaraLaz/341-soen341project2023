@@ -57,12 +57,13 @@ def loginFunc():
                 session["email"] = email
                 session["password"] = password
                 session["userType"] = userType
+                print(userType)
                 if (userType == "student"):
                    return redirect("../profileTempHTML.html")
                 elif(userType == "admin"):
                    return redirect("../adminUsers.html")
                 else:
-                   return redirect("../jobDashboardHTML.html")
+                   return redirect("/dashboard")
 
     #if no POST request is made just stay on the login page
     return render_template('loginHTML.html', boolean=True)

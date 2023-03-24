@@ -19,7 +19,7 @@ def JobDescription():
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
         jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
-        return render_template('/JobDescription.html',  jobPostings = jobPostings)
+        return render_template('/JobDescription.html',  jobPostings = jobPostings) 
     
     #from the form for the apply button in the JobDescription file 
     if (request.method == 'POST' ):

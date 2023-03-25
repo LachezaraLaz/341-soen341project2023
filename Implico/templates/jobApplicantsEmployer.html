@@ -60,18 +60,25 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {% for jobApplicant in jobApplicants %}
                                 <tr>
-                                    <td class="col-2">1</td>
-                                    <td class="col-2">Inas Fawzi</td>
+                                    <td class="col-2">{{jobApplicant[4]}}</td>
+                                    <td class="col-2">{{jobApplicant[2]}}</td>
+                                    <form method="POST">
+                                    {% set z = jobApplicant[1]%}
+                                    {% set y = jobApplicant[4]%}
+                                    <input type = "hidden" name = "jobApplicantID" value="{{z}}">
+                                    <input type = "hidden" name = "jobPostingID" value="{{y}}">
                                     <td class="col-3"><button type="submit" class="btn btn-info">View Profile</button></td>
                                     <td class="col-3">
-                                        <button type="button" class="btn btn-success">Choose For Interview</button>
+                                        <button type="submit" class="btn btn-success" name = "Choose For Interview">Choose For Interview</button>
                                     </td>
                                     <td class="col-3">
-                                        <button type="button" class="btn btn-danger">Reject Candidate</button>
-
+                                        <button type="submit" class="btn btn-danger" name="Reject Candidate">Reject Candidate</button>
                                     </td>
+                                    </form>
                                 </tr>
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>

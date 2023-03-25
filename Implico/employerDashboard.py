@@ -6,6 +6,15 @@ from flask import Flask, request, render_template, redirect, session, Blueprint
 #initializing blueprint
 employerDashboard = Blueprint('employerDashboard', __name__)
 
+def notifMessage(messageCode, jobPostingID):
+    # messageCode Key:
+    # 1 -> Selected for Interview
+    # 2 -> Rejected for Interview
+    if messageCode == 1:
+        return "You have been selected for an interview for a job! (jobPostingID = " + jobPostingID + "). Congratulations!"
+    else:
+        return "You have unfortunately been rejected for an interview for a job (jobPostingID = " + jobPostingID + "). Better luck next time lol."
+
 @employerDashboard.route("/viewJobPosting.html", methods =['GET', 'POST'])
 def func1():
     return render_template("/viewJobPosting.html")
@@ -131,12 +140,46 @@ def jobApp():
             return render_template("/jobApplicantsEmployer.html", jobApplicants = jobApplicants)
         else:
             return render_template("/jobApplicantsEmployer.html")
+    elif request.method == 'POST':
+        print("post lol")
+        conn = sqlite3.connect("data.db")
+        c = conn.cursor()
+        print(request.form)
+        if 'Choose For Interview' in request.form:
+            print("in 1")
+            # create notification for user and update selected candidate field
+            userIDTo = request.form["jobApplicantID"]
+            postingID = request.form["jobPostingID"]
+            timeNow = datetime.datetime.now()
+            timeNowFormatted = timeNow.strftime("%Y-%m-%d-%X")
+            lastNotif = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC").fetchone()
+            print("last notif is ", lastNotif)
+            newNotif = "INSERT INTO Notifications VALUES(" + str(lastNotif) + "," + str(session["userID"]) + "," + str(userIDTo) + "," + notifMessage(1,postingID) + "," + str(timeNowFormatted) + ")"
+            changeCandidate = "UPDATE JobPostings SET selectedCandidate = " + str(userIDTo) + " WHERE jobKey= " + str(postingID)
+            c.execute(changeCandidate)
+            c.execute(newNotif)
+            conn.commit()
+            c.close()
+            return redirect("/jobApplicantsEmployer.html")
+        elif 'Reject Candidate' in request.form:
+            print("in 2")
+            userIDTo = request.form["jobApplicantID"]
+            postingID = request.form["jobPostingID"]
+            timeNow = datetime.datetime.now()
+            timeNowFormatted = timeNow.strftime("%Y-%m-%d-%X")
+            lastNotif = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC LIMIT 1").fetchone()[0]
+            newNotif = "INSERT INTO Notifications VALUES(" + str(lastNotif + 1) + "," + str(session["userID"]) + "," + str(userIDTo) + "," + notifMessage(2,postingID) + "," + str(timeNowFormatted) + ")"
+            c.execute(newNotif)
+            conn.commit()
+            c.close()
+            return redirect("/jobApplicantsEmployer.html")
+            
         
 @employerDashboard.route("/DB")
 def applDummys():
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
-        query2 = "INSERT INTO JobApplicants VALUES (3, 2,'John Doe', 4, 3, 'None')"
+        query2 = "INSERT INTO Notifications VALUES (1,10, 1,'Welcome To Implico', '3/25/2023')"
         c.execute(query2)
         conn.commit()
         c.close()

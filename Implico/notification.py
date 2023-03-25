@@ -10,10 +10,12 @@ def notif():
     if (session.get('userID') == None):
         return redirect('../loginHTML.html')
     else:
+
         return render_template('notification.html')
     
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])
 def JobDescription():
+    
     #displaying the correct job that was selected
     if (request.method == 'GET'):
         # connection to the database module
@@ -23,7 +25,6 @@ def JobDescription():
         jobPostings = c.execute("SELECT * FROM JobPostings WHERE jobKey = " + str(whichJob)).fetchall()
         return render_template("/JobDescription.html", jobPosting = jobPostings)
 
-     
     #from the form for the apply button in the JobDescription file 
     if (request.method == 'POST' ):
         applyButton = request.form['applyButton']
@@ -48,9 +49,14 @@ def JobDescription():
                 notifKey = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC LIMIT 1").fetchone()
                 intoINT = int(''.join(map(str, notifKey)))
                 c.execute("INSERT INTO Notifications VALUES ("+str(intoINT+1)+","+str(session.get('userID'))+", 'A candidate has applied to one of your jobs!' ,'" + str(intoSTR) + "')")
+                whichJob = session['jobKey']
+                toWho = c.execute("SELECT userID FROM JobPostings WHERE jobKey ="+str(whichJob)).fetchone()
+                tWintoINT = int(''.join(map(str, toWho)))
+                print(tWintoINT)
                 #selecting necessary notifications
-                newNotif = c.execute("SELECT * FROM Notifications WHERE userID ="+str(session.get('userID'))).fetchall()
+                newNotif = c.execute("SELECT * FROM Notifications WHERE userID ="+str(tWintoINT)).fetchall()
+                print(newNotif)
                 conn.commit()
                 c.close()
-                return render_template('/notification.html', message = str(newNotif[1]))
+                return render_template('/notification.html')
     

@@ -14,13 +14,13 @@ def notif():
     
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])
 def JobDescription():
+    #displaying the correct job that was selected
     if (request.method == 'GET'):
         # connection to the database module
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
         whichJob = session['jobKey']
         jobPostings = c.execute("SELECT * FROM JobPostings WHERE jobKey = " + str(whichJob)).fetchall()
-        # print(c.execute("SELECT * FROM JobPostings WHERE jobKey = "+str(whichJob)).fetchall())
         return render_template("/JobDescription.html", jobPosting = jobPostings)
 
      

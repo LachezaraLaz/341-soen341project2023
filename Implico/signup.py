@@ -131,10 +131,12 @@ def jobApp():
 def viewPosting():
     if request.method == 'GET' and (session.get("userID") == None):
         return redirect("/loginHTML.html")
+    #when clicked, it is redirected to jobDescription with keeping the jobKey that was selected
     if (request.method == 'POST' ):
-        l = request.form['viewJob']
-        session['jobKey'] = l
+        view = request.form['viewJob']
+        session['jobKey'] = view
         return redirect('/JobDescription.html') 
+    #viewing all the job postings for the candidate
     if request.method == 'GET':
         # connection to the database module
         conn = sqlite3.connect("data.db")

@@ -44,24 +44,26 @@
           <div class="col-8 ps-5 pt-4 pb-4 pe-4 bg-light rounded">
             <div class="row px-3 py-3 text-left">
               
-              {% for jobPosting in jobPostings %}
+              {% for jobPostin in jobPosting %}
               <div class="position-relative">
                 <img src="../static/HelpingPeople.jpg" alt="HappyMan" class="img-fluid float-end" style="width: 40%; border: 2px solid lightblue;">
                 <div class="centered" style="align-items:center;width: 60%;">
 
-                    <h4>Web Application Developer</h4> 
+                    <h4>{{jobPostin[2]}}</h4> 
                     <!-- <h6>Job Key</h6> -->
-                    <h5>Matrox</h5> <br>
+                    <h5>{{jobPostin[3]}}</h5> <br>
                   
-                    <h7>Work Location</h7><br>
-                    <h8>Salary</h8><br>
-                    <h9>Creation Date</h9>
+                    <h7>{{jobPostin[6]}}</h7><br>
+                    <h8>{{jobPostin[7]}}$/hr</h8><br>
+                    <h9>{{jobPostin[8]}}</h9>
 
 
 
                 </div>
             </div>
-            
+           
+    
+
     <!-- <div class="row"> -->
       <!-- <div class="h-100 d-flex align-items-left justify-content-left"> -->
         <div class="col-8 ps-2 pt-2 pb-2 pe-3 w-100 bg-light rounded ">
@@ -82,29 +84,22 @@
 
                   <strong> Job Description</strong> <br>
 
-                  <p>As a web developer for the IT department, you will develop and maintain custom 
-                    web applications used by the various business units of the organization.
-                     The right candidate for this role will 
-                     be a motivated and energetic developer, 
-                     who enjoys finding solutions to a varying number of challenges, 
-                     is detail-oriented and thrives on working in a varied, fast paced environment.</p>
+                  <p>{{jobPostin[4]}}</p>
 
-                     <strong>Responsabilities</strong> <br>
-                     <p>As a web developer for the IT department, you will develop and maintain custom </p>
+                     <strong>Requirements</strong> <br>
+                     <p>{{jobPostin[5]}} </p>
                       <br>
-                     <strong>Qualifications</strong> <br>
-                     <p>  Possess a Bachelor’s degree in Computer Science or related field.</p>
-                      <p> Have at least one year of work experience in web application development, 
-                        using C#, ASP.NET, T-SQL, PHP, HTML, CSS and JavaScript.</p>
-
+                   
 
                 </div>
+                {% endfor %}
 
                 <form enctype="multipart/form-data" method="POST">
                 <button class="btn btn-info text-light" type="Apply" name="applyButton">Apply</button>
               </form>
           </div>
-          {% endfor%}
+          
+    
 
       <br><br><br>
 

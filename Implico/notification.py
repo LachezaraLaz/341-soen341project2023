@@ -14,12 +14,15 @@ def notif():
     
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])
 def JobDescription():
-    if request.method == 'GET':
+    if (request.method == 'GET'):
         # connection to the database module
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
-        jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
-        return render_template('/JobDescription.html',  jobPostings = jobPostings) 
+        whichJob = session['jobKey']
+        jobPostings = c.execute("SELECT * FROM JobPostings WHERE jobKey = " + str(whichJob)).fetchall()
+        # print(c.execute("SELECT * FROM JobPostings WHERE jobKey = "+str(whichJob)).fetchall())
+        return render_template("/JobDescription.html", jobPosting = jobPostings)
+
      
     #from the form for the apply button in the JobDescription file 
     if (request.method == 'POST' ):

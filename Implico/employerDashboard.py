@@ -145,6 +145,29 @@ def jobApp():
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
         print(request.form)
+        
+        if 'View Candidate Profile' in request.form:
+            applicant = request.form['jobApplicantID']
+            profileApplicant = c.execute("SELECT * FROM UserProfiles WHERE profileKey="+str(applicant)).fetchone()
+
+            #find work experience records user profileKey in the WorkExperience table
+            fetchWork = c.execute("SELECT * FROM WorkExperience WHERE profileID="+str(applicant)).fetchall()
+    
+            #FORMATING DATA TO BE INSERTED ONTO HTML PAGE
+            #separating fields of the record
+            name = str(profileApplicant[2])+" "+str(profileApplicant[3])
+            bio = str(profileApplicant[4])
+            educ = str(profileApplicant[5])+" - "+str(profileApplicant[6])
+            loc = str(profileApplicant[7])
+            con = str(profileApplicant[8])
+            port = "\""+str(profileApplicant[9])+"\""
+
+            conn.commit()
+            c.close()
+    
+            #RENDER THE TEMPLATE WITH DATA FROM THE DATABASE
+            return render_template('profileTempHTML.html', fullName=name, userBio=bio, education=educ, location=loc, contact=con, portfolio=port, workExperience=fetchWork)
+ 
         if 'Choose For Interview' in request.form:
             print("in 1")
             # create notification for user and update selected candidate field

@@ -93,35 +93,36 @@ def jobDashboard():
             print("session id is", session["editPostingID"])
             return redirect("/editJobPosting.html")
         
-@signup.route("/editJobPosting.html",methods = ['GET','POST'])
-def editPosting():
-    # not logged in or not redirected from edit posting page
-    if request.method == 'GET' and (session.get("userID") == None or session.get("editPostingID")== None):
-        return redirect("/loginHTML.html")
-    elif request.method == 'GET' and session.get("userID") != None and session.get("editPostingID") != None:
-        # all good to load (logged in and editposting id set)
-        conn = sqlite3.connect("data.db")
-        c = conn.cursor()
-        jobPosting = c.execute("SELECT * FROM JobPostings WHERE jobKey=" + session["editPostingID"]).fetchone()
-        print(jobPosting)
-        return render_template("/editJobEmployer.html", title = jobPosting[2], company = jobPosting[3], description = jobPosting[4], requirements = jobPosting[5], location = jobPosting[6], salary = jobPosting[7])
-    elif request.method == 'POST':
-        # update existing table record
-        conn = sqlite3.connect("data.db")
-        c = conn.cursor()
-        editPostingID = session["editPostingID"]
-        title = request.form["jobTitle"]
-        company = request.form["company"]
-        jobDescription = request.form["jobDescription"]
-        jobRequirements = request.form["jobRequirements"]
-        jobLocation = request.form["jobLocation"]
-        salary= request.form["salary"]
-        updateQuery = "UPDATE JobPostings SET title ='" + str(title) + "',company='" + str(company) + "',jobDescription='" + str(jobDescription) + "',requirements='" + str(jobRequirements) + "',workLocation='" + str(jobLocation) + "',salary='" + str(salary) + "'WHERE jobKey=" + str(editPostingID)
-        c.execute(updateQuery)
-        conn.commit()
-        c.close()
-        session.pop("editPostingID",None)
-        return redirect("/dashboard")
+# @signup.route("/editJobPosting.html",methods = ['GET','POST'])
+# def editPosting():
+#     # not logged in or not redirected from edit posting page
+#     print("hello poopy route")
+#     if request.method == 'GET' and (session.get("userID") == None or session.get("editPostingID")== None):
+#         return redirect("/loginHTML.html")
+#     elif request.method == 'GET' and session.get("userID") != None and session.get("editPostingID") != None:
+#         # all good to load (logged in and editposting id set)
+#         conn = sqlite3.connect("data.db")
+#         c = conn.cursor()
+#         jobPosting = c.execute("SELECT * FROM JobPostings WHERE jobKey=" + session["editPostingID"]).fetchone()
+#         print(jobPosting)
+#         return render_template("/editJobEmployer.html", title = jobPosting[2], company = jobPosting[3], description = jobPosting[4], requirements = jobPosting[5], location = jobPosting[6], salary = jobPosting[7])
+#     elif request.method == 'POST':
+#         # update existing table record
+#         conn = sqlite3.connect("data.db")
+#         c = conn.cursor()
+#         editPostingID = session["editPostingID"]
+#         title = request.form["jobTitle"]
+#         company = request.form["company"]
+#         jobDescription = request.form["jobDescription"]
+#         jobRequirements = request.form["jobRequirements"]
+#         jobLocation = request.form["jobLocation"]
+#         salary= request.form["salary"]
+#         updateQuery = "UPDATE JobPostings SET title ='" + str(title) + "',company='" + str(company) + "',jobDescription='" + str(jobDescription) + "',requirements='" + str(jobRequirements) + "',workLocation='" + str(jobLocation) + "',salary='" + str(salary) + "'WHERE jobKey=" + str(editPostingID)
+#         c.execute(updateQuery)
+#         conn.commit()
+#         c.close()
+#         session.pop("editPostingID",None)
+#         return redirect("/dashboard")
     
 @signup.route("/app")
 def jobApp():

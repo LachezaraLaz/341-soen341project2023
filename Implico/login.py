@@ -63,7 +63,7 @@ def loginFunc():
                 elif(userType == "admin"):
                    return redirect("../adminUsers.html") 
                 else:
-                   return redirect("/dashboard")
+                   return redirect("/jobDashboardHTML.html")
 
     #if no POST request is made just stay on the login page
     return render_template('loginHTML.html', boolean=True)

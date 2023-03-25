@@ -62,13 +62,12 @@
                     <div class="row px-2 py-2 text-left "></div>
                   </div>
                 </div>
+                
               {% for notif in newNotifs%}
               <div class="container NoMargin p-3 bg-white text-black border border-4">
                 <div class="form-group">
-                  <label for="jobPosition"><strong>{{notif[4]}}</strong></label> <br>
-                  <label for="companyName" style= font-size:80%>Job 2 company name</label> <br>
-                  <label for="TimeFrame"style= font-size:80%>3h ago</label> <br>
-                  <label for="TimeFrame"style= font-size:80%>To display time frame you would need to use unix time stamp!!</label> <br>
+                  <label for="jobPosition"><strong>{{notif[3]}}</strong></label> <br>
+                  <label for="TimeFrame"style= font-size:80%>{{notif[4]}}</label> <br>
                 </div> 
               </div>
               {% endfor %}

@@ -131,10 +131,15 @@ def jobApp():
 def viewPosting():
     if request.method == 'GET' and (session.get("userID") == None):
         return redirect("/loginHTML.html")
+    if (request.method == 'POST' ):
+        l = request.form['viewJob']
+        session['jobKey'] = l
+        return redirect('/JobDescription.html') 
     if request.method == 'GET':
         # connection to the database module
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
         jobPostings = c.execute("SELECT * FROM JobPostings").fetchall()
         return render_template("/viewJobPosting.html",  jobPostings = jobPostings)
+    
   

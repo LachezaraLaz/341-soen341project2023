@@ -152,9 +152,10 @@ def jobApp():
             postingID = request.form["jobPostingID"]
             timeNow = datetime.datetime.now()
             timeNowFormatted = timeNow.strftime("%Y-%m-%d-%X")
-            lastNotif = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC").fetchone()
+            lastNotif = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC").fetchone()[0]
             print("last notif is ", lastNotif)
-            newNotif = "INSERT INTO Notifications VALUES(" + str(lastNotif) + "," + str(session["userID"]) + "," + str(userIDTo) + "," + notifMessage(1,postingID) + "," + str(timeNowFormatted) + ")"
+            newNotif = "INSERT INTO Notifications VALUES(" + str(lastNotif+1) + "," + str(session["userID"]) + "," + str(userIDTo) + ",'" + notifMessage(1,postingID) + "','" + str(timeNowFormatted) + "')"
+            print("newNotif is ", newNotif)
             changeCandidate = "UPDATE JobPostings SET selectedCandidate = " + str(userIDTo) + " WHERE jobKey= " + str(postingID)
             c.execute(changeCandidate)
             c.execute(newNotif)
@@ -168,7 +169,8 @@ def jobApp():
             timeNow = datetime.datetime.now()
             timeNowFormatted = timeNow.strftime("%Y-%m-%d-%X")
             lastNotif = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC LIMIT 1").fetchone()[0]
-            newNotif = "INSERT INTO Notifications VALUES(" + str(lastNotif + 1) + "," + str(session["userID"]) + "," + str(userIDTo) + "," + notifMessage(2,postingID) + "," + str(timeNowFormatted) + ")"
+            newNotif = "INSERT INTO Notifications VALUES(" + str(lastNotif + 1) + "," + str(session["userID"]) + "," + str(userIDTo) + ",'" + notifMessage(2,postingID) + "','" + str(timeNowFormatted) + "')"
+            print("newNotif is ", newNotif)
             c.execute(newNotif)
             conn.commit()
             c.close()

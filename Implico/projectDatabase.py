@@ -29,7 +29,7 @@ except sqlite3.OperationalError:
     # fourth table: job postings table
     c.execute("CREATE TABLE JobPostings (jobKey NUMBER, userID NUMBER, title TEXT, company TEXT, jobDescription TEXT, requirements TEXT, workLocation TEXT, salary NUMBER, creationDate TEXT, selectedCandidate TEXT, PRIMARY KEY(jobKey), FOREIGN KEY(userID) REFERENCES LoginInfo(userKey))")
     # fifth table: notification table
-    c.execute("CREATE TABLE Notifications (notifKey NUMBER, userIDFrom NUMBER, userIDTo NUMBER, message TEXT, dateSent TEXT, PRIMARY KEY(notifKey), FOREIGN KEY(userIDFrom) REFERENCES LoginInfo(userKey), FOREIGN KEY(userIDTo) REFERENCES LoginInfo(userKey))")
+    c.execute("CREATE TABLE Notifications (notifKey NUMBER, userID NUMBER, employerID NUMBER, message TEXT, dateSent TEXT, PRIMARY KEY(notifKey), FOREIGN KEY(userID) REFERENCES LoginInfo(userKey), FOREIGN KEY(employerID) REFERENCES JobPostings(userID))") 
     # sixth table: job applicant table
     c.execute("CREATE TABLE JobApplicants (appKey NUMBER, profileID NUMBER, postingID NUMBER, appStatus TEXT, PRIMARY KEY(appKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey), FOREIGN KEY(postingID) REFERENCES JobPostings(jobKey))")
 

@@ -9,9 +9,23 @@ def notif():
     #if no user has logged in yet, then they are redirected to login page to login.
     if (session.get('userID') == None):
         return redirect('../loginHTML.html')
-    else:
+    if (request.method == 'GET'):
+        if (session.get('userType') == 'student'):
+            # connection to the database module
+            conn = sqlite3.connect("data.db")
+            c = conn.cursor()
 
-        return render_template('notification.html')
+            #selecting necessary notifications
+            newNotif = c.execute("SELECT * FROM Notifications WHERE userID ="+str(session.get('userID'))+" AND message = 'A candidate has applied to one of your jobs!' ").fetchall()
+
+        
+        # return render_template('/notification.html')
+            return render_template('/notification.html', newNotifs = newNotif)
+    
+
+
+
+        # return render_template('notification.html')
     
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])
 def JobDescription():
@@ -36,27 +50,35 @@ def JobDescription():
             #fetching todays date
             date = c.execute("SELECT date('now')").fetchone()
             #replacing them with / because the system understood - as minus
-            intoSTR = ''.join(map(str, date)).replace("-", "/")
+            DateintoSTR = ''.join(map(str, date)).replace("-", "/")
             notifIfNone = c.execute("SELECT notifKey FROM Notifications").fetchone()
             #if no notifications have been added to the database so far
             if (notifIfNone == None):
-                c.execute("INSERT INTO Notifications VALUES ("+str(1)+","+str(session.get('userID'))+", 'A candidate has applied to one of your jobs!' ,'" + str(intoSTR) + "')")
-                conn.commit()
-                c.close()
-                return redirect('/notification.html')
-            #if it is not the first notification in the database
-            else:
-                notifKey = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC LIMIT 1").fetchone()
-                intoINT = int(''.join(map(str, notifKey)))
-                c.execute("INSERT INTO Notifications VALUES ("+str(intoINT+1)+","+str(session.get('userID'))+", 'A candidate has applied to one of your jobs!' ,'" + str(intoSTR) + "')")
                 whichJob = session['jobKey']
                 toWho = c.execute("SELECT userID FROM JobPostings WHERE jobKey ="+str(whichJob)).fetchone()
                 tWintoINT = int(''.join(map(str, toWho)))
                 print(tWintoINT)
+                c.execute("INSERT INTO Notifications VALUES ("+str(intoINT+1)+","+str(session.get('userID'))+"," + str(tWintoINT) + ", 'A candidate has applied to one of your jobs!' ,'" + str(DateintoSTR) + "')")
                 #selecting necessary notifications
-                newNotif = c.execute("SELECT * FROM Notifications WHERE userID ="+str(tWintoINT)).fetchall()
-                print(newNotif)
+                # newNotif = c.execute("SELECT * FROM Notifications WHERE userID ="+str(session.get('userID'))+" AND message = 'abd'").fetchall()
                 conn.commit()
                 c.close()
                 return render_template('/notification.html')
+                # return render_template('/notification.html', newNotifs = newNotif)
+    
+            #if it is not the first notification in the database
+            else:
+                notifKey = c.execute("SELECT notifKey FROM Notifications ORDER BY notifKey DESC LIMIT 1").fetchone()
+                intoINT = int(''.join(map(str, notifKey)))
+                whichJob = session['jobKey']
+                toWho = c.execute("SELECT userID FROM JobPostings WHERE jobKey ="+str(whichJob)).fetchone()
+                tWintoINT = int(''.join(map(str, toWho)))
+                print(tWintoINT)
+                c.execute("INSERT INTO Notifications VALUES ("+str(intoINT+1)+","+str(session.get('userID'))+"," + str(tWintoINT) + ", 'A candidate has applied to one of your jobs!' ,'" + str(DateintoSTR) + "')")
+                #selecting necessary notifications
+                # newNotif = c.execute("SELECT * FROM Notifications WHERE userID ="+str(session.get('userID'))+" AND message = 'abd'").fetchall()
+                conn.commit()
+                c.close()
+                return render_template('/notification.html')
+                # return render_template('/notification.html', newNotifs = newNotif)
     

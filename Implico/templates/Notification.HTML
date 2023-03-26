@@ -27,8 +27,7 @@
 
 <body>
 
-  <div class="container-fluid">
-    {% if userType is "student" %}
+    {% if userType=="student" %}
       <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
         <div class="container-fluid">
             <a class="navbar-brand text-light" href="../indexCandidate.html"><b><i>I</i>mplico</b></a>
@@ -62,9 +61,9 @@
             </div>
         </div>
     </nav>
-    {% endif}
+    {% endif %}
 
-    {% if userType is "employer" %}
+    {% if userType=="employer" %}
       <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
         <div class="container-fluid">
             <a class="navbar-brand text-light" href="../indexEmployer.html"><b><i>I</i>mplico Employer Dashboard</b></a>
@@ -95,9 +94,9 @@
             </div>
         </div>
     </nav>
-    {% endif}
+    {% endif %}
 
-    {% if userType is "admin" %}
+    {% if userType=="admin" %}
       <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
         <div class="container-fluid">
             <a class="navbar-brand text-light" href="../indexAdmin.html"><b><i>I</i>mplico Admin Dashboard</b></a>
@@ -130,17 +129,9 @@
             </div>
         </div>
     </nav>
-    {% endif}
-    <div class="row">
-      <ul class="nav-bar">
-        <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-        <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
-        <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
-        <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-        </li>
-      </ul>
-    </div>
-    <br><br><br>
+    {% endif %}
+
+    <div class="container-fluid">
 
     <div class="row">
         <div class="h-100 d-flex align-items-center justify-content-center">

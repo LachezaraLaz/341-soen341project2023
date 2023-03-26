@@ -17,22 +17,29 @@
     <!--admin nav bar-->
     <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
         <div class="container-fluid">
-            <a class="navbar-brand text-light" href="#"><b>Admin Dashboard</b></a>
+            <a class="navbar-brand text-light" href="../indexEmployer.html"><b><i>I</i>mplico Employer Dashboard</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link active text-light" href="../adminUsers.html">Users</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexEmployer.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="../adminJobDashboard.html">Jobs</a>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../jobDashboardHTML.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Logout</a>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>

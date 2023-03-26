@@ -146,7 +146,7 @@ def jobDashboard():
 def jobApp():
     return render_template("/jobApplicantsEmployer.html")
 
-@signup.route("/VUJP",methods = ['GET','POST']) 
+@signup.route("/viewJobPosting.html",methods = ['GET','POST']) 
 def viewPosting():
     if request.method == 'POST' and request.form.get("logout")!=None:
         session.pop("userID", None)

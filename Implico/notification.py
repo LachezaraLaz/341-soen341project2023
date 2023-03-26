@@ -71,7 +71,7 @@ def JobDescription():
                 c.execute("INSERT INTO Notifications VALUES ("+str(1)+","+str(session.get('userID'))+"," + str(tWintoINT) + ", 'A candidate has applied to one of your jobs!' ,'" + str(DateintoSTR) + "')")
                 conn.commit()
                 c.close()
-                return redirect('/VUJP')
+                return redirect('/viewJobPosting.html')
     
             #if it is not the first notification in the database
             else:
@@ -86,5 +86,5 @@ def JobDescription():
                 c.execute("INSERT INTO Notifications VALUES ("+str(intoINT+1)+","+str(session.get('userID'))+"," + str(tWintoINT) + ", 'A candidate has applied to one of your jobs!' ,'" + str(DateintoSTR) + "')")
                 conn.commit()
                 c.close()
-                return redirect('/VUJP')
+                return redirect('/viewJobPosting.html')
     

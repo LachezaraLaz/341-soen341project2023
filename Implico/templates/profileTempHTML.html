@@ -12,19 +12,43 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
+<body>
 
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="../indexCandidate.html"><b><i>I</i>mplico</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexCandidate.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../viewJobPosting.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../profileTempHTML.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Profile</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 <div class="container-fluid">
-    <div class="row">
-        <ul class="nav-bar">
-            <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-            <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
-            <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i>
-                    Home</a>
-            </li>
-        </ul>
-    </div>
-    <br/><br/><br/>
+    
     <div class="row">
         <div class="col-11"></div>
         <div class="col-1">
@@ -114,5 +138,6 @@
 
     </div>
 </div>
+</body>
 
 </html>

@@ -15,7 +15,9 @@ def notif():
         c = conn.cursor()
         #selecting necessary notifications for the correct user
         newNotif = c.execute("SELECT * FROM Notifications WHERE userIDTo ="+str(session.get('userID'))).fetchall()
-        return render_template('/notification.html', newNotifs = newNotif)
+        userType = session["userType"]
+
+        return render_template('/notification.html', newNotifs = newNotif, userType = userType)
     
     
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])

@@ -9,7 +9,13 @@ adminPages = Blueprint('adminPages', __name__)
 # A decorator used to tell the application which URL is associated function
 @adminPages.route('/adminJobDashboard.html', methods =['GET', 'POST'])
 def adminJobPostingFUNC():
-    if session["userID"] != 5:
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif session["userID"] != 5:
         #send the user back to login page if they are not the admin user
         return redirect("../loginHTML.html")
     elif request.method == 'GET':
@@ -96,7 +102,13 @@ def adminJobPostingFUNC():
 # A decorator used to tell the application which URL is associated function
 @adminPages.route('/editJobAdmin.html', methods =['GET', 'POST'])
 def adminEditJobFUNC():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET':
         editJobID = session['editJobID']
         print(editJobID)
         #connection to the database module
@@ -155,7 +167,13 @@ def shortenString(strInput):
 # A decorator used to tell the application which URL is associated function
 @adminPages.route('/adminUsers.html', methods =['GET', 'POST'])
 def adminUsersFUNC():
-    if session["userID"] != 5:
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif session["userID"] != 5:
         #send the user back to login page if they are not the admin user
         return redirect("../loginHTML.html")
     elif request.method == 'GET':
@@ -217,7 +235,13 @@ def adminUsersFUNC():
 
 @adminPages.route('/editUserAdmin.html', methods =['GET', 'POST'])
 def adminEditUserFUNC():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET':
             editUserID = session["editUserID"]
             #connection to the database module
             conn = sqlite3.connect("data.db")
@@ -259,7 +283,13 @@ def adminEditUserFUNC():
         
 @adminPages.route('/addUserAdmin.html', methods =['GET', 'POST'])
 def adminAddUserFUNC():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET':
         return render_template('addUserAdmin.html')
     elif request.method == 'POST':
         #connection to the database module

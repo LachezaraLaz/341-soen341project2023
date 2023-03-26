@@ -15,13 +15,15 @@ def notifMessage(messageCode, jobPostingID):
     else:
         return "You have unfortunately been rejected for an interview for a job (jobPostingID = " + jobPostingID + "). Better luck next time lol."
 
-@employerDashboard.route("/viewJobPosting.html", methods =['GET', 'POST'])
-def func1():
-    return render_template("/viewJobPosting.html")
-
 @employerDashboard.route('/jobDashboardHTML.html', methods = ['GET','POST'])
 def jobDashboard():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET':
         if(session.get("userID") == None or session.get("userType") == "student" or session.get("userType") == "admin"):
             # not logged in or is wrong user type
             if(session.get("userID") == None):
@@ -58,13 +60,15 @@ def jobDashboard():
 
 @employerDashboard.route("/editJobPosting.html",methods = ['GET','POST'])
 def editPosting():
-    # not logged in or not redirected from edit posting page
-    print("hello world")
-    if request.method == 'GET':
-        print ("here 1.1")
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET':
         if(session.get("userID") == None or session.get("userType") == "student" or session.get("userType") == "admin"):
             # not logged in or wrong user type
-            print("here 1")
             #if(session.get("userID") == None):
                 #return redirect("/loginHTML.html")
             if session.get("userType") == "student":
@@ -74,7 +78,6 @@ def editPosting():
         else:
             # logged in and correct user type
             if(session.get("editPostingID") != None):
-                print("here 2")
                 # all good to load (logged in and editposting id set)
                 conn = sqlite3.connect("data.db")
                 c = conn.cursor()
@@ -93,7 +96,6 @@ def editPosting():
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
         if(session.get("editPostingID") != None):
-            print("here 3")
             # update existing table record
             editPostingID = session["editPostingID"]
             title = request.form["jobTitle"]
@@ -108,7 +110,6 @@ def editPosting():
             c.close()
             session.pop("editPostingID",None)
         elif (session.get("userID") != None):
-            print("here 4")
             # New table record
             userID = session["userID"]
             title = request.form["jobTitle"]
@@ -129,7 +130,13 @@ def editPosting():
             return redirect("/jobDashboardHTML.html")
 @employerDashboard.route("/jobApplicantsEmployer.html", methods = ['GET','POST'])
 def jobApp():
-    if(request.method == 'GET'):
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif(request.method == 'GET'):
         if(session.get("userID") != None):
             # find all applicants of their jobs then make table
             conn = sqlite3.connect("data.db")

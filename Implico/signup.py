@@ -9,7 +9,13 @@ signup = Blueprint('signup', __name__)
 #map route to signup  URL (tells Flask what URL triggers our following functions)
 @signup.route('/signUpHTML.html',methods = ['POST','GET'])
 def signupFunc():
-    if request.method == "GET":
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == "GET":
         return render_template('signUpHTML.html')
     elif request.method == "POST":
         # fetch email and password from form
@@ -51,7 +57,13 @@ def signupFunc():
 
 @signup.route('/jobPostings.html',methods = ['POST','GET'])
 def jobPostings():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET':
         return render_template('jobPostingHTML.html')
     elif request.method == 'POST':
         companyName = request.form['companyName']
@@ -68,7 +80,13 @@ def jobPostings():
 
 @signup.route('/dashboard', methods = ['GET','POST'])
 def jobDashboard():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET':
         # connection to the database module
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
@@ -130,7 +148,13 @@ def jobApp():
 
 @signup.route("/VUJP",methods = ['GET','POST']) 
 def viewPosting():
-    if request.method == 'GET' and (session.get("userID") == None):
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
+    elif request.method == 'GET' and (session.get("userID") == None):
         return redirect("/loginHTML.html")
     #when clicked, it is redirected to jobDescription with keeping the jobKey that was selected
     if (request.method == 'POST' ):

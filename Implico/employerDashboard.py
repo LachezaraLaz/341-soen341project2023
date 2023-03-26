@@ -125,6 +125,7 @@ def editPosting():
             c.execute(newEntry)
             conn.commit()
             c.close()
+            session.pop("addPostingID", None)
             return redirect("/jobDashboardHTML.html")
 @employerDashboard.route("/jobApplicantsEmployer.html", methods = ['GET','POST'])
 def jobApp():

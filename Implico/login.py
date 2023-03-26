@@ -59,25 +59,11 @@ def loginFunc():
                 session["userType"] = userType
                 print(userType)
                 if (userType == "student"):
-                   return redirect("../profileTempHTML.html")
+                   return redirect("../indexCandidate.html")
                 elif(userType == "admin"):
-                   return redirect("../adminUsers.html") 
+                   return redirect("../indexAdmin.html") 
                 else:
-                   return redirect("/jobDashboardHTML.html")
+                   return redirect("/indexEmployer.html")
 
     #if no POST request is made just stay on the login page
     return render_template('loginHTML.html', boolean=True)
-
-'''
-@login.route('/create',methods = ['GET'])
-def create():
-   conn = sqlite3.connect("data.db")
-   # allow for SQL commands to be run
-   c = conn.cursor()
-
-   sqlComm1 = "INSERT INTO JobPostings VALUES (1,'1','Developer','ABC Inc','idk develop stuff ig','good developing skills','remote','$1/yr','today')"
-   c.execute(sqlComm1)
-   conn.commit()
-   c.close()
-   return render_template("jobDashboardHTML.html")
-'''

@@ -8,6 +8,12 @@ login = Blueprint('login', __name__)
 # A decorator used to tell the application which URL is associated function
 @login.route('/loginHTML.html', methods =['GET', 'POST'])
 def loginFunc():
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
     if request.method == 'POST':
        # getting input with name = fname in HTML form
        email = request.form.get("email")

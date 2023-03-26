@@ -6,8 +6,14 @@ notification = Blueprint('notification', __name__)
 
 @notification.route("/notification.html", methods = ['GET', 'POST'])
 def notif():
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
     #if no user has logged in yet, then they are redirected to login page to login.
-    if (session.get('userID') == None):
+    elif (session.get('userID') == None):
         return redirect('../loginHTML.html')
     if (request.method == 'GET'):
         # connection to the database module
@@ -22,15 +28,22 @@ def notif():
     
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])
 def JobDescription():
-    
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
     #displaying the correct job that was selected
-    if (request.method == 'GET'):
+    elif (request.method == 'GET'):
         # connection to the database module
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
         # which job is selected and display the correct information
         whichJob = session['jobKey']
         jobPostings = c.execute("SELECT * FROM JobPostings WHERE jobKey = " + str(whichJob)).fetchall()
+        # jobKey no longer needed
+        session.pop("jobKey", None)
         return render_template("/JobDescription.html", jobPosting = jobPostings)
 
     #from the form for the apply button in the JobDescription file 

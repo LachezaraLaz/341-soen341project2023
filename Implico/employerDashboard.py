@@ -7,7 +7,7 @@ from flask import Flask, request, render_template, redirect, session, Blueprint
 employerDashboard = Blueprint('employerDashboard', __name__)
 
 def notifMessage(messageCode, jobPostingID):
-    # messageCode Key:
+    # messageCode Legend:
     # 1 -> Selected for Interview
     # 2 -> Rejected for Interview
     if messageCode == 1:

@@ -2,6 +2,8 @@
 <html>
 
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/e4ad6adbad.js" crossorigin="anonymous"></script>
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Latest compiled JavaScript -->
@@ -12,7 +14,7 @@
     <!--modified nav bar-->
     <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
         <div class="container-fluid">
-            <a class="navbar-brand text-light" href="#"><b><i>I</i>mplico</b></a>
+            <a class="navbar-brand text-light" href="../indexEmployer.html"><b><i>I</i>mplico Employer Dashboard</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -20,14 +22,21 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="#">Home</a>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexEmployer.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="../jobDashboardHTML.html">Jobs</a>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../jobDashboardHTML.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light">Disabled</a>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
@@ -40,7 +49,7 @@
                 <div class="col-10 ps-4 pt-4 pb-4 pe-4 bg-light rounded">
                     <!--header of the page-->
                     <div class="row px-4 py-4 text-center rounded">
-                        <h1>Edit Job Posting</h1>
+                        <h1>{{pageTitle}}</h1>
                     </div>
                     <div class="row px-4 py-2">
                         <form method="POST" enctype="multipart/form-data">
@@ -49,35 +58,35 @@
                                 <div class="form-group m-2">
                                     <label for="jobTitle">Job Title:</label>
                                     <input type="text" class="form-control" id="jobTitle" name="jobTitle"
-                                        placeholder="Type in a job title" value="">
+                                        placeholder="Type in a job title" value="{{title}}">
                                 </div>
                                 <!--company-->
                                 <div class="form-group m-2">
                                     <label for="company">Company:</label>
                                     <input type="text" class="form-control" id="company" name="company"
-                                        placeholder="Type in a company" value="">
+                                        placeholder="Type in a company" value="{{company}}">
                                 </div>
                                 <!--job description-->
                                 <div class="form-group m-2">
                                     <label for="jobDescription">Job Description:</label>
-                                    <textarea class="form-control" id="jobDescription" name="jobDescription" rows="3" placeholder="Write here"></textarea>
+                                    <textarea class="form-control" id="jobDescription" name="jobDescription" rows="3" placeholder="Write here">{{description}}</textarea>
                                 </div>
                                 <!--job requirements-->
                                 <div class="form-group m-2">
                                     <label for="jobRequirements">Job Requirements:</label>
-                                    <textarea class="form-control" id="jobRequirements" name="jobRequirements" rows="3" placeholder="Write here"></textarea>
+                                    <textarea class="form-control" id="jobRequirements" name="jobRequirements" rows="3" placeholder="Write here">{{requirements}}</textarea>
                                 </div>
                                 <!--job location-->
                                 <div class="form-group m-2">
                                     <label for="jobLocation">Location:</label>
                                     <input type="text" class="form-control" id="jobLocation" name="jobLocation"
-                                        placeholder="Type in the location of the job" value="">
+                                        placeholder="Type in the location of the job" value="{{location}}">
                                 </div>
                                 <!--job salary-->
                                 <div class="form-group m-2">
                                     <label for="jobSalary">Salary:</label>
-                                    <input type="number" step=".01" class="form-control" id="jobLocation" name="jobLocation"
-                                        placeholder="Type in the job's salary" value="">
+                                    <input type="number" step=".01" class="form-control" id="salary" name="salary"
+                                        placeholder="Type in the job's salary" value="{{salary}}">
                                 </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Submit</button>

@@ -8,6 +8,12 @@ login = Blueprint('login', __name__)
 # A decorator used to tell the application which URL is associated function
 @login.route('/loginHTML.html', methods =['GET', 'POST'])
 def loginFunc():
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
     if request.method == 'POST':
        # getting input with name = fname in HTML form
        email = request.form.get("email")
@@ -57,26 +63,13 @@ def loginFunc():
                 session["email"] = email
                 session["password"] = password
                 session["userType"] = userType
+                print(userType)
                 if (userType == "student"):
-                   return redirect("../profileTempHTML.html")
+                   return redirect("../indexCandidate.html")
                 elif(userType == "admin"):
-                   return redirect("../adminUsers.html")
+                   return redirect("../indexAdmin.html") 
                 else:
-                   return redirect("../jobDashboardHTML.html")
+                   return redirect("/indexEmployer.html")
 
     #if no POST request is made just stay on the login page
     return render_template('loginHTML.html', boolean=True)
-
-'''
-@login.route('/create',methods = ['GET'])
-def create():
-   conn = sqlite3.connect("data.db")
-   # allow for SQL commands to be run
-   c = conn.cursor()
-
-   sqlComm1 = "INSERT INTO JobPostings VALUES (1,'1','Developer','ABC Inc','idk develop stuff ig','good developing skills','remote','$1/yr','today')"
-   c.execute(sqlComm1)
-   conn.commit()
-   c.close()
-   return render_template("jobDashboardHTML.html")
-'''

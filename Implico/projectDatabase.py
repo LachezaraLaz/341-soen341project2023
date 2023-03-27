@@ -29,15 +29,15 @@ except sqlite3.OperationalError:
     # fourth table: job postings table
     c.execute("CREATE TABLE JobPostings (jobKey NUMBER, userID NUMBER, title TEXT, company TEXT, jobDescription TEXT, requirements TEXT, workLocation TEXT, salary NUMBER, creationDate TEXT, selectedCandidate TEXT, PRIMARY KEY(jobKey), FOREIGN KEY(userID) REFERENCES LoginInfo(userKey))")
     # fifth table: notification table
-    c.execute("CREATE TABLE Notifications (notifKey NUMBER, userID NUMBER, message TEXT, dateSent TEXT, PRIMARY KEY(notifKey), FOREIGN KEY(userID) REFERENCES LoginInfo(userKey))")
+    c.execute("CREATE TABLE Notifications (notifKey NUMBER, userIDFrom NUMBER, userIDTo NUMBER, message TEXT, dateSent TEXT, PRIMARY KEY(notifKey), FOREIGN KEY(userIDFrom) REFERENCES LoginInfo(userKey), FOREIGN KEY(userIDTo) REFERENCES LoginInfo(userKey))")        
     # sixth table: job applicant table
-    c.execute("CREATE TABLE JobApplicants (appKey NUMBER, profileID NUMBER, postingID NUMBER, appStatus TEXT, PRIMARY KEY(appKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey), FOREIGN KEY(postingID) REFERENCES JobPostings(jobKey))")
+    c.execute("CREATE TABLE JobApplicants (appKey NUMBER, profileID NUMBER,applicantName TEXT, employerID NUMBER, postingID NUMBER, appStatus TEXT, PRIMARY KEY(appKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey), FOREIGN KEY(postingID) REFERENCES JobPostings(jobKey))")
 
     # inserting test data in LoginInfo
     c.execute("INSERT INTO LoginInfo VALUES (1, 'test1@email.com', '123pass', 'student')")
     c.execute("INSERT INTO LoginInfo VALUES (2, 'test3@email.com', '1234pass', 'employer')")
     c.execute("INSERT INTO LoginInfo VALUES (3, 'test2@email.com', '12345pass', 'student')")
-    c.execute("INSERT INTO LoginInfo VALUES (4, 'test3@email.com', '123456pass', 'employer')")
+    c.execute("INSERT INTO LoginInfo VALUES (4, 'test4@email.com', '123456pass', 'employer')")
     c.execute("INSERT INTO LoginInfo VALUES (5, 'admin@email.com', '1234567pass', 'admin')")
 
     # inserting test data in UserProfiles

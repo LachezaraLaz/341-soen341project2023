@@ -27,17 +27,111 @@
 
 <body>
 
-  <div class="container-fluid">
-    <div class="row">
-      <ul class="nav-bar">
-        <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-        <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
-        <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
-        <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-        </li>
-      </ul>
-    </div>
-    <br><br><br>
+    {% if userType=="student" %}
+      <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="../indexCandidate.html"><b><i>I</i>mplico</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexCandidate.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../viewJobPosting.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../profileTempHTML.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Profile</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+
+    {% if userType=="employer" %}
+      <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="../indexEmployer.html"><b><i>I</i>mplico Employer Dashboard</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexEmployer.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../jobDashboardHTML.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+
+    {% if userType=="admin" %}
+      <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="../indexAdmin.html"><b><i>I</i>mplico Admin Dashboard</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexAdmin.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../adminUsers.html"><i class="fa-solid fa-users"
+                                style="color: #ffffff;"></i> Users</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../adminJobDashboard.html"><i class="fa-solid fa-briefcase"
+                                style="color: #ffffff;"></i> Jobs</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% endif %}
+
+    <div class="container-fluid">
 
     <div class="row">
         <div class="h-100 d-flex align-items-center justify-content-center">
@@ -62,15 +156,15 @@
                     <div class="row px-2 py-2 text-left "></div>
                   </div>
                 </div>
-              
+                
+              {% for notif in newNotifs%}
               <div class="container NoMargin p-3 bg-white text-black border border-4">
                 <div class="form-group">
-                  <label for="jobPosition"><strong>Job 1  Position is promoting a high priority engineer</strong></label> <br>
-                  <label for="companyName" style= font-size:80%>Job 2 company name</label> <br>
-                  <label for="TimeFrame"style= font-size:80%>3h ago</label> <br>
-                  <label for="TimeFrame"style= font-size:80%>To display time frame you would need to use unix time stamp!!</label> <br>
+                  <label for="jobPosition"><strong>{{notif[3]}}</strong></label> <br>
+                  <label for="TimeFrame"style= font-size:80%>{{notif[4]}}</label> <br>
                 </div> 
               </div>
+              {% endfor %}
 
       <br><br><br>
 </body>

@@ -12,6 +12,11 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
   
+  <!-- Bootstrap JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+   
   <style>
     .custom {
       width: 40%;
@@ -21,60 +26,74 @@
 </head>
 
 <body>
-
-  <div class="container-fluid">
-    <div class="row">
-      <ul class="nav-bar">
-        <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-        <li><a href="../Profile/profile.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
-        <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
-        <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-        </li>
-      </ul>
+  <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+    <div class="container-fluid">
+        <a class="navbar-brand text-light" href="../indexCandidate.html"><b><i>I</i>mplico</b></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item mx-1">
+                    <a class="nav-link active text-light" href="../indexCandidate.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link text-light" href="../viewJobPosting.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <a class="nav-link text-light" href="../profileTempHTML.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Profile</a>
+                </li>
+                <li class="nav-item mx-1">
+                    <form method="POST">
+                        <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                            <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </div>
     </div>
-    <br><br><br>
+</nav>
+  <div class="container-fluid">
 
     <div class="row">
         <div class="h-100 d-flex align-items-left justify-content-center">
           <div class="col-8 ps-5 pt-4 pb-4 pe-4 bg-light rounded">
             <div class="row px-3 py-3 text-left">
               
+              {% for jobPostin in jobPosting %}
               <div class="position-relative">
                 <img src="../static/HelpingPeople.jpg" alt="HappyMan" class="img-fluid float-end" style="width: 40%; border: 2px solid lightblue;">
                 <div class="centered" style="align-items:center;width: 60%;">
 
-                    <h4>{{Web Application Developer}}</h4> <h6>{{Job Key}}</h6>
-                    <h5>{{Matrox}}</h5> <br>
+                    <h4>{{jobPostin[2]}}</h4> 
+                    <!-- <h6>Job Key</h6> -->
+                    <h5>{{jobPostin[3]}}</h5> <br>
                   
-                    <h7>{{Work Location}}</h7><br>
-                    <h8>{{Salary}}</h8><br>
-                    <h9>{{Creation Date}}</h9>
+                    <h7>{{jobPostin[6]}}</h7><br>
+                    <h8>{{jobPostin[7]}}$/hr</h8><br>
+                    <h9>{{jobPostin[8]}}</h9>
 
 
 
                 </div>
             </div>
-            
-            
-          
-
-            <!-- Bootstrap JS -->
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            
-
-          
+           
     
-              
-    <div class="row">
-      <div class="h-100 d-flex align-items-left justify-content-left">
+
+    <!-- <div class="row"> -->
+      <!-- <div class="h-100 d-flex align-items-left justify-content-left"> -->
         <div class="col-8 ps-2 pt-2 pb-2 pe-3 w-100 bg-light rounded ">
           <div class="row px-2 py-2 text-left ">
           </div>
 
                 <div class="row px-3 py-3 text-left">
-                  <div class="d-flex align-items-center">
+                  <!-- <div class="d-flex align-items-center">
                     <h6 class="mb-0">Full Time</h6> 
                     <br><br>
                     <span class="mx-2">
@@ -82,33 +101,27 @@
                         <path d="M6.5 1A1.5 1.5 0 0 0 5 2.5V3H1.5A1.5 1.5 0 0 0 0 4.5v8A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-8A1.5 1.5 0 0 0 14.5 3H11v-.5A1.5 1.5 0 0 0 9.5 1h-3zm0 1h3a.5.5 0 0 1 .5.5V3H6v-.5a.5.5 0 0 1 .5-.5zm1.886 6.914L15 7.151V12.5a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5V7.15l6.614 1.764a1.5 1.5 0 0 0 .772 0zM1.5 4h13a.5.5 0 0 1 .5.5v1.616L8.129 7.948a.5.5 0 0 1-.258 0L1 6.116V4.5a.5.5 0 0 1 .5-.5z"/>
                       </svg>
                     </span>
-                  </div>
+                  </div> -->
                   
 
-                  <strong> {{Job Description}}</strong> <br>
+                  <strong> Job Description</strong> <br>
 
-                  <p>As a web developer for the IT department, you will develop and maintain custom 
-                    web applications used by the various business units of the organization.
-                     The right candidate for this role will 
-                     be a motivated and energetic developer, 
-                     who enjoys finding solutions to a varying number of challenges, 
-                     is detail-oriented and thrives on working in a varied, fast paced environment.</p>
+                  <p>{{jobPostin[4]}}</p>
 
-                     <strong>Responsabilities</strong> <br>
-                     <p>As a web developer for the IT department, you will develop and maintain custom </p>
+                     <strong>Requirements</strong> <br>
+                     <p>{{jobPostin[5]}} </p>
                       <br>
-                     <strong>Qualifications</strong> <br>
-                     <p>  Possess a Bachelor’s degree in Computer Science or related field.</p>
-                      <p> Have at least one year of work experience in web application development, 
-                        using C#, ASP.NET, T-SQL, PHP, HTML, CSS and JavaScript.</p>
-
+                   
 
                 </div>
+                {% endfor %}
 
                 <form enctype="multipart/form-data" method="POST">
                 <button class="btn btn-info text-light" type="Apply" name="applyButton">Apply</button>
               </form>
           </div>
+          
+    
 
       <br><br><br>
 

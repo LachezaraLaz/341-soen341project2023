@@ -14,7 +14,6 @@
 </head>
 
 <body>
-    <!--admin nav bar-->
     <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
         <div class="container-fluid">
             <a class="navbar-brand text-light" href="../indexEmployer.html"><b><i>I</i>mplico Employer Dashboard</b></a>
@@ -50,29 +49,53 @@
         <div class="m-3 row">
             <div class="h-100 d-flex align-items-center justify-content-center">
                 <div class="col-8 ps-4 pt-4 pb-4 pe-4 bg-light rounded">
-                    <a class="btn btn-dark" href="../jobDashboardHTML.html"><i class="fa-sharp fa-solid fa-arrow-left" style="color: #ffffff;"></i></a>
-                    <h4 class="mt-4">{{Web Application Developer}}</h4> <!--position-->
-                    <h5>{{Matrox}}</h5> <!--job title-->
-                    <br/>
+                    <!--header of the page-->
+                    <div class="row px-4 py-4 text-center rounded">
+                        <h1>Applicants</h1>
+                    </div>
+                    <!--table with candidate name and link to proofile-->
+                    <div class="row">
+                        <table class="table table-hover table-borderless table-striped table-responsive">
+                            <thead class="bd-dark text-white">
+                                <tr>
+                                    <th class="col-2">Posting ID</th>
+                                    <th class="col-2">Applicant</th>
+                                    <th class="col-4">Profile</th>
+                                    <th class="col-3">Status</th>
+                                    <th class="col-3"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for jobApplicant in jobApplicants %}
+                                <tr>
+                                    <td class="col-2">{{jobApplicant[4]}}</td>
+                                    <td class="col-2">{{jobApplicant[2]}}</td>
+                                    <form method="POST">
+                                    {% set z = jobApplicant[1]%}
+                                    {% set y = jobApplicant[4]%}
+                                    <input type = "hidden" name = "jobApplicantID" value="{{z}}">
+                                    <input type = "hidden" name = "jobPostingID" value="{{y}}">
+                                    <td class="col-3">
+                                        <button type="submit" class="btn btn-info" name = "View Candidate Profile">View Profile</button>
+                                    </td>
+                                    <td class="col-3">
+                                        <button type="submit" class="btn btn-success" name = "Choose For Interview">Choose For Interview</button>
+                                    </td>
+                                    <td class="col-3">
+                                        <button type="submit" class="btn btn-danger" name="Reject Candidate">Reject Candidate</button>
+                                    </td>
+                                    </form>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <p>{{Montreal}}<br>
-                        {{25.00}}$/h</p> <!--location and salary-->
-
-                    <h5>Job Description</h5>
-                    <p>{{Implement prototypes and software components, 
-                        Collaborate with team of excellent engineers to design, plan, develop, test, deliver and maintain complex features and new subsystems, 
-                        Participate and advise in code reviews}}</p> <!--job description - to do: create a helper function to add a line break when there is a capital letter-->
-                    <h5>Requirements</h5>
-                        <p>{{Experience with large scale, distributed application design, 
-                        Detail oriented and passionate about building great software, 
-                        A constant desire to improve, learn more and take things to the next level, 
-                        Pursuing a BS or MS in Computer Science or related technical field, 
-                        Passion for building high quality software with extensive experience in unit testing and test driven development, 
-                        Excellent communication and writing skills, 
-                        Ability to operate effectively and independently in a dynamic, fluid environment}}</p> <!--job requirements-->
                 </div>
             </div>
         </div>
+
     </div>
 </body>
+
 </html>

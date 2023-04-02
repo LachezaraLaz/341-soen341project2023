@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="../static/css/jobDashboardCSS.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/e4ad6adbad.js" crossorigin="anonymous"></script>
@@ -14,28 +15,53 @@
   
   <script src="../static/javascript/editProfile.js" defer></script>
   
-  <style>
+  <!-- <style>
     .custom {
       width: 40%;
     }
-  </style>
+  </style> -->
 
 
 </head>
 
-<body>
+<body class="position-relative">
 
   <div class="container-fluid">
     <!--navbar-->
-    <div class="row">
-      <ul class="nav-bar">
-        <li><a class="name" href="../Login/Login-html%20file.html"><b><i>I</i>mplico</b></a></li>
-        <li><a href="../profileTempHTML.html"><i class="fa fa-fw fa-user"></i> Me</a></li>
-        <li><a href="#"><i class="fa fa-fw fa-envelope"></i> Jobs</a></li>
-        <li><a class="active" href="../Login/Login-html%20file.html" href="#"><i class="fa fa-fw fa-home"></i> Home</a>
-        </li>
-      </ul>
-    </div>
+      <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="../indexCandidate.html"><b><i>I</i>mplico</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexCandidate.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../viewJobPosting.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../profileTempHTML.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Profile</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+  </nav>
+
     <br/><br/><br/>
     <!--actual page-->
     <div class="row">
@@ -146,16 +172,19 @@
 
           <br><br>
 
-
-
         </div>
 
 
 
 
       </div>
-      <br><br><br>
-    </div>D
+
+    </div>
+    <footer class="container-fluid bg-primary card-footer p-2 position-absolute bottom-0 start-50 translate-middle-x" style="bottom: 0px;">
+      <a href="mailto:implico.web@gmail.com" style="color:aliceblue; text-decoration: none;">Contact Us</a> /
+      <a href="../aboutUs.html" style="color:aliceblue; text-decoration: none;">About Us</a> /
+      <a href="../submitFeedback.html" style="color:aliceblue; text-decoration: none;">Feedback</a>
+  </footer>
 
 </body>
 

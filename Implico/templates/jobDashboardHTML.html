@@ -55,6 +55,7 @@
                       <th class="col-1">Location</th>
                       <th class="col-1">Salary</th>
                       <th class="col-1">Created</th>
+                      <th class="col-1">Tags</th>
                       <th class="col-2">Selected Candidate</th>
                       <th class="col-1"></th>
                       <th class="col-1"><form method="POST"><button type="submit" name="Add" class="btn btn-success">Add</form></th>
@@ -67,8 +68,9 @@
                   <td><a href="#">{{jobPosting[2]}}</a></td>
                   <td>{{jobPosting[4]}}<br/>{{jobPosting[5]}}</td>
                   <td>{{jobPosting[6]}}</td>
-                  <td>{{jobPosting[7]}}</td>
+                  <td>{{jobPosting[7]}}</td>  
                   <td>{{jobPosting[8]}}</td>
+                  <td>insert tags here</td>
                   <td><a class="btn btn-success" href="../jobApplicantsEmployer.html">Select Candidate</a></td>
                   <td><form method="POST">
                     {% set x  = jobPosting[0] %}

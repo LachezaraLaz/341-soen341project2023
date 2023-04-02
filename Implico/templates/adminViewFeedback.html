@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://kit.fontawesome.com/e4ad6adbad.js" crossorigin="anonymous"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+
+    <body>
+            <!--modified nav bar-->
+    <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="../indexEmployer.html"><b><i>I</i>mplico</b></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item mx-1">
+                        <a class="nav-link active text-light" href="../indexEmployer.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../jobDashboardHTML.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <a class="nav-link text-light" href="../adminViewFeedback.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Feedback</a>
+                    </li>
+                    <li class="nav-item mx-1">
+                        <form method="POST">
+                            <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="container-fluid">
+        <table class="table table-responsive table-borderless table-striped table-hover rounded">
+            <thead>
+                <tr class="bg-black text-light">
+                    <th class="col-1 ms-1">First Name</th>
+                    <th class="col-1 ms-1">Last Name</th>
+                    <th class="col-1 ms-1">Email</th>
+                    <th class="col-4">Feedback</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for x in %}
+                <tr>
+                    <td>Jane</td>
+                    <td>Doe</td>
+                    <td>janedoe@thiccthot.com</td>
+                    <td>Here is some feedback. This project is a llot of work and makes me wanna kms. On the other hand it is not even worth many marks making feel even less worth it. Clearly you guys know you effed up too since ur adding more credits to this course for the future.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+    <footer class="container-fluid bg-primary card-footer p-2 position-absolute bottom-0 start-50 translate-middle-x" style="bottom: 0px;">
+        <a href="mailto:implico.web@gmail.com" style="color:aliceblue; text-decoration: none;">Contact Us</a> /
+        <a href="../aboutUs.html" style="color:aliceblue; text-decoration: none;">About Us</a> /
+        <a href="../submitFeedback.html" style="color:aliceblue; text-decoration: none;">Feedback</a>
+    </footer>
+
+    </body>
+</html>

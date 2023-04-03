@@ -116,11 +116,15 @@
                       <p>insert tags here</p>                   
 
                 </div>
-                {% endfor %}
+                
 
+                {% set a = jobPostin[0]%}
                 <form enctype="multipart/form-data" method="POST">
-                <button class="btn btn-info text-light" type="Apply" name="applyButton">Apply</button>
+                  <input type = "hidden" name = "viewJobs" value = "{{a}}">
+                  <button class="btn btn-info text-light" type="Apply" name="applyButton">Apply</button>
+                
               </form>
+              {% endfor %}
           </div>
           
     

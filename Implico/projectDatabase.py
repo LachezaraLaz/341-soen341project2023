@@ -27,7 +27,7 @@ except sqlite3.OperationalError:
     # third table: work experience table
     c.execute("CREATE TABLE WorkExperience (expKey NUMBER, profileID NUMBER, position TEXT, employer TEXT, startMonth NUMBER, startYEAR NUMBER, endMonth NUMBER, endYear NUMBER, expDescription TEXT, skills TEXT, PRIMARY KEY(expKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey))")
     # fourth table: job postings table
-    c.execute("CREATE TABLE JobPostings (jobKey NUMBER, userID NUMBER, title TEXT, company TEXT, jobDescription TEXT, requirements TEXT, workLocation TEXT, salary NUMBER, creationDate TEXT, selectedCandidate TEXT, PRIMARY KEY(jobKey), FOREIGN KEY(userID) REFERENCES LoginInfo(userKey))")
+    c.execute("CREATE TABLE JobPostings (jobKey NUMBER, userID NUMBER, title TEXT, company TEXT, jobDescription TEXT, requirements TEXT, workLocation TEXT, salary NUMBER, tags TEXT, creationDate TEXT, selectedCandidate TEXT, PRIMARY KEY(jobKey), FOREIGN KEY(userID) REFERENCES LoginInfo(userKey))")
     # fifth table: notification table
     c.execute("CREATE TABLE Notifications (notifKey NUMBER, userIDFrom NUMBER, userIDTo NUMBER, message TEXT, dateSent TEXT, PRIMARY KEY(notifKey), FOREIGN KEY(userIDFrom) REFERENCES LoginInfo(userKey), FOREIGN KEY(userIDTo) REFERENCES LoginInfo(userKey))")        
     # sixth table: job applicant table
@@ -104,11 +104,11 @@ except sqlite3.OperationalError:
     Understanding the concept of OpenGL, Vulkan and graphics pipeline
     Programming experience in OpenGL ES and/or Vulkan, or mobile game GPU programming"""
 
-    insert1 = "INSERT INTO JobPostings VALUES (1, 2, 'Software Engineering Intern', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 22.50, '2023-03-18 20:59', 'None')".format(desc=descA, reqs=reqsA)
-    insert2 = "INSERT INTO JobPostings VALUES (2, 2, 'Cloud Software Developer (Intern)', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 25.00, '2023-03-15 13:44', 'None')".format(desc=descB, reqs=reqsB)
-    insert3 = "INSERT INTO JobPostings VALUES (3, 4, 'Developer Intern', 'YourCompany', '{desc}', '{reqs}', 'Ontario', 21.50, '2023-03-19 14:25', 'None')".format(desc=descD, reqs=reqsD)
-    insert4 = "INSERT INTO JobPostings VALUES (4, 4, 'Software Developer Co-Op', 'YourCompany', '{desc}', '{reqs}', 'Vancouver', 23.00, '2023-03-19 14:25', 'None')".format(desc=descE, reqs=reqsE)
-    insert5 = "INSERT INTO JobPostings VALUES (5, 4, 'Co-Op - Software Engineer', 'Your Company', '{desc}', '{reqs}', 'Edmonton', 27.00, '2023-03-18 20:59', 'None')".format(desc=descF, reqs=reqsF)
+    insert1 = "INSERT INTO JobPostings VALUES (1, 2, 'Software Engineering Intern', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 22.50,'None', '2023-03-18 20:59', 'None')".format(desc=descA, reqs=reqsA)
+    insert2 = "INSERT INTO JobPostings VALUES (2, 2, 'Cloud Software Developer (Intern)', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 25.00,'None', '2023-03-15 13:44', 'None')".format(desc=descB, reqs=reqsB)
+    insert3 = "INSERT INTO JobPostings VALUES (3, 4, 'Developer Intern', 'YourCompany', '{desc}', '{reqs}', 'Ontario', 21.50,'None', '2023-03-19 14:25', 'None')".format(desc=descD, reqs=reqsD)
+    insert4 = "INSERT INTO JobPostings VALUES (4, 4, 'Software Developer Co-Op', 'YourCompany', '{desc}', '{reqs}', 'Vancouver', 23.00,'None', '2023-03-19 14:25', 'None')".format(desc=descE, reqs=reqsE)
+    insert5 = "INSERT INTO JobPostings VALUES (5, 4, 'Co-Op - Software Engineer', 'Your Company', '{desc}', '{reqs}', 'Edmonton', 27.00,'None', '2023-03-18 20:59', 'None')".format(desc=descF, reqs=reqsF)
 
     c.execute(insert1)
     c.execute(insert2)

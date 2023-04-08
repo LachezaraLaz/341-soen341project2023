@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  
+
   <link rel="stylesheet" href="../static/css/jobDashboardCSS.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/e4ad6adbad.js" crossorigin="anonymous"></script>
@@ -18,111 +18,111 @@
     }
   </style>
 
-
+  <script src="../static/javascript/userJobs.js" async></script>
 
 </head>
 
 <body>
   <nav class="navbar navbar-expand-lg sticky-top" style="background-color:#1E90FF;">
     <div class="container-fluid">
-        <a class="navbar-brand text-light" href="../indexCandidate.html"><b><i>I</i>mplico</b></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item mx-1">
-                    <a class="nav-link active text-light" href="../indexCandidate.html"><i class="fa-solid fa-house" style="color: #ffffff;"></i> Home</a>
-                </li>
-                <li class="nav-item mx-1">
-                    <a class="nav-link text-light" href="../viewJobPosting.html"><i class="fa-solid fa-briefcase" style="color: #ffffff;"></i> Jobs</a>
-                </li>
-                <li class="nav-item mx-1">
-                    <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Notifications</a>
-                </li>
-                <li class="nav-item mx-1">
-                    <a class="nav-link text-light" href="../profileTempHTML.html"><i class="fa-solid fa-envelope" style="color: #ffffff;"></i> Profile</a>
-                </li>
-                <li class="nav-item mx-1">
-                    <form method="POST">
-                        <button type="submit" name="logout" class="nav-link text-light btn btn-link">
-                            <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
-                        </button>
-                    </form>
-                </li>
-            </ul>
-        </div>
+      <a class="navbar-brand text-light" href="../indexCandidate.html"><b><i>I</i>mplico</b></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item mx-1">
+            <a class="nav-link active text-light" href="../indexCandidate.html"><i class="fa-solid fa-house"
+                style="color: #ffffff;"></i> Home</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a class="nav-link text-light" href="../viewJobPosting.html"><i class="fa-solid fa-briefcase"
+                style="color: #ffffff;"></i> Jobs</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a class="nav-link text-light" href="../notification.html"><i class="fa-solid fa-envelope"
+                style="color: #ffffff;"></i> Notifications</a>
+          </li>
+          <li class="nav-item mx-1">
+            <a class="nav-link text-light" href="../profileTempHTML.html"><i class="fa-solid fa-envelope"
+                style="color: #ffffff;"></i> Profile</a>
+          </li>
+          <li class="nav-item mx-1">
+            <form method="POST">
+              <button type="submit" name="logout" class="nav-link text-light btn btn-link">
+                <i class="fa-solid fa-user" style="color: #ffffff;"></i> Log Out
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
     </div>
-</nav>
+  </nav>
+
+
   <div class="container-fluid">
 
-    <div class="row">
-        <div class="h-100 d-flex align-items-left justify-content-center">
-          <div class="col-8 ps-5 pt-4 pb-4 pe-4 bg-light rounded">
-            <div class="row px-3 py-3 text-left">
-              
+    <div class="row my-3">
+      <div class="h-100 d-flex align-items-left justify-content-center">
+        <div class="col-8 p-5 bg-light rounded">
+
+          <div class="container bg-info bg-opacity-50 d-flex flex-row m-0 p-0 rounded">
+
+
+            <div style="width: 60%; display: flex;">
+              <h4 class="fs-1 fw-bold mx-auto my-auto">The Right Jobs for You</h4>
             </div>
 
-            <div class="container d-flex flex-row border border-4">
-                
-                   
-             <div class="centered" style=" align-items:center;width: 60%; display: flex;"><h4>The Right Jobs for You</h4> </div>
-            
-                <img src="../static/HappyMan.jpg" alt="HappyMan" class="img-fluid" style="width:50%;">
+            <img src="../static/HappyMan.jpg" alt="HappyMan" class="img-fluid rounded-end" style="width:50%;">
 
-            </div>
-            
-
-          
-            <!-- search and location button -->
-              <div class="row pt-4">
-                <form class="d-flex ps-3 pt-2 pb-2 pe-2 text-left justify-content-start align-items-center w-100">
-
-                    <input type="search" class="form-control w-50" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-info text-light" type="submit">Search</button>
-                </form>
-              </div>
-              
-    <div class="row">
-      <div class="h-100 d-flex align-items-left justify-content-left">
-        <div class="col-8 ps-2 pt-2 pb-2 pe-3 w-100 bg-light rounded ">
-          <div class="row px-2 py-2 text-left ">
           </div>
 
+
+
+          <!-- search and location button -->           
+          <div class="row mt-3 p-0">
+            <div class="input-group">
+                <span class="input-group-text"><i class="fa-solid fa-magnifying-glass fa-sm" style="color: #878787;"></i></span>
+
+                <input type="search" class="form-control" placeholder="Search" aria-label="Default" id="searchBar"
+                  onkeyup="searchBarResults()">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="h-100 d-flex align-items-left justify-content-left">
+              <div class="col-8 ps-2 pt-2 pb-2 pe-3 w-100 bg-light rounded ">
+                <div class="row px-2 py-2 text-left ">
+                </div>
+
                 <div class="row px-3 py-3 text-left">
-                  <h5>Recommended For You</h5>
+                  <h5 class="fs-3">Recommended For You</h5>
 
                 </div>
                 {% for jobPosting in jobPostings %}
-                <div class="container p-3 my-3 bg-white text-black border border-4">
+                <div class="container p-3 my-3 bg-white text-black rounded jobContainer">
 
-                  <div class="form-group" >
+                  <div class="form-group">
                     {% set a = jobPosting[0]%}
-                    <form enctype="multipart/form-data" method ="POST">
-                      <input type = "hidden" name = "viewJob" value = "{{a}}">
-                      <button for="jobPosition" name ="viewJob">{{jobPosting[2]}}</button>
+                    <form enctype="multipart/form-data" method="POST">
+                      <input type="hidden" name="viewJob" value="{{a}}">
+                      <button class="btn btn-outline-info opacity-50 fw-bold jobPosition" for="jobPosition"
+                        name="viewJob">{{jobPosting[2]}}</button>
                     </form>
+                    <label class="companyName" for="companyName" style=font-size:80%><br />{{jobPosting[3]}}</label>
                     <br>
-                    <label for="companyName" style= font-size:80%>{{jobPosting[3]}}</label> <br>
-                    <label for="Location"style= font-size:80%>{{jobPosting[6]}}</label> <br>
-                    <label for="Location"style= font-size:80%>{{jobPosting[7]}}$/hr</label> <br>
-                    <label for="Tags"style= font-size:80%>insert tags here</label> <br>
+                    <label class="location" for="Location" style=font-size:80%>{{jobPosting[6]}}</label> <br>
+                    <label class="salary" for="Salary" style=font-size:80%>{{jobPosting[7]}}$/hr</label> <br>
+                    <label class="tags" for="Tags" style=font-size:80%>insert tags here</label> <br>
                   </div>
-
-
                 </div>
                 {% endfor %}
-
-
-        
-      <br><br><br>
-
-      <div class="text-center">
-        <button type="edit" class="btn btn-primary custom ">Edit</button>
-        <button type="submit" class="btn btn-primary custom ">Add</button> 
-        </div>   
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </body>
 

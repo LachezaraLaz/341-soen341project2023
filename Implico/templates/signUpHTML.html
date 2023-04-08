@@ -57,11 +57,16 @@
       <br />
       <form id="formSubmitting" method="post">
         <label for="usertype">I am a(n):</label><br />
-        <select class="usertype" id="userType" name="userType">
+        <select class="usertype" id="userType" name="userType" 
+        style="width: 30%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        border: 2px solid lightgrey;
+        border-radius: 4px;">
           <option>student</option>
           <option>employer</option>
         </select>
-  
         <br /><br />
   
         <p1>
@@ -86,7 +91,7 @@
           <br />
           <input type="password" placeholder="Confirm Your Password" id="pswd2" name="pswd2" required />
           <p style="font-size: 13px; margin-top: 5px">
-            <input type="checkbox" onclick="seePswd()" />Show Passwords
+            <input type="checkbox" onclick="seePswd()"/>  Show Passwords
           </p>
         </p1>
   
@@ -107,10 +112,6 @@
       <div class="row">
         <a href="../loginHTML.html">Already with Implico?</a>
       </div>
-      <footer class="container-fluid bg-primary card-footer p-2" style="bottom: 0px;">
-        <a href="mailto:implico.web@gmail.com" style="color:aliceblue; text-decoration: none;">Contact Us</a> /
-        <a href="../aboutUs.html" style="color:aliceblue; text-decoration: none;">About Us</a>
-    </footer>
  
     </div>
     

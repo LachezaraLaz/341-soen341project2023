@@ -33,6 +33,11 @@ except sqlite3.OperationalError:
     # sixth table: job applicant table
     c.execute("CREATE TABLE JobApplicants (appKey NUMBER, profileID NUMBER,applicantName TEXT, employerID NUMBER, postingID NUMBER, appStatus TEXT, PRIMARY KEY(appKey), FOREIGN KEY(profileID) REFERENCES UserProfiles(profileKey), FOREIGN KEY(postingID) REFERENCES JobPostings(jobKey))")
 
+    #seventh table: feedback
+    c.execute("CREATE TABLE userFeedback (feedbackKey NUMBER, feedback TEXT,userID NUMBER, email TEXT, PRIMARY KEY(feedbackKey))")
+    #insert into feedback table
+    c.execute("INSERT INTO userFeedback VALUES (1, 'This is a sample feedback.',1, 'test1@email.com')")
+
     # inserting test data in LoginInfo
     c.execute("INSERT INTO LoginInfo VALUES (1, 'test1@email.com', '123pass', 'student')")
     c.execute("INSERT INTO LoginInfo VALUES (2, 'test3@email.com', '1234pass', 'employer')")
@@ -115,6 +120,9 @@ except sqlite3.OperationalError:
     c.execute(insert3)
     c.execute(insert4)
     c.execute(insert5)
+
+    #seventh table: feedback
+    c.execute("CREATE TABLE userFeedback (feedbackKey NUMBER, feedback TEXT,userID NUMBER, email TEXT, PRIMARY KEY(feedbackKey)")
 
 
 # testing - reading data from first table

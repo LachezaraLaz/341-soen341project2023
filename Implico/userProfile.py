@@ -17,9 +17,14 @@ userProfile = Blueprint('userprofile', __name__)
 @userProfile.route('/profileTempHTML.html', methods=['GET', 'POST'])
 #user profile page
 def profile():
-
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
     #SHOULDN'T HAPPEN
-    if request.method == 'POST':
+    elif request.method == 'POST':
         #CONNECTION TO DATABASE
         # connection to the database module
         conn = sqlite3.connect("data.db")
@@ -76,6 +81,12 @@ def profile():
 #CODE FOR EDIT PROFILE PAGE
 @userProfile.route("/editProfile.html", methods=['GET', 'POST'])
 def editProfile():
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        session.pop("userID", None)
+        session.pop("email", None)
+        session.pop("password", None)
+        session.pop("userType", None)
+        return render_template('home.html', boolean=True) 
     #storing the profile key in a variable
     profileKey = session["profileID"]
 

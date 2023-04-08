@@ -14,6 +14,7 @@ def create_app():
     from .adminPages import adminPages
     from .employerDashboard import employerDashboard
     from .home import home
+    from .feedback import feedback
 
     app.register_blueprint(login, url_prefix="/")
     app.register_blueprint(signup, url_prefix="/")
@@ -22,6 +23,7 @@ def create_app():
     app.register_blueprint(adminPages, url_prefix=("/"))
     app.register_blueprint(employerDashboard, url_prefix=("/"))
     app.register_blueprint(home, url_prefix=("/"))
+    app.register_blueprint(feedback, url_prefix=("/"))
 
 
     return app

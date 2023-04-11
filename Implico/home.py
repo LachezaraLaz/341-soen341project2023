@@ -62,3 +62,12 @@ def afterLoginCandidate():
         print("error")
     #if no POST request is made just stay on the login page
     return render_template('indexCandidate.html', boolean=True)
+
+@home.route('/aboutUs.html', methods=['GET', 'POST'])
+def aboutUs():
+    if request.method == 'GET':
+        return render_template('aboutUs.html', boolean=True)    
+    else:
+        print("error")
+    #if no POST request is made just stay on the login page
+    return render_template('loginHTML.html', boolean=True)

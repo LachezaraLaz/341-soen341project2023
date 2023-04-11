@@ -3,6 +3,7 @@ import sqlite3
 import datetime
 #importing Flask and other modules
 from flask import Flask, request, render_template, redirect, session, Blueprint
+from .signup import logout
 #initializing blueprint
 employerDashboard = Blueprint('employerDashboard', __name__)
 
@@ -18,10 +19,7 @@ def notifMessage(messageCode, jobPostingID):
 @employerDashboard.route('/jobDashboardHTML.html', methods = ['GET','POST'])
 def jobDashboard():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET':
         if(session.get("userID") == None or session.get("userType") == "student" or session.get("userType") == "admin"):
@@ -61,10 +59,7 @@ def jobDashboard():
 @employerDashboard.route("/editJobPosting.html",methods = ['GET','POST'])
 def editPosting():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET':
         if(session.get("userID") == None or session.get("userType") == "student" or session.get("userType") == "admin"):
@@ -131,10 +126,7 @@ def editPosting():
 @employerDashboard.route("/jobApplicantsEmployer.html", methods = ['GET','POST'])
 def jobApp():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif(request.method == 'GET'):
         if(session.get("userID") != None):

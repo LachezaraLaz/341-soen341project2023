@@ -2,6 +2,7 @@
 import sqlite3
 #importing Flask and other modules
 from flask import Flask, request, render_template, redirect, session, Blueprint
+from .signup import logout
 #initializing blueprint
 home = Blueprint('home', __name__)
 
@@ -21,10 +22,7 @@ def afterLoginEmployer():
         return render_template('indexEmployer.html', boolean=True)
     #log out
     elif request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True)
     else:
         print("error")
@@ -37,10 +35,7 @@ def afterLoginAdmin():
         return render_template('indexAdmin.html', boolean=True)
     #log out
     elif request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     else:
         print("error")
@@ -53,10 +48,7 @@ def afterLoginCandidate():
         return render_template('indexCandidate.html', boolean=True)    
     #log out
     elif request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True)
     else:
         print("error")

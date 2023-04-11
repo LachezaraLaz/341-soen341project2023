@@ -1,16 +1,13 @@
 import sqlite3
 from flask import Flask, request, render_template, Blueprint, redirect, session
-
+from .signup import logout
 #initializing Blueprint
 notification = Blueprint('notification', __name__)
 
 @notification.route("/notification.html", methods = ['GET', 'POST'])
 def notif():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     #if no user has logged in yet, then they are redirected to login page to login.
     elif (session.get('userID') == None):
@@ -29,10 +26,7 @@ def notif():
 @notification.route("/JobDescription.html", methods = ['GET', 'POST'])
 def JobDescription():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     
     #displaying the correct job that was selected

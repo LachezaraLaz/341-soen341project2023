@@ -3,6 +3,7 @@
 import sqlite3
 #importing Flask and other modules
 from flask import Flask, request, render_template, redirect, session, Blueprint
+from .signup import logout
 #initializing blueprint
 adminPages = Blueprint('adminPages', __name__)
 
@@ -10,10 +11,7 @@ adminPages = Blueprint('adminPages', __name__)
 @adminPages.route('/adminJobDashboard.html', methods =['GET', 'POST'])
 def adminJobPostingFUNC():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif session["userID"] != 5:
         #send the user back to login page if they are not the admin user
@@ -103,10 +101,7 @@ def adminJobPostingFUNC():
 @adminPages.route('/editJobAdmin.html', methods =['GET', 'POST'])
 def adminEditJobFUNC():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET':
         editJobID = session['editJobID']
@@ -168,10 +163,7 @@ def shortenString(strInput):
 @adminPages.route('/adminUsers.html', methods =['GET', 'POST'])
 def adminUsersFUNC():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif session["userID"] != 5:
         #send the user back to login page if they are not the admin user
@@ -236,10 +228,7 @@ def adminUsersFUNC():
 @adminPages.route('/editUserAdmin.html', methods =['GET', 'POST'])
 def adminEditUserFUNC():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET':
             editUserID = session["editUserID"]
@@ -284,10 +273,7 @@ def adminEditUserFUNC():
 @adminPages.route('/addUserAdmin.html', methods =['GET', 'POST'])
 def adminAddUserFUNC():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET':
         return render_template('addUserAdmin.html')

@@ -1,14 +1,8 @@
 import sqlite3
 from flask import Flask, request, render_template, Blueprint, redirect, session
+from .signup import logout
 #initializing Blueprint
 feedback = Blueprint('feedback', __name__)
-
-#log out method
-def logout():
-    session.pop("userID", None)
-    session.pop("email", None)
-    session.pop("password", None)
-    session.pop("userType", None)
 
 @feedback.route('/submitFeedback.html',methods = ['POST','GET'])
 def giveFeedback():

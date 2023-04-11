@@ -1,17 +1,22 @@
 import sqlite3
 from flask import Flask, request, render_template, Blueprint, redirect, session
+from .signup import logout
 #initializing Blueprint
 feedback = Blueprint('feedback', __name__)
 
 @feedback.route('/submitFeedback.html',methods = ['POST','GET'])
 def giveFeedback():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        logout()
+        return redirect('home.html', boolean=True)
+    elif request.method == 'GET':
         if(session.get("userType") == None):
             return redirect("/loginHTML.html")
         elif (session.get("userType") == "student"):
             return render_template("candidateSubmitFeedback.html")
-        elif (session.get("userType") == "employer"):
+        else:
             return render_template("employerSubmitFeedback.html")
+        
     else:
         # POST method
         conn = sqlite3.connect("data.db")
@@ -30,7 +35,10 @@ def giveFeedback():
 
 @feedback.route('/adminViewFeedback.html', methods = ['POST','GET'])
 def adminFeedback():
-    if request.method == 'GET':
+    if request.method == 'POST' and request.form.get("logout")!=None:
+        logout()
+        return redirect('home.html', boolean=True)
+    elif request.method == 'GET':
         # not logged in or not admin
         if(session.get("userType") == None or session.get("userType") != "admin"):
             return redirect('/loginHTML.html')

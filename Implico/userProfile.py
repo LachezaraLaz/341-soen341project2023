@@ -7,6 +7,7 @@ from werkzeug.utils import secure_filename
 import numpy as np
 
 import sqlite3
+from .signup import logout
 
 UPLOAD_FOLDER = '../uploads'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'docx', 'jpg', 'jpeg', 'html'}
@@ -18,10 +19,7 @@ userProfile = Blueprint('userprofile', __name__)
 #user profile page
 def profile():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     #SHOULDN'T HAPPEN
     elif request.method == 'POST':
@@ -82,10 +80,7 @@ def profile():
 @userProfile.route("/editProfile.html", methods=['GET', 'POST'])
 def editProfile():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     #storing the profile key in a variable
     profileKey = session["profileID"]

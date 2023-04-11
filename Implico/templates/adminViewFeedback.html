@@ -52,19 +52,19 @@
         <table class="table table-responsive table-borderless table-striped table-hover rounded">
             <thead>
                 <tr class="bg-black text-light">
-                    <th class="col-1 ms-1">First Name</th>
-                    <th class="col-1 ms-1">Last Name</th>
+                    <th class="col-1 ms-1">Feedback ID</th>
+                    <th class="col-1 ms-1">User ID</th>
                     <th class="col-1 ms-1">Email</th>
                     <th class="col-4">Feedback</th>
                 </tr>
             </thead>
             <tbody>
-                {% for x in %}
+                {% for feedbackEntry in feedbackEntries %}
                 <tr>
-                    <td>Jane</td>
-                    <td>Doe</td>
-                    <td>janedoe@thiccthot.com</td>
-                    <td>Here is some feedback. This project is a llot of work and makes me wanna kms. On the other hand it is not even worth many marks making feel even less worth it. Clearly you guys know you effed up too since ur adding more credits to this course for the future.</td>
+                    <td>{{feedbackEntry[0]}}</td>
+                    <td>{{feedbackEntry[2]}}</td>
+                    <td>{{feedbackEntry[3]}}</td>
+                    <td>{{feedbackEntry[1]}}</td>
                 </tr>
                 {% endfor %}
             </tbody>

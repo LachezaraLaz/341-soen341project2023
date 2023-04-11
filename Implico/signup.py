@@ -6,14 +6,18 @@ from flask import Flask, request, render_template, Blueprint, redirect, session
 #initializing Blueprint
 signup = Blueprint('signup', __name__)
 
+#log out method
+def logout():
+    session.pop("userID", None)
+    session.pop("email", None)
+    session.pop("password", None)
+    session.pop("userType", None)
+
 #map route to signup  URL (tells Flask what URL triggers our following functions)
 @signup.route('/signUpHTML.html',methods = ['POST','GET'])
 def signupFunc():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == "GET":
         return render_template('signUpHTML.html')
@@ -58,10 +62,7 @@ def signupFunc():
 @signup.route('/jobPostings.html',methods = ['POST','GET'])
 def jobPostings():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET':
         return render_template('jobPostingHTML.html')
@@ -81,10 +82,7 @@ def jobPostings():
 @signup.route('/dashboard', methods = ['GET','POST'])
 def jobDashboard():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET':
         # connection to the database module
@@ -149,10 +147,7 @@ def jobApp():
 @signup.route("/viewJobPosting.html",methods = ['GET','POST']) 
 def viewPosting():
     if request.method == 'POST' and request.form.get("logout")!=None:
-        session.pop("userID", None)
-        session.pop("email", None)
-        session.pop("password", None)
-        session.pop("userType", None)
+        logout()
         return render_template('home.html', boolean=True) 
     elif request.method == 'GET' and (session.get("userID") == None):
         return redirect("/loginHTML.html")

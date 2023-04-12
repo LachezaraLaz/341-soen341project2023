@@ -10,7 +10,14 @@ home = Blueprint('home', __name__)
 @home.route('/home.html', methods =['GET', 'POST'])
 def beforeLogin():
     if request.method == 'GET':
-        return render_template('home.html', boolean=True)    
+        if(session.get("userType") == "admin"):
+            return redirect('/indexAdmin.html')
+        elif (session.get("userType") == "student"):
+            return redirect('/indexCandidate.html')
+        elif (session.get("userType") == "employer"):
+            return redirect('/indexEmployer.html')
+        else:
+            return render_template('home.html', boolean=True)
     else:
         print("error")
     #if no POST request is made just stay on the login page

@@ -148,7 +148,7 @@ def jobApp():
 def viewPosting():
     if request.method == 'POST' and request.form.get("logout")!=None:
         logout()
-        return render_template('home.html', boolean=True) 
+        return redirect('home.html', boolean=True) 
     elif request.method == 'GET' and (session.get("userID") == None):
         return redirect("/loginHTML.html")
     #when clicked, it is redirected to jobDescription with keeping the jobKey that was selected

@@ -29,7 +29,10 @@ def giveFeedback():
         c.execute(insertEntry)
         conn.commit()
         c.close()
-        return redirect("/home.html")
+        if(session.get("userType") == "student"):
+            return redirect("/indexCandidate.html")
+        else:
+            return redirect("/indexEmployer.html")
 
     
 
@@ -37,7 +40,7 @@ def giveFeedback():
 def adminFeedback():
     if request.method == 'POST' and request.form.get("logout")!=None:
         logout()
-        return redirect('home.html', boolean=True)
+        return redirect('home.html')
     elif request.method == 'GET':
         # not logged in or not admin
         if(session.get("userType") == None or session.get("userType") != "admin"):

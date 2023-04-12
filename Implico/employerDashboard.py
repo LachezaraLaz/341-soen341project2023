@@ -27,7 +27,7 @@ def jobDashboard():
             if(session.get("userID") == None):
                 return redirect("/loginHTML.html")
             elif session.get("userType") == "student":
-                return redirect("/VUJP")
+                return redirect("/viewJobPosting.html")
             else:
                 return redirect("/adminJobDashboard.html")
         else:
@@ -67,7 +67,7 @@ def editPosting():
             #if(session.get("userID") == None):
                 #return redirect("/loginHTML.html")
             if session.get("userType") == "student":
-                return redirect("/VUJP")
+                return redirect("/viewJobPosting.html")
             else:
                 return redirect("/adminJobDashboard.html")
         else:

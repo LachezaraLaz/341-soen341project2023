@@ -109,17 +109,24 @@ except sqlite3.OperationalError:
     Understanding the concept of OpenGL, Vulkan and graphics pipeline
     Programming experience in OpenGL ES and/or Vulkan, or mobile game GPU programming"""
 
-    insert1 = "INSERT INTO JobPostings VALUES (1, 2, 'Software Engineering Intern', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 22.50,'None', '2023-03-18 20:59', 'None')".format(desc=descA, reqs=reqsA)
-    insert2 = "INSERT INTO JobPostings VALUES (2, 2, 'Cloud Software Developer (Intern)', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 25.00,'None', '2023-03-15 13:44', 'None')".format(desc=descB, reqs=reqsB)
-    insert3 = "INSERT INTO JobPostings VALUES (3, 4, 'Developer Intern', 'YourCompany', '{desc}', '{reqs}', 'Ontario', 21.50,'None', '2023-03-19 14:25', 'None')".format(desc=descD, reqs=reqsD)
-    insert4 = "INSERT INTO JobPostings VALUES (4, 4, 'Software Developer Co-Op', 'YourCompany', '{desc}', '{reqs}', 'Vancouver', 23.00,'None', '2023-03-19 14:25', 'None')".format(desc=descE, reqs=reqsE)
-    insert5 = "INSERT INTO JobPostings VALUES (5, 4, 'Co-Op - Software Engineer', 'Your Company', '{desc}', '{reqs}', 'Edmonton', 27.00,'None', '2023-03-18 20:59', 'None')".format(desc=descF, reqs=reqsF)
+    insert1 = "INSERT INTO JobPostings VALUES (1, 2, 'Software Engineering Intern', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 22.50,'', '2023-03-18 20:59', 'None')".format(desc=descA, reqs=reqsA)
+    insert2 = "INSERT INTO JobPostings VALUES (2, 2, 'Cloud Software Developer (Intern)', 'MyCompany', '{desc}', '{reqs}', 'Montreal', 25.00,'', '2023-03-15 13:44', 'None')".format(desc=descB, reqs=reqsB)
+    insert3 = "INSERT INTO JobPostings VALUES (3, 4, 'Developer Intern', 'YourCompany', '{desc}', '{reqs}', 'Ontario', 21.50,'', '2023-03-19 14:25', 'None')".format(desc=descD, reqs=reqsD)
+    insert4 = "INSERT INTO JobPostings VALUES (4, 4, 'Software Developer Co-Op', 'YourCompany', '{desc}', '{reqs}', 'Vancouver', 23.00,'', '2023-03-19 14:25', 'None')".format(desc=descE, reqs=reqsE)
+    insert5 = "INSERT INTO JobPostings VALUES (5, 4, 'Co-Op - Software Engineer', 'Your Company', '{desc}', '{reqs}', 'Edmonton', 27.00,'', '2023-03-18 20:59', 'None')".format(desc=descF, reqs=reqsF)
 
     c.execute(insert1)
     c.execute(insert2)
     c.execute(insert3)
     c.execute(insert4)
     c.execute(insert5)
+
+    notif = "INSERT INTO Notifications VALUES(1, 1, 2, 'Welcome!', '3/25/2023')"
+    jobApp = "INSERT INTO JobApplicants VALUES(1, 1, 'Jane Doe', 2, 1, 'None')"
+    
+    c.execute(notif)
+    c.execute(jobApp)
+    
 
     #seventh table: feedback
     c.execute("CREATE TABLE userFeedback (feedbackKey NUMBER, feedback TEXT,userID NUMBER, email TEXT, PRIMARY KEY(feedbackKey)")

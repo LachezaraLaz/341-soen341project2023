@@ -77,16 +77,17 @@ def editPosting():
                 conn = sqlite3.connect("data.db")
                 c = conn.cursor()
                 jobPosting = c.execute("SELECT * FROM JobPostings WHERE jobKey=" + session["editPostingID"]).fetchone()
-                print(jobPosting)
                 pageTitle = "Edit Job Posting"
                 return render_template("/editJobEmployer.html", title = jobPosting[2], company = jobPosting[3], description = jobPosting[4], requirements = jobPosting[5], location = jobPosting[6], salary = jobPosting[7], pageTitle = pageTitle)
-            elif session.get("addPostingID") != None:
+            elif session.get("addPostingID") != None: 
                 # add posting id set and logged in as employer -> new posting entry
                 pageTitle = "New Job Posting"
+                session.pop("addPostingID",None)
                 return render_template("/editJobEmployer.html", pageTitle = pageTitle)
             else:
                 # not add or edit
                 return redirect("/jobDashboardHTML.html")
+            
     elif request.method == 'POST':
         conn = sqlite3.connect("data.db")
         c = conn.cursor()
@@ -99,11 +100,44 @@ def editPosting():
             jobRequirements = request.form["jobRequirements"]
             jobLocation = request.form["jobLocation"]
             salary= request.form["salary"]
+            partTime = request.form.getlist("part-time")
+            fullTime = request.form.getlist("full-time")
+            intern = request.form.getlist("internship")
+            hybrid = request.form.getlist("hybrid")
+            remote = request.form.getlist("remote")
+            inPerson = request.form.getlist("in-person")
+
+            partTime = ''.join(partTime)
+            fullTime = ''.join(fullTime)
+            intern = ''.join(intern)
+            hybrid = ''.join(hybrid)
+            remote = ''.join(remote)
+            inPerson = ''.join(inPerson)
+
+            tags = ""
+
+            if (partTime != ''):
+                tags = partTime
+            if (fullTime != ''):
+                tags = tags+" "+fullTime
+            if (intern != ''):
+                tags = tags+" "+intern
+            if (hybrid != ''):
+                tags = tags+" "+hybrid
+            if (remote != ''):
+                tags = tags+" "+remote
+            if (inPerson != ''):
+                tags = tags+" "+inPerson
+
+            print(tags)
+
             updateQuery = "UPDATE JobPostings SET title ='" + str(title) + "',company='" + str(company) + "',jobDescription='" + str(jobDescription) + "',requirements='" + str(jobRequirements) + "',workLocation='" + str(jobLocation) + "',salary='" + str(salary) + "'WHERE jobKey=" + str(editPostingID)
             c.execute(updateQuery)
             conn.commit()
             c.close()
             session.pop("editPostingID",None)
+            return redirect("/jobDashboardHTML.html")
+        
         elif (session.get("userID") != None):
             # New table record
             userID = session["userID"]
@@ -116,13 +150,13 @@ def editPosting():
             timeNow = datetime.datetime.now()
             timeNowFormatted = timeNow.strftime("%Y-%m-%d-%X")
             lastKey = c.execute("SELECT jobKey FROM JobPostings ORDER BY jobKey DESC LIMIT 1").fetchone()[0]
-            print(lastKey)
             newEntry = "INSERT INTO JobPostings VALUES ('" + str(lastKey+1) + "','" + str(userID) + "','" + str(title) + "','" + str(company) + "','" + str(jobDescription) + "','" + str(jobRequirements) + "','" + str(jobLocation) + "','" + str(salary) + "','" + str(timeNowFormatted) + "','None')"
             c.execute(newEntry)
             conn.commit()
             c.close()
             session.pop("addPostingID", None)
             return redirect("/jobDashboardHTML.html")
+        
 @employerDashboard.route("/jobApplicantsEmployer.html", methods = ['GET','POST'])
 def jobApp():
     if request.method == 'POST' and request.form.get("logout")!=None:

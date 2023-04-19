@@ -34,6 +34,7 @@ def adminJobPostingFUNC():
         jpRequirements = []
         jpLocation = []
         jpSalary = []
+        jpTags = []
         jpCreationDate = []
         jpSelectedCandidate = []
 
@@ -58,8 +59,10 @@ def adminJobPostingFUNC():
                 elif innerCounter == 7:
                     jpSalary.append(column)
                 elif innerCounter == 8:
-                    jpCreationDate.append(column)
+                    jpTags.append(column)
                 elif innerCounter == 9:
+                    jpCreationDate.append(column)
+                elif innerCounter == 10:
                     jpSelectedCandidate.append(column)
                 innerCounter = innerCounter + 1
             loopCounter = loopCounter + 1
@@ -67,7 +70,7 @@ def adminJobPostingFUNC():
 
         conn.commit()
         c.close()
-        return render_template('adminJobDashboard.html', counter = loopCounter, jobIDs = jpJobIDs, userIDs = jpUserIDS, jobCompany = jpCompany, jobTitle = jpTitle, jobDescription = jpDescription, jobRequirements = jpRequirements, jobLocation = jpLocation, jobSalary = jpSalary, jobCreationDate = jpCreationDate, jobSelectedCandidate = jpSelectedCandidate)
+        return render_template('adminJobDashboard.html', counter = loopCounter, jobIDs = jpJobIDs, userIDs = jpUserIDS, jobCompany = jpCompany, jobTitle = jpTitle, jobDescription = jpDescription, jobRequirements = jpRequirements, jobLocation = jpLocation, jobSalary = jpSalary, jobTags = jpTags, jobCreationDate = jpCreationDate, jobSelectedCandidate = jpSelectedCandidate)
     elif request.method == 'POST':
          deleteJobID = request.form.get("deleteJobID")
          print(deleteJobID)

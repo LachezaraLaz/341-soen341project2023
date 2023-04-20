@@ -58,4 +58,9 @@ https://user-images.githubusercontent.com/95307617/222335049-a5a88491-aa84-4ae6-
 
 https://www.youtube.com/watch?v=IpQhxDn0sZQ
 
+## SPRINT 4 Video on Youtube:
+*********I forgot to mention in the video that all acceptance tests are closed issues in Sprint 4. Please keep this in mind.*******
+
+https://youtu.be/hIek0WKgYtU
+
 
